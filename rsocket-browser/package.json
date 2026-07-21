@@ -1,0 +1,69 @@
+{
+  "name": "rsocket-browser",
+  "version": "3.3.11",
+  "description": "Browser-first RSocket client over WebSocket with reconnect and Resume.",
+  "license": "MIT",
+  "author": "CKATEPTb",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/CKATEPTb/rsocket-ts",
+    "directory": "rsocket-browser"
+  },
+  "homepage": "https://github.com/CKATEPTb/rsocket-ts/tree/production/rsocket-browser#readme",
+  "bugs": {
+    "url": "https://github.com/CKATEPTb/rsocket-ts/issues"
+  },
+  "keywords": [
+    "rsocket",
+    "websocket",
+    "client",
+    "connection",
+    "buffer",
+    "reactor",
+    "reactor-core",
+    "reactive",
+    "streams",
+    "reactive-streams",
+    "protocol",
+    "frame",
+    "uint8array",
+    "typescript",
+    "spec"
+  ],
+  "type": "module",
+  "main": "./dist/index.js",
+  "browser": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "browser": "./dist/index.js",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "LICENSE.md",
+    "README.md"
+  ],
+  "sideEffects": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "test": "tsc -p tsconfig.json --noEmit && vitest run",
+    "build": "node ../.github/scripts/clean-workspace-dist.mjs && vite build && tsc -p tsconfig.build.json --emitDeclarationOnly && node ../.github/scripts/rewrite-workspace-dts-aliases.mjs"
+  },
+  "devDependencies": {
+    "@types/node": "^26.1.1",
+    "rsocket-server-ts": "^1.0.0",
+    "typescript": "^7.0.2",
+    "vite": "^8.1.5",
+    "vitest": "^4.1.10"
+  },
+  "dependencies": {
+    "rsocket-client-ts": "^1.0.0",
+    "rsocket-core-ts": "^1.0.0"
+  }
+}
