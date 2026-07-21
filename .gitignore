@@ -2,7 +2,7 @@
 /.release-plan.json
 /.release-api-*/
 /.api-test-*/
-/node_modules/
+**/node_modules/
 **/coverage/
 **/dist/
 *.tgz
