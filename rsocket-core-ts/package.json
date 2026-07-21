@@ -1,0 +1,56 @@
+{
+  "name": "rsocket-core-ts",
+  "version": "1.0.0",
+  "description": "Shared transport-neutral RSocket protocol primitives for TypeScript.",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "LICENSE.md",
+    "README.md"
+  ],
+  "sideEffects": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "test": "tsc -p tsconfig.json --noEmit && vitest run",
+    "build": "node ../.github/scripts/clean-workspace-dist.mjs && vite build && tsc -p tsconfig.build.json --emitDeclarationOnly && node ../.github/scripts/rewrite-workspace-dts-aliases.mjs"
+  },
+  "dependencies": {
+    "reactor-core-ts": "^3.2.4",
+    "rsocket-frames-ts": "^2.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^26.1.1",
+    "typescript": "^7.0.2",
+    "vite": "^8.1.5",
+    "vitest": "^4.1.10"
+  },
+  "license": "MIT",
+  "author": "CKATEPTb",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/CKATEPTb/rsocket-ts",
+    "directory": "rsocket-core-ts"
+  },
+  "homepage": "https://github.com/CKATEPTb/rsocket-ts/tree/production/rsocket-core-ts#readme",
+  "bugs": {
+    "url": "https://github.com/CKATEPTb/rsocket-ts/issues"
+  },
+  "keywords": [
+    "rsocket",
+    "core",
+    "reactive-streams",
+    "reactor",
+    "typescript"
+  ]
+}
