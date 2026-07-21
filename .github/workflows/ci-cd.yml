@@ -1,0 +1,58 @@
+name: CI/CD
+
+on:
+  push:
+    branches:
+      - production
+
+permissions:
+  contents: write
+  id-token: write
+
+concurrency:
+  group: rsocket-ts-production-release
+  cancel-in-progress: false
+
+jobs:
+  release:
+    name: Test, build, and publish changed packages
+    if: ${{ !contains(github.event.head_commit.message, '[skip ci]') }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout monorepo
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24.x
+          cache: npm
+          registry-url: https://registry.npmjs.org
+
+      - name: Install workspaces
+        run: npm ci
+
+      - name: Test and build all workspaces
+        run: npm test
+
+      - name: Create public API release plan
+        env:
+          BASE_SHA: ${{ github.event.before }}
+          HEAD_SHA: ${{ github.sha }}
+        run: node .github/scripts/release-plan.mjs --base "$BASE_SHA" --head "$HEAD_SHA"
+
+      - name: Apply versions and dependency ranges
+        run: node .github/scripts/apply-release-plan.mjs
+
+      - name: Update workspace lockfile
+        run: npm install --package-lock-only --ignore-scripts
+
+      - name: Test, build, publish, and await npm
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: node .github/scripts/publish-release.mjs
+
+      - name: Commit released versions and tags
+        run: node .github/scripts/commit-release.mjs
