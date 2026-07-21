@@ -1,0 +1,29 @@
+{
+  "name": "rsocket-ts-monorepo",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "packageManager": "npm@11.11.0",
+  "engines": {
+    "node": "^20.19.0 || >=22.12.0"
+  },
+  "workspaces": [
+    "rsocket-frames-ts",
+    "rsocket-core-ts",
+    "rsocket-client-ts",
+    "rsocket-server-ts",
+    "rsocket-browser"
+  ],
+  "scripts": {
+    "test": "node .github/scripts/test-all.mjs",
+    "build": "node .github/scripts/run-workspaces.mjs build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/CKATEPTb/rsocket-ts"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@microsoft/api-extractor": "^7.58.12"
+  }
+}
