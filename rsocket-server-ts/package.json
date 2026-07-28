@@ -29,7 +29,7 @@
   "dependencies": {
     "reactor-core-ts": "^3.2.4",
     "rsocket-core-ts": "^1.0.0",
-    "rsocket-frames-ts": "^2.0.0"
+    "rsocket-frames-ts": "^3.0.0"
   },
   "devDependencies": {
     "@types/node": "^26.1.1",

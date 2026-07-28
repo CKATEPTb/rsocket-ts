@@ -1,0 +1,1956 @@
+{
+  "formatVersion": 1,
+  "packageName": "rsocket-core-ts",
+  "entries": {
+    ".": {
+      "conditions": [
+        "types",
+        "import",
+        "default"
+      ],
+      "exports": {
+        "AsyncQueue": "Class",
+        "CLIENT_STREAM_ID": "Variable",
+        "DEFAULT_DATA_MIME_TYPE": "Variable",
+        "DEFAULT_MAX_FRAME_LENGTH": "Variable",
+        "DEFAULT_METADATA_MIME_TYPE": "Variable",
+        "ERROR_DATA_MIME_TYPE": "Variable",
+        "EncodedPayload": "Interface",
+        "IgnoredPayloadFragments": "Class",
+        "InitialRequestFrame": "TypeAlias",
+        "KEEPALIVE_DATA_MIME_TYPE": "Variable",
+        "MAX_REQUEST_N": "Variable",
+        "PayloadFragmentMap": "TypeAlias",
+        "PublisherInput": "TypeAlias",
+        "PullSubscription": "TypeAlias",
+        "RSocketConnectionError": "Class",
+        "RSocketError": "Class",
+        "RSocketFrameDirection": "TypeAlias",
+        "RSocketFrameSizeError": "Class",
+        "RSocketInactivityTimer": "Class",
+        "RSocketPayload": "Interface",
+        "RSocketPayloadFrame": "Interface",
+        "RSocketPayloadInput": "TypeAlias",
+        "RSocketProtocolError": "Class",
+        "RSocketReplayBuffer": "Class",
+        "RSocketReplayBufferOptions": "Interface",
+        "RSocketReplayEmitter": "TypeAlias",
+        "RSocketRoute": "TypeAlias",
+        "RSocketTcpDuplexSocket": "Interface",
+        "RSocketTcpEventSocket": "Interface",
+        "RSocketTransportClose": "Interface",
+        "RSocketTransportCloseOptions": "Interface",
+        "RSocketTransportConnection": "Interface",
+        "RSocketTransportHandler": "Interface",
+        "ReactiveTcpTransportConnection": "Class",
+        "ReactiveTransportBinding": "Class",
+        "ReactiveWebSocketTransportConnection": "Class",
+        "RequestFragmentAssembler": "Class",
+        "SERVER_STREAM_ID": "Variable",
+        "TcpFrameConsumer": "TypeAlias",
+        "TcpFrameDecoder": "Class",
+        "addReactiveDemand": "Function",
+        "addWebSocketListener": "Function",
+        "cancelSubscription": "Function",
+        "compositeMetadata": "Function",
+        "compositeMetadataEntries": "Function",
+        "connectionClosedError": "Function",
+        "createPullAsyncIterable": "Function",
+        "data": "Function",
+        "decodeFramePayload": "Function",
+        "decodeInitialRequestFrame": "Function",
+        "decodeWebSocketMessage": "Function",
+        "deserializeFrame": "Function",
+        "emitOutboundFrameFragments": "Function",
+        "emitSerializedOutboundFrames": "Function",
+        "encodeMetadataInput": "Function",
+        "encodePayloadInput": "Function",
+        "encodeTcpFrame": "Function",
+        "errorFromFrame": "Function",
+        "errorMessage": "Function",
+        "errorPayload": "Function",
+        "hasIgnorableInvalidMetadataLength": "Function",
+        "isConnectionErrorCode": "Function",
+        "isConnectionFrame": "Function",
+        "isErrorCodeValidForStream": "Function",
+        "isHandshakeErrorCode": "Function",
+        "isIgnorableEstablishedFrame": "Function",
+        "isIgnorableUnknownStreamFrame": "Function",
+        "isInitialRequestFrame": "Function",
+        "isPromiseLike": "Function",
+        "isPublisher": "Function",
+        "isResumePositionFrame": "Function",
+        "isStreamErrorCode": "Function",
+        "isTcpSocketOpen": "Function",
+        "metadata": "Function",
+        "nextRSocketStreamId": "Function",
+        "normalizeFiniteReactiveDemand": "Function",
+        "normalizeRSocketRoute": "Function",
+        "normalizeReactiveDemand": "Function",
+        "observeAbort": "Function",
+        "outboundFrameLength": "Function",
+        "payloadHasMoreFragments": "Function",
+        "readFrameStreamId": "Function",
+        "readFrameTypeAndFlags": "Function",
+        "readKeepalivePosition": "Function",
+        "reassemblePayloadFrame": "Function",
+        "removeWebSocketListener": "Function",
+        "requiresRawPayloadDecode": "Function",
+        "route": "Function",
+        "routingTags": "Function",
+        "tcpCloseFlux": "Function",
+        "tcpErrorFlux": "Function",
+        "tcpFrameFlux": "Function",
+        "unrefTimer": "Function",
+        "webSocketBinaryData": "Function",
+        "webSocketCloseFlux": "Function",
+        "webSocketEventFlux": "Function",
+        "webSocketFrameFlux": "Function",
+        "webSocketSendData": "Function",
+        "writeWebSocketFrame": "Function"
+      },
+      "items": {
+        "rsocket-core-ts!~FragmentEmitter:type": {
+          "kind": "TypeAlias",
+          "name": "FragmentEmitter",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "BJT6UhA3xCg8pgtPLZwYWOUEaBwojjfDGk0N7qhA498"
+        },
+        "rsocket-core-ts!~FragmentParts:interface": {
+          "kind": "Interface",
+          "name": "FragmentParts",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "Eh--oeogYZBQ3hz5856iiASkWVYfb4w-3yt2TS64Aw0"
+        },
+        "rsocket-core-ts!~FragmentParts#dataChunks:member": {
+          "kind": "PropertySignature",
+          "name": "dataChunks",
+          "parent": "rsocket-core-ts!~FragmentParts:interface",
+          "optional": true,
+          "abstract": false,
+          "hash": "Drzj9pGGZmz3wl-xLBF1Jbte4oiTIAB-ZsodOaPgz4k"
+        },
+        "rsocket-core-ts!~FragmentParts#dataLength:member": {
+          "kind": "PropertySignature",
+          "name": "dataLength",
+          "parent": "rsocket-core-ts!~FragmentParts:interface",
+          "optional": false,
+          "abstract": false,
+          "hash": "OVckK89vxSpcXCwAvRa0Pj2LodcYy1wv-NAw3Jk2qbo"
+        },
+        "rsocket-core-ts!~FragmentParts#hasMetadata:member": {
+          "kind": "PropertySignature",
+          "name": "hasMetadata",
+          "parent": "rsocket-core-ts!~FragmentParts:interface",
+          "optional": false,
+          "abstract": false,
+          "hash": "idfI2nE45F_9CviMEDjOKu5s-iny0lK7NUHfE0v3QOI"
+        },
+        "rsocket-core-ts!~FragmentParts#metadataChunks:member": {
+          "kind": "PropertySignature",
+          "name": "metadataChunks",
+          "parent": "rsocket-core-ts!~FragmentParts:interface",
+          "optional": true,
+          "abstract": false,
+          "hash": "BSW2_6cbCzJtUlBF1BCXZ2oGGtW1XNa6V3yFAiI4jBM"
+        },
+        "rsocket-core-ts!~FragmentParts#metadataLength:member": {
+          "kind": "PropertySignature",
+          "name": "metadataLength",
+          "parent": "rsocket-core-ts!~FragmentParts:interface",
+          "optional": false,
+          "abstract": false,
+          "hash": "FmLkTw6n2UYkhzeGtx0FTZYYEuPu_ZUPTQPKO1qSXws"
+        },
+        "rsocket-core-ts!~PayloadFragmentState:interface": {
+          "kind": "Interface",
+          "name": "PayloadFragmentState",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "7IXx74-bOxxIqKxm5CerAh8DKk33om4nLrpPrMCdyas"
+        },
+        "rsocket-core-ts!~PayloadFragmentState#flags:member": {
+          "kind": "PropertySignature",
+          "name": "flags",
+          "parent": "rsocket-core-ts!~PayloadFragmentState:interface",
+          "optional": false,
+          "abstract": false,
+          "hash": "fA1bdBcxt6VkHM8kP5TrSnw8Rt-wiFpnKmyIQfkhAZ4"
+        },
+        "rsocket-core-ts!~RSocketPayloadInputEnvelope:interface": {
+          "kind": "Interface",
+          "name": "RSocketPayloadInputEnvelope",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "dh4LWTipy06qvoEBDS2J4Pci7qpsrrw8SyRzjWN1CcE"
+        },
+        "rsocket-core-ts!~RSocketPayloadInputEnvelope#data:member": {
+          "kind": "PropertySignature",
+          "name": "data",
+          "parent": "rsocket-core-ts!~RSocketPayloadInputEnvelope:interface",
+          "optional": true,
+          "abstract": false,
+          "hash": "OF9z_BX_s8JL237aQzv9wFGuX5n996svi0RqPnXiQOg"
+        },
+        "rsocket-core-ts!~RSocketPayloadInputEnvelope#dataMimeType:member": {
+          "kind": "PropertySignature",
+          "name": "dataMimeType",
+          "parent": "rsocket-core-ts!~RSocketPayloadInputEnvelope:interface",
+          "optional": true,
+          "abstract": false,
+          "hash": "2fXupKSEh4gNcwtmJhb87SC0F4Mx6oqgs3u60ZzK4gk"
+        },
+        "rsocket-core-ts!~RSocketPayloadInputEnvelope#metadata:member": {
+          "kind": "PropertySignature",
+          "name": "metadata",
+          "parent": "rsocket-core-ts!~RSocketPayloadInputEnvelope:interface",
+          "optional": true,
+          "abstract": false,
+          "hash": "azl2PpBbe33UnCxG3V15qVwKOgVgaIFZKVjuQ9O69X8"
+        },
+        "rsocket-core-ts!~RSocketPayloadInputEnvelope#metadataMimeType:member": {
+          "kind": "PropertySignature",
+          "name": "metadataMimeType",
+          "parent": "rsocket-core-ts!~RSocketPayloadInputEnvelope:interface",
+          "optional": true,
+          "abstract": false,
+          "hash": "PXCH5kOIwfzkGsQsal4wyra90mTk29sjWCmwfDSGnP4"
+        },
+        "rsocket-core-ts!~RSocketWebSocketTransportSocket:interface": {
+          "kind": "Interface",
+          "name": "RSocketWebSocketTransportSocket",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "IPgY1ZOf_AojVvgTiROLC1ptC7AaDipKFUOc_e8NJIY"
+        },
+        "rsocket-core-ts!~RSocketWebSocketTransportSocket#binaryType:member": {
+          "kind": "PropertySignature",
+          "name": "binaryType",
+          "parent": "rsocket-core-ts!~RSocketWebSocketTransportSocket:interface",
+          "optional": true,
+          "abstract": false,
+          "hash": "5Bg2IfRRHuirIHB1z6P-RwQyM8ymdCWuNVogFJjsN2Q"
+        },
+        "rsocket-core-ts!~RSocketWebSocketTransportSocket#close:member(1)": {
+          "kind": "MethodSignature",
+          "name": "close",
+          "parent": "rsocket-core-ts!~RSocketWebSocketTransportSocket:interface",
+          "optional": false,
+          "abstract": false,
+          "hash": "FtQPM3zE056Y_AjABwPv27f0bM-6CIe5TBoesiJd5Mo"
+        },
+        "rsocket-core-ts!~RSocketWebSocketTransportSocket#off:member(1)": {
+          "kind": "MethodSignature",
+          "name": "off",
+          "parent": "rsocket-core-ts!~RSocketWebSocketTransportSocket:interface",
+          "optional": true,
+          "abstract": false,
+          "hash": "te0ueKZjAjcXNaOBC3o8B__LebAJ1mWZs-MrrgSGSP4"
+        },
+        "rsocket-core-ts!~RSocketWebSocketTransportSocket#on:member(1)": {
+          "kind": "MethodSignature",
+          "name": "on",
+          "parent": "rsocket-core-ts!~RSocketWebSocketTransportSocket:interface",
+          "optional": true,
+          "abstract": false,
+          "hash": "YtW0p67NSY_WLpLKYdKEofBh19367BqL6o_DSytoE9A"
+        },
+        "rsocket-core-ts!~RSocketWebSocketTransportSocket#readyState:member": {
+          "kind": "PropertySignature",
+          "name": "readyState",
+          "parent": "rsocket-core-ts!~RSocketWebSocketTransportSocket:interface",
+          "optional": false,
+          "abstract": false,
+          "hash": "whCXP9Xygok6s0bBiQn_MZjC4_vlZEMC9xssra1WEWw"
+        },
+        "rsocket-core-ts!~RSocketWebSocketTransportSocket#send:member(1)": {
+          "kind": "MethodSignature",
+          "name": "send",
+          "parent": "rsocket-core-ts!~RSocketWebSocketTransportSocket:interface",
+          "optional": false,
+          "abstract": false,
+          "hash": "jQ78SogNTKM5ONC9ODm1Xr6C8b_JAFy-LyT4wX1koLc"
+        },
+        "rsocket-core-ts!~RSocketWebSocketTransportSocket#terminate:member(1)": {
+          "kind": "MethodSignature",
+          "name": "terminate",
+          "parent": "rsocket-core-ts!~RSocketWebSocketTransportSocket:interface",
+          "optional": true,
+          "abstract": false,
+          "hash": "A0yXcwTmlM0lgsiK4quVQ7EuOU2kdzPbCwQajSKV0MI"
+        },
+        "rsocket-core-ts!~SerializedFrameEmitter:type": {
+          "kind": "TypeAlias",
+          "name": "SerializedFrameEmitter",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "0mQ1B5ZhsigMwmHfc42VIF87tcqK73Ixxpd3XRMJMYM"
+        },
+        "rsocket-core-ts!~WritableWebSocket:interface": {
+          "kind": "Interface",
+          "name": "WritableWebSocket",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "28utZXR_kwlHvEAjmGxK1LMfs23GnxkmIU231xBjo14"
+        },
+        "rsocket-core-ts!~WritableWebSocket#readyState:member": {
+          "kind": "PropertySignature",
+          "name": "readyState",
+          "parent": "rsocket-core-ts!~WritableWebSocket:interface",
+          "optional": false,
+          "abstract": false,
+          "hash": "whCXP9Xygok6s0bBiQn_MZjC4_vlZEMC9xssra1WEWw"
+        },
+        "rsocket-core-ts!~WritableWebSocket#send:member(1)": {
+          "kind": "MethodSignature",
+          "name": "send",
+          "parent": "rsocket-core-ts!~WritableWebSocket:interface",
+          "optional": false,
+          "abstract": false,
+          "hash": "jQ78SogNTKM5ONC9ODm1Xr6C8b_JAFy-LyT4wX1koLc"
+        },
+        "rsocket-core-ts!addReactiveDemand:function(1)": {
+          "kind": "Function",
+          "name": "addReactiveDemand",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "RUmzG5MkLPVod62zw6C_SfjvF6zz0VIbR1me4Gwc6P8"
+        },
+        "rsocket-core-ts!addWebSocketListener:function(1)": {
+          "kind": "Function",
+          "name": "addWebSocketListener",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "nrA_wykiVkQfgpBeheJSUjXziOaz5o0TZ-YIEzvGp4s"
+        },
+        "rsocket-core-ts!AsyncQueue:class": {
+          "kind": "Class",
+          "name": "AsyncQueue",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "cUjKuSPUxty8hLs8ZxEcvVsDsJHy6MlWN8VA_zDrRjg"
+        },
+        "rsocket-core-ts!AsyncQueue#[Symbol.asyncIterator]:member(1)": {
+          "kind": "Method",
+          "name": "[Symbol.asyncIterator]",
+          "parent": "rsocket-core-ts!AsyncQueue:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "qt6B7E47Brs8KivegcH9fRcvjMgJKHqCDex7Rzxb4gQ"
+        },
+        "rsocket-core-ts!AsyncQueue#complete:member(1)": {
+          "kind": "Method",
+          "name": "complete",
+          "parent": "rsocket-core-ts!AsyncQueue:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "yufqlzlXnnD_Q4ooj2BMtVvYA_IxAsXxuMUY4tPoPFo"
+        },
+        "rsocket-core-ts!AsyncQueue#error:member(1)": {
+          "kind": "Method",
+          "name": "error",
+          "parent": "rsocket-core-ts!AsyncQueue:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "UKcjgvYPCfDSwBhnOErNekhzRuZuojkx9edeNBemUgQ"
+        },
+        "rsocket-core-ts!AsyncQueue#next:member(1)": {
+          "kind": "Method",
+          "name": "next",
+          "parent": "rsocket-core-ts!AsyncQueue:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "49fTu7psfG35ZVketG9RwU4IkJMsJsHjHddcpAYi9kw"
+        },
+        "rsocket-core-ts!AsyncQueue#push:member(1)": {
+          "kind": "Method",
+          "name": "push",
+          "parent": "rsocket-core-ts!AsyncQueue:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "N_CPUEVJkmh0QQ0SVrdQnW5-U38aWFkFwYtaCziheWk"
+        },
+        "rsocket-core-ts!AsyncQueue#return:member(1)": {
+          "kind": "Method",
+          "name": "return",
+          "parent": "rsocket-core-ts!AsyncQueue:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "aRheAMRffhs2QAU8cbkIefR8LUyikUQXb0-6p7l5UhY"
+        },
+        "rsocket-core-ts!cancelSubscription:function(1)": {
+          "kind": "Function",
+          "name": "cancelSubscription",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "A1Wr7WRKJIgyoC3dqWEeV1h73vtFxUKYrKPLc1vk5aU"
+        },
+        "rsocket-core-ts!CLIENT_STREAM_ID:var": {
+          "kind": "Variable",
+          "name": "CLIENT_STREAM_ID",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "eOCHxnVe3R_OE6fE9ux2JO--MApHtSFEMMirqKc6gyw"
+        },
+        "rsocket-core-ts!compositeMetadata:function(1)": {
+          "kind": "Function",
+          "name": "compositeMetadata",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "iuFdbJqmPLU76zSGSx07ZxWvWs-GVx0FbIuFukLwLHY"
+        },
+        "rsocket-core-ts!compositeMetadataEntries:function(1)": {
+          "kind": "Function",
+          "name": "compositeMetadataEntries",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "44BG9bj62SqfZ-i8dNeZF-Um4fqYmjsv5oMQ0UselHg"
+        },
+        "rsocket-core-ts!connectionClosedError:function(1)": {
+          "kind": "Function",
+          "name": "connectionClosedError",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "O-3tU7QFlUD7-f51AQxBoLY_IVnMGZISMGgzXPWH-6A"
+        },
+        "rsocket-core-ts!createPullAsyncIterable:function(1)": {
+          "kind": "Function",
+          "name": "createPullAsyncIterable",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "Ul2Ls_apcTvcDiqLDAExHoxY8PMkShfUuIypPo2dcCY"
+        },
+        "rsocket-core-ts!data:function(1)": {
+          "kind": "Function",
+          "name": "data",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "6_1FZbAnKJM2Jy1LW0BX8RPQWXwzCsDMzptabZVi6F4"
+        },
+        "rsocket-core-ts!decodeFramePayload:function(1)": {
+          "kind": "Function",
+          "name": "decodeFramePayload",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "SMlzPdLWYmoDTJdZPp7fjy1utXV7WqRLEwcWikgtyFU"
+        },
+        "rsocket-core-ts!decodeInitialRequestFrame:function(1)": {
+          "kind": "Function",
+          "name": "decodeInitialRequestFrame",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "Nu1Z2_3_U4yiIPfs9I1OMU0_rxYZ2VRp6Smcl0HUD-Q"
+        },
+        "rsocket-core-ts!decodeWebSocketMessage:function(1)": {
+          "kind": "Function",
+          "name": "decodeWebSocketMessage",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "83RxIk3tkGOE0hmpoNyMKQJbqKlknuScQjtlTV1Gz44"
+        },
+        "rsocket-core-ts!DEFAULT_DATA_MIME_TYPE:var": {
+          "kind": "Variable",
+          "name": "DEFAULT_DATA_MIME_TYPE",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "X_bLg7jZK89vXnjeC4Nejqe9N4sfemC83lXFLt6Dskk"
+        },
+        "rsocket-core-ts!DEFAULT_MAX_FRAME_LENGTH:var": {
+          "kind": "Variable",
+          "name": "DEFAULT_MAX_FRAME_LENGTH",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "NGdwJdmR2EYZkRktI-5HcN7ivF15ZZYJ5B2Gn4j1NTQ"
+        },
+        "rsocket-core-ts!DEFAULT_METADATA_MIME_TYPE:var": {
+          "kind": "Variable",
+          "name": "DEFAULT_METADATA_MIME_TYPE",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "_M6R1L9YXtL_-1pSpb3GGYjEIWrtMiZNShwSJHQoZOE"
+        },
+        "rsocket-core-ts!deserializeFrame:function(1)": {
+          "kind": "Function",
+          "name": "deserializeFrame",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "4qet8iefxYBrqN_nMmc7vdb8JvGbtkpoGCu5Wgtoym0"
+        },
+        "rsocket-core-ts!emitOutboundFrameFragments:function(1)": {
+          "kind": "Function",
+          "name": "emitOutboundFrameFragments",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "SNQZhwjmv7lC_Qz0KfMbZZS0CHs-iFgpXdDLu4wGkFU"
+        },
+        "rsocket-core-ts!emitSerializedOutboundFrames:function(1)": {
+          "kind": "Function",
+          "name": "emitSerializedOutboundFrames",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "PYb4Pd4q6xo7972teLOgQj3rkV3GaKCPud1ATpyOMuk"
+        },
+        "rsocket-core-ts!EncodedPayload:interface": {
+          "kind": "Interface",
+          "name": "EncodedPayload",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "agpoEXkC1F_4KgIUtXjl0O4NuWt68kETKoeN4JATIW0"
+        },
+        "rsocket-core-ts!EncodedPayload#metadata:member": {
+          "kind": "PropertySignature",
+          "name": "metadata",
+          "parent": "rsocket-core-ts!EncodedPayload:interface",
+          "optional": true,
+          "abstract": false,
+          "hash": "AO9wB0paX7QJ7fIb1hE4qzu0nWUM41-KCCD-uZhafsg"
+        },
+        "rsocket-core-ts!EncodedPayload#payload:member": {
+          "kind": "PropertySignature",
+          "name": "payload",
+          "parent": "rsocket-core-ts!EncodedPayload:interface",
+          "optional": true,
+          "abstract": false,
+          "hash": "AgOZqqDQA5m3FahW_1M8cXF3wpbTc5EPHmJnem25iFM"
+        },
+        "rsocket-core-ts!encodeMetadataInput:function(1)": {
+          "kind": "Function",
+          "name": "encodeMetadataInput",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "IBaCadl10k73CsH7RWviOYofufgbQMJ1jH_r22nonyw"
+        },
+        "rsocket-core-ts!encodePayloadInput:function(1)": {
+          "kind": "Function",
+          "name": "encodePayloadInput",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "Bv-0Yhxyn1Vye76IOypKTCgMCvim35Bv-Y8VTS92LXY"
+        },
+        "rsocket-core-ts!encodeTcpFrame:function(1)": {
+          "kind": "Function",
+          "name": "encodeTcpFrame",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "AmlSEk9uXTZ6zm-L5foPuqGo31ANp_BPRN5nORvILdw"
+        },
+        "rsocket-core-ts!ERROR_DATA_MIME_TYPE:var": {
+          "kind": "Variable",
+          "name": "ERROR_DATA_MIME_TYPE",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "IiMtFbcDEDL7uWrfijopzkcpe9w-Zq4Vx5-eo656LSg"
+        },
+        "rsocket-core-ts!errorFromFrame:function(1)": {
+          "kind": "Function",
+          "name": "errorFromFrame",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "cXJnjuRvZdwPlNiFRJuzCxDMSOM3MRFu1zaB467cmhA"
+        },
+        "rsocket-core-ts!errorMessage:function(1)": {
+          "kind": "Function",
+          "name": "errorMessage",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "jlYhTKS8CmdFqKQnSODEWytIRMqG99hik_Y2K4NpbN8"
+        },
+        "rsocket-core-ts!errorPayload:function(1)": {
+          "kind": "Function",
+          "name": "errorPayload",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "2t5_WfISNaisFrFcHeWasW9gGmZzpZRXlSuHIBxvBdo"
+        },
+        "rsocket-core-ts!hasIgnorableInvalidMetadataLength:function(1)": {
+          "kind": "Function",
+          "name": "hasIgnorableInvalidMetadataLength",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "kv0EakcykTb53oTit2hu7ThHw1zwPWjXSpeCj3E_eX4"
+        },
+        "rsocket-core-ts!IgnoredPayloadFragments:class": {
+          "kind": "Class",
+          "name": "IgnoredPayloadFragments",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "vEH501rpLWUZhuUpoG9rRvR1ooaln-J-FMb1SBq7fWE"
+        },
+        "rsocket-core-ts!IgnoredPayloadFragments#clear:member(1)": {
+          "kind": "Method",
+          "name": "clear",
+          "parent": "rsocket-core-ts!IgnoredPayloadFragments:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "8y__O-2Iu3h--z7TseZU3UbIzQH_4F__MH_Wl734SJs"
+        },
+        "rsocket-core-ts!IgnoredPayloadFragments#consume:member(1)": {
+          "kind": "Method",
+          "name": "consume",
+          "parent": "rsocket-core-ts!IgnoredPayloadFragments:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "ERmLJveLg5ZzhXazQrZVt7NU9dyPHKHIguzPbqno6mA"
+        },
+        "rsocket-core-ts!IgnoredPayloadFragments#delete:member(1)": {
+          "kind": "Method",
+          "name": "delete",
+          "parent": "rsocket-core-ts!IgnoredPayloadFragments:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "Lzq92zBP-RJ8Y2ZyKJbbbBYnZT7q2QF-c9Sagbw2E5Q"
+        },
+        "rsocket-core-ts!IgnoredPayloadFragments#has:member(1)": {
+          "kind": "Method",
+          "name": "has",
+          "parent": "rsocket-core-ts!IgnoredPayloadFragments:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "Twl8PV5IKFJXxo3DhQwrnt5cbAo3UtGemgvm7WHpZBM"
+        },
+        "rsocket-core-ts!IgnoredPayloadFragments#update:member(1)": {
+          "kind": "Method",
+          "name": "update",
+          "parent": "rsocket-core-ts!IgnoredPayloadFragments:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "oCBxDr3gvcoPfEWk0JRAkTeBKuf1jtgz7qQF75R5uV8"
+        },
+        "rsocket-core-ts!InitialRequestFrame:type": {
+          "kind": "TypeAlias",
+          "name": "InitialRequestFrame",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "p_BQ88zQz8gOvqV3rBj9b5WoT1_TITcP0n9xLLjigl8"
+        },
+        "rsocket-core-ts!isConnectionErrorCode:function(1)": {
+          "kind": "Function",
+          "name": "isConnectionErrorCode",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "l9e3taRCH-J4onaOYWahGru6TrcbgJVGsJKMGrbzW2U"
+        },
+        "rsocket-core-ts!isConnectionFrame:function(1)": {
+          "kind": "Function",
+          "name": "isConnectionFrame",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "2Zug4gDcIu0V7mmp18nsMEMad3ykE5tkO0ETKh9CfKg"
+        },
+        "rsocket-core-ts!isErrorCodeValidForStream:function(1)": {
+          "kind": "Function",
+          "name": "isErrorCodeValidForStream",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "0kneNVvfVx8Fss12yvwCuqb-0r9PwnldK0pZOOQ_1ks"
+        },
+        "rsocket-core-ts!isHandshakeErrorCode:function(1)": {
+          "kind": "Function",
+          "name": "isHandshakeErrorCode",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "VrtLHcCi3-dKHyxwJzFIeY-da5DFlxEqEiMzAG5NT9s"
+        },
+        "rsocket-core-ts!isIgnorableEstablishedFrame:function(1)": {
+          "kind": "Function",
+          "name": "isIgnorableEstablishedFrame",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "-JNADlBKH9d7TJ3xvUCHE23lFo7AUcF9eezEDIxA19w"
+        },
+        "rsocket-core-ts!isIgnorableUnknownStreamFrame:function(1)": {
+          "kind": "Function",
+          "name": "isIgnorableUnknownStreamFrame",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "7M3Dvy5zTu6VFTuyCKUPZVrRwfVe7aAvblHmFwNvGNw"
+        },
+        "rsocket-core-ts!isInitialRequestFrame:function(1)": {
+          "kind": "Function",
+          "name": "isInitialRequestFrame",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "wbzcAW7xI6QWV1Tj4_Hd-inZlHtY8r2rV__3J4_x5J4"
+        },
+        "rsocket-core-ts!isPromiseLike:function(1)": {
+          "kind": "Function",
+          "name": "isPromiseLike",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "4pTLMIqOVHgGuvnV9xxKQ9AUVIFU5VHRPur04rIRAY4"
+        },
+        "rsocket-core-ts!isPublisher:function(1)": {
+          "kind": "Function",
+          "name": "isPublisher",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "Xyv-maORRBARQd_HwAmBShqcvOEjsB-20ZXo7KNoN0E"
+        },
+        "rsocket-core-ts!isResumePositionFrame:function(1)": {
+          "kind": "Function",
+          "name": "isResumePositionFrame",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "ZP2OELh4RKXnIYBkiACqNp7n8nmdM0tU34vOEphnsgg"
+        },
+        "rsocket-core-ts!isStreamErrorCode:function(1)": {
+          "kind": "Function",
+          "name": "isStreamErrorCode",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "kayJwmSY8Etw5FVxKOzR9Rmk7Co-ftHmeVetl6LgcXc"
+        },
+        "rsocket-core-ts!isTcpSocketOpen:function(1)": {
+          "kind": "Function",
+          "name": "isTcpSocketOpen",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "mwdp2xYZhp4WJh0sh7OTEIkmt7UjNz-CBfWeS4jMtiQ"
+        },
+        "rsocket-core-ts!KEEPALIVE_DATA_MIME_TYPE:var": {
+          "kind": "Variable",
+          "name": "KEEPALIVE_DATA_MIME_TYPE",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "YqrAAn77YfQaKzBuh15aSpJFPwlaEllTwPNwI6PODJc"
+        },
+        "rsocket-core-ts!MAX_REQUEST_N:var": {
+          "kind": "Variable",
+          "name": "MAX_REQUEST_N",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "6KxvXGqIsfRbcQhJzaLyWHq5_IHVKt90zAmBDJUCc8A"
+        },
+        "rsocket-core-ts!metadata:function(1)": {
+          "kind": "Function",
+          "name": "metadata",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "vXOAWqGuKz5Sd9mSlZsQnZ_rp_fl4184CLJosBA6SnI"
+        },
+        "rsocket-core-ts!nextRSocketStreamId:function(1)": {
+          "kind": "Function",
+          "name": "nextRSocketStreamId",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "CK5PE2zON9atYgAmYwHjjdE0hNPdYzx1gSFGbumnvoU"
+        },
+        "rsocket-core-ts!normalizeFiniteReactiveDemand:function(1)": {
+          "kind": "Function",
+          "name": "normalizeFiniteReactiveDemand",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "bVWUw2olRT5LMc1v8cEkmR1_neIX2h_Jzvx9B6hRjM0"
+        },
+        "rsocket-core-ts!normalizeReactiveDemand:function(1)": {
+          "kind": "Function",
+          "name": "normalizeReactiveDemand",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "l9fbXgQJ3ZTKQwV-PvG4gr7yc6kDl5hsStrXJU1orVs"
+        },
+        "rsocket-core-ts!normalizeRSocketRoute:function(1)": {
+          "kind": "Function",
+          "name": "normalizeRSocketRoute",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "_khr64Nwl-kH5WpiZhZZ8AFmfzgBWfPwkvzmF4Z8A8s"
+        },
+        "rsocket-core-ts!observeAbort:function(1)": {
+          "kind": "Function",
+          "name": "observeAbort",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "b03duRCuPxX3BPcEjsLYy4WOLJbD8l-eM9UlLOjQZIE"
+        },
+        "rsocket-core-ts!outboundFrameLength:function(1)": {
+          "kind": "Function",
+          "name": "outboundFrameLength",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "YczWbaoZMmSeptXoQbkNFPpTdcw12yzlUjErVd1lHUw"
+        },
+        "rsocket-core-ts!PayloadFragmentMap:type": {
+          "kind": "TypeAlias",
+          "name": "PayloadFragmentMap",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "5rCiItnRWA-o64Y1Sq6xS0dj0sGA5vxGxp3YZb-lOQQ"
+        },
+        "rsocket-core-ts!payloadHasMoreFragments:function(1)": {
+          "kind": "Function",
+          "name": "payloadHasMoreFragments",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "goQTHBnzIqXn9Fls_3yzBV8R9Bscz0AKTBlRbdU8aNA"
+        },
+        "rsocket-core-ts!PublisherInput:type": {
+          "kind": "TypeAlias",
+          "name": "PublisherInput",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "La3MYPYoE2GBOuRUDnQ3baxNDmb_1OJGuETaRutgRXg"
+        },
+        "rsocket-core-ts!PullSubscription:type": {
+          "kind": "TypeAlias",
+          "name": "PullSubscription",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "aD6I4aHX91Iz5sC7TwYMD7nvLJwYMU0zlj8IrK7zuaM"
+        },
+        "rsocket-core-ts!ReactiveTcpTransportConnection:class": {
+          "kind": "Class",
+          "name": "ReactiveTcpTransportConnection",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "ZNLGzEolaqH9D1NX-dH0oHqrR8MmI0voBI4nfVDlEI0"
+        },
+        "rsocket-core-ts!ReactiveTcpTransportConnection:constructor(1)": {
+          "kind": "Constructor",
+          "name": "",
+          "parent": "rsocket-core-ts!ReactiveTcpTransportConnection:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "hTc4QTqwMmPhTLW3QztkAIYZylXtbPxRjZrPcgjkytM"
+        },
+        "rsocket-core-ts!ReactiveTcpTransportConnection#close:member(1)": {
+          "kind": "Method",
+          "name": "close",
+          "parent": "rsocket-core-ts!ReactiveTcpTransportConnection:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "rBAakISd04z5WaWaJs9F3dTZ5qGnGupN4NaDhjxAQCE"
+        },
+        "rsocket-core-ts!ReactiveTcpTransportConnection#closes:member": {
+          "kind": "Property",
+          "name": "closes",
+          "parent": "rsocket-core-ts!ReactiveTcpTransportConnection:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "K6pYAFzwGFgilZVSIcQkh41-FZRd-a-xYNazmsTeUoo"
+        },
+        "rsocket-core-ts!ReactiveTcpTransportConnection#errors:member": {
+          "kind": "Property",
+          "name": "errors",
+          "parent": "rsocket-core-ts!ReactiveTcpTransportConnection:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "oGfLyBj_H5WHmsTzcswIf8ka0QfLr9uK8ISZhjg_wTk"
+        },
+        "rsocket-core-ts!ReactiveTcpTransportConnection#frames:member": {
+          "kind": "Property",
+          "name": "frames",
+          "parent": "rsocket-core-ts!ReactiveTcpTransportConnection:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "kOJsqndjOFxpEXNPVDVqd1XCGVsuRnL1i9Z1J564Kwo"
+        },
+        "rsocket-core-ts!ReactiveTcpTransportConnection#isOpen:member": {
+          "kind": "Property",
+          "name": "isOpen",
+          "parent": "rsocket-core-ts!ReactiveTcpTransportConnection:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "IjuuPq70-IVWQMVqVxRqqIygpNTsoYEXqYs_njkO2sc"
+        },
+        "rsocket-core-ts!ReactiveTcpTransportConnection#opened:member": {
+          "kind": "Property",
+          "name": "opened",
+          "parent": "rsocket-core-ts!ReactiveTcpTransportConnection:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "JvhQ566o95FGc3I97by7Z37-PCCQJWj8zziJauRhwpU"
+        },
+        "rsocket-core-ts!ReactiveTcpTransportConnection#socket:member": {
+          "kind": "Property",
+          "name": "socket",
+          "parent": "rsocket-core-ts!ReactiveTcpTransportConnection:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "dE3fsmkXBEeN4cY3xXkx91znalNfDpO93UNvmjBBql0"
+        },
+        "rsocket-core-ts!ReactiveTcpTransportConnection#write:member(1)": {
+          "kind": "Method",
+          "name": "write",
+          "parent": "rsocket-core-ts!ReactiveTcpTransportConnection:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "SAG9Jfb8RA864pNb_zPKSEcqbNoR-_DowlUBE1TrdeE"
+        },
+        "rsocket-core-ts!ReactiveTransportBinding:class": {
+          "kind": "Class",
+          "name": "ReactiveTransportBinding",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "w8mOGnQbZJk711RkSqmEiplbT8-nOnOYW2VAgZjEfGk"
+        },
+        "rsocket-core-ts!ReactiveTransportBinding:constructor(1)": {
+          "kind": "Constructor",
+          "name": "",
+          "parent": "rsocket-core-ts!ReactiveTransportBinding:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "vFZv-I46Y8IRS_X-4ueA52-8PR2XttR62rqS3kscaZo"
+        },
+        "rsocket-core-ts!ReactiveTransportBinding#close:member(1)": {
+          "kind": "Method",
+          "name": "close",
+          "parent": "rsocket-core-ts!ReactiveTransportBinding:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "QL9c1RDPNo32iRUeGYXVNUkHK672hzAGpsJWhTqgcy8"
+        },
+        "rsocket-core-ts!ReactiveTransportBinding#connection:member": {
+          "kind": "Property",
+          "name": "connection",
+          "parent": "rsocket-core-ts!ReactiveTransportBinding:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "fYwDbAD3V6RA8FVWp_mDL1nyKrQ13QYHCSEcRXnmhfc"
+        },
+        "rsocket-core-ts!ReactiveTransportBinding#dispose:member(1)": {
+          "kind": "Method",
+          "name": "dispose",
+          "parent": "rsocket-core-ts!ReactiveTransportBinding:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "4egurwjGJtjPgc3-vWuRJhB-CF_3K-L-n66vsRVNYwE"
+        },
+        "rsocket-core-ts!ReactiveTransportBinding#setHandler:member(1)": {
+          "kind": "Method",
+          "name": "setHandler",
+          "parent": "rsocket-core-ts!ReactiveTransportBinding:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "qcQU6W6qXoCMegNapj4XScdDx10rCGp9VbxmwZNkQq8"
+        },
+        "rsocket-core-ts!ReactiveTransportBinding#start:member(1)": {
+          "kind": "Method",
+          "name": "start",
+          "parent": "rsocket-core-ts!ReactiveTransportBinding:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "_n73J8J2mWuM9FnLg73vRsMliL7K1AZMX-XAUN0jm9A"
+        },
+        "rsocket-core-ts!ReactiveTransportBinding#write:member(1)": {
+          "kind": "Method",
+          "name": "write",
+          "parent": "rsocket-core-ts!ReactiveTransportBinding:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "gkC94qf8AaC-8X8b2fu6hbJX7ESGLzG_rMl8foZ6fz0"
+        },
+        "rsocket-core-ts!ReactiveWebSocketTransportConnection:class": {
+          "kind": "Class",
+          "name": "ReactiveWebSocketTransportConnection",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "HJtTmSfLWSKiTJb2CFaoVq4fPZ4x2MOfoHreVIeP4BA"
+        },
+        "rsocket-core-ts!ReactiveWebSocketTransportConnection:constructor(1)": {
+          "kind": "Constructor",
+          "name": "",
+          "parent": "rsocket-core-ts!ReactiveWebSocketTransportConnection:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "ILKxbFEd8GrvxtgtcPVV8DiYl42eHPuVuXZCkaZirfU"
+        },
+        "rsocket-core-ts!ReactiveWebSocketTransportConnection#close:member(1)": {
+          "kind": "Method",
+          "name": "close",
+          "parent": "rsocket-core-ts!ReactiveWebSocketTransportConnection:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "rBAakISd04z5WaWaJs9F3dTZ5qGnGupN4NaDhjxAQCE"
+        },
+        "rsocket-core-ts!ReactiveWebSocketTransportConnection#closes:member": {
+          "kind": "Property",
+          "name": "closes",
+          "parent": "rsocket-core-ts!ReactiveWebSocketTransportConnection:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "K6pYAFzwGFgilZVSIcQkh41-FZRd-a-xYNazmsTeUoo"
+        },
+        "rsocket-core-ts!ReactiveWebSocketTransportConnection#errors:member": {
+          "kind": "Property",
+          "name": "errors",
+          "parent": "rsocket-core-ts!ReactiveWebSocketTransportConnection:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "oGfLyBj_H5WHmsTzcswIf8ka0QfLr9uK8ISZhjg_wTk"
+        },
+        "rsocket-core-ts!ReactiveWebSocketTransportConnection#frames:member": {
+          "kind": "Property",
+          "name": "frames",
+          "parent": "rsocket-core-ts!ReactiveWebSocketTransportConnection:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "kOJsqndjOFxpEXNPVDVqd1XCGVsuRnL1i9Z1J564Kwo"
+        },
+        "rsocket-core-ts!ReactiveWebSocketTransportConnection#isOpen:member": {
+          "kind": "Property",
+          "name": "isOpen",
+          "parent": "rsocket-core-ts!ReactiveWebSocketTransportConnection:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "IjuuPq70-IVWQMVqVxRqqIygpNTsoYEXqYs_njkO2sc"
+        },
+        "rsocket-core-ts!ReactiveWebSocketTransportConnection#opened:member": {
+          "kind": "Property",
+          "name": "opened",
+          "parent": "rsocket-core-ts!ReactiveWebSocketTransportConnection:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "JvhQ566o95FGc3I97by7Z37-PCCQJWj8zziJauRhwpU"
+        },
+        "rsocket-core-ts!ReactiveWebSocketTransportConnection#socket:member": {
+          "kind": "Property",
+          "name": "socket",
+          "parent": "rsocket-core-ts!ReactiveWebSocketTransportConnection:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "dE3fsmkXBEeN4cY3xXkx91znalNfDpO93UNvmjBBql0"
+        },
+        "rsocket-core-ts!ReactiveWebSocketTransportConnection#write:member(1)": {
+          "kind": "Method",
+          "name": "write",
+          "parent": "rsocket-core-ts!ReactiveWebSocketTransportConnection:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "SAG9Jfb8RA864pNb_zPKSEcqbNoR-_DowlUBE1TrdeE"
+        },
+        "rsocket-core-ts!readFrameStreamId:function(1)": {
+          "kind": "Function",
+          "name": "readFrameStreamId",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "hGwRkw-CQDxG-Ag8moPQe1NF-OBrUyr7YFnKLqwrvJI"
+        },
+        "rsocket-core-ts!readFrameTypeAndFlags:function(1)": {
+          "kind": "Function",
+          "name": "readFrameTypeAndFlags",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "w82GYaD1czSfmtXQeKlBmq05Werm_HWglK41zjJf1X0"
+        },
+        "rsocket-core-ts!readKeepalivePosition:function(1)": {
+          "kind": "Function",
+          "name": "readKeepalivePosition",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "atdjvnkqSKp-b0JigbeIQ7XpZOxcfgxSFl00cvlW2DQ"
+        },
+        "rsocket-core-ts!reassemblePayloadFrame:function(1)": {
+          "kind": "Function",
+          "name": "reassemblePayloadFrame",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "8kqwAkFSvbDnL1ysOGjube9NZf1a2g6HQvjmBpNn7BM"
+        },
+        "rsocket-core-ts!removeWebSocketListener:function(1)": {
+          "kind": "Function",
+          "name": "removeWebSocketListener",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "vttUJ8s9ubvoxmghxUfrMMDQFXz-TL2tdqz4c-ONxqo"
+        },
+        "rsocket-core-ts!RequestFragmentAssembler:class": {
+          "kind": "Class",
+          "name": "RequestFragmentAssembler",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "UmmsiwCRPAf5WsGMDw7t8zZfRCiFVSjDVgX3uwSQCVg"
+        },
+        "rsocket-core-ts!RequestFragmentAssembler#clear:member(1)": {
+          "kind": "Method",
+          "name": "clear",
+          "parent": "rsocket-core-ts!RequestFragmentAssembler:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "8y__O-2Iu3h--z7TseZU3UbIzQH_4F__MH_Wl734SJs"
+        },
+        "rsocket-core-ts!RequestFragmentAssembler#continue:member(1)": {
+          "kind": "Method",
+          "name": "continue",
+          "parent": "rsocket-core-ts!RequestFragmentAssembler:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "D9m-VclHOQzCpO8SvPThbv94K-P0X83tlHwUiAtGfgQ"
+        },
+        "rsocket-core-ts!RequestFragmentAssembler#delete:member(1)": {
+          "kind": "Method",
+          "name": "delete",
+          "parent": "rsocket-core-ts!RequestFragmentAssembler:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "Lzq92zBP-RJ8Y2ZyKJbbbBYnZT7q2QF-c9Sagbw2E5Q"
+        },
+        "rsocket-core-ts!RequestFragmentAssembler#frameType:member(1)": {
+          "kind": "Method",
+          "name": "frameType",
+          "parent": "rsocket-core-ts!RequestFragmentAssembler:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "cyMSwC6aXcpnd5tkqe3xajdkASVHRNTw1TLRyLoqQ38"
+        },
+        "rsocket-core-ts!RequestFragmentAssembler#has:member(1)": {
+          "kind": "Method",
+          "name": "has",
+          "parent": "rsocket-core-ts!RequestFragmentAssembler:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "Twl8PV5IKFJXxo3DhQwrnt5cbAo3UtGemgvm7WHpZBM"
+        },
+        "rsocket-core-ts!RequestFragmentAssembler#isEmpty:member": {
+          "kind": "Property",
+          "name": "isEmpty",
+          "parent": "rsocket-core-ts!RequestFragmentAssembler:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "aUOR6vhdeCsTdwdfE_9Y7YEgYBwXvM_Ea5IH7bh1efk"
+        },
+        "rsocket-core-ts!RequestFragmentAssembler#start:member(1)": {
+          "kind": "Method",
+          "name": "start",
+          "parent": "rsocket-core-ts!RequestFragmentAssembler:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "YyUk_DJmjsi2qJk7z2gIO-oEHpKWQ7UZvn-GJtO9ACs"
+        },
+        "rsocket-core-ts!requiresRawPayloadDecode:function(1)": {
+          "kind": "Function",
+          "name": "requiresRawPayloadDecode",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "xo4XFFV4kPC1gIfPKc5FpuqkPnNeL2PUq19c4rHVygE"
+        },
+        "rsocket-core-ts!route:function(1)": {
+          "kind": "Function",
+          "name": "route",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "Ob3utkef7CkGiqsC3vwlL9VSV_C2BRsDqMjU78TGns0"
+        },
+        "rsocket-core-ts!routingTags:function(1)": {
+          "kind": "Function",
+          "name": "routingTags",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "8koHtdlvlHmtqLUV_50r7Nwq_00l3qOV0EamONS2iq8"
+        },
+        "rsocket-core-ts!RSocketConnectionError:class": {
+          "kind": "Class",
+          "name": "RSocketConnectionError",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "Fixxu5PFJwAZLVQd28ScQImafgIvwmSuCJGBe0s0fXE"
+        },
+        "rsocket-core-ts!RSocketConnectionError:constructor(1)": {
+          "kind": "Constructor",
+          "name": "",
+          "parent": "rsocket-core-ts!RSocketConnectionError:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "wFscxt9xBbPb_F-nPnKtM_23aeKZMBhZFhwHpJ1hYo4"
+        },
+        "rsocket-core-ts!RSocketError:class": {
+          "kind": "Class",
+          "name": "RSocketError",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "hyzk0wdk5fkBs-yo_aqbfiSnenZJ2xmiP1DUOA1Ap00"
+        },
+        "rsocket-core-ts!RSocketError:constructor(1)": {
+          "kind": "Constructor",
+          "name": "",
+          "parent": "rsocket-core-ts!RSocketError:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "gimEPFZvPIx6ZA6WO_lkrr7rxm8Zn9oiRqcg2L3xo4o"
+        },
+        "rsocket-core-ts!RSocketError#code:member": {
+          "kind": "Property",
+          "name": "code",
+          "parent": "rsocket-core-ts!RSocketError:class",
+          "optional": true,
+          "abstract": false,
+          "hash": "nnqDYPO41mUNhCC6H6SAv96k5ZcOMsmsYq3QmKke5t4"
+        },
+        "rsocket-core-ts!RSocketError#frame:member": {
+          "kind": "Property",
+          "name": "frame",
+          "parent": "rsocket-core-ts!RSocketError:class",
+          "optional": true,
+          "abstract": false,
+          "hash": "FHYQFeAoC4fSeDMj4j7EBG9w860jIjABlKWr58TXzmw"
+        },
+        "rsocket-core-ts!RSocketError#streamId:member": {
+          "kind": "Property",
+          "name": "streamId",
+          "parent": "rsocket-core-ts!RSocketError:class",
+          "optional": true,
+          "abstract": false,
+          "hash": "ff1L-Bax45ndQFu2ruLuwqQ0KRL2oz09Q1mcWSDIfFE"
+        },
+        "rsocket-core-ts!RSocketFrameDirection:type": {
+          "kind": "TypeAlias",
+          "name": "RSocketFrameDirection",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "pb_QfnKYfDtCF_1OW-faYOfCwVbVy_ytMJ42MvnsLTM"
+        },
+        "rsocket-core-ts!RSocketFrameSizeError:class": {
+          "kind": "Class",
+          "name": "RSocketFrameSizeError",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "FYkWRG5QIM65dtIkxQuaje64OAiR-YuO4njn5hHa1_s"
+        },
+        "rsocket-core-ts!RSocketFrameSizeError:constructor(1)": {
+          "kind": "Constructor",
+          "name": "",
+          "parent": "rsocket-core-ts!RSocketFrameSizeError:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "JDXi7NWH_CoyIyAOxzHwXQyna4RxS4wzc1TpVFWcDHs"
+        },
+        "rsocket-core-ts!RSocketInactivityTimer:class": {
+          "kind": "Class",
+          "name": "RSocketInactivityTimer",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "OfWsbQAjleC3UhAVN2dfVugxrO5hJccZrkvTo2QfBEE"
+        },
+        "rsocket-core-ts!RSocketInactivityTimer#isAlive:member(1)": {
+          "kind": "Method",
+          "name": "isAlive",
+          "parent": "rsocket-core-ts!RSocketInactivityTimer:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "hmDbUfqf12ECXQ8wJuPzF0CZsbbUOaBK1U94it5cPj8"
+        },
+        "rsocket-core-ts!RSocketInactivityTimer#start:member(1)": {
+          "kind": "Method",
+          "name": "start",
+          "parent": "rsocket-core-ts!RSocketInactivityTimer:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "iU_kW5Bu90T_5uKJzL3ESMi4mPbDUd-ssxa7_4usJyM"
+        },
+        "rsocket-core-ts!RSocketInactivityTimer#stop:member(1)": {
+          "kind": "Method",
+          "name": "stop",
+          "parent": "rsocket-core-ts!RSocketInactivityTimer:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "j7soUiruHPEbeA2LFWeiXvpcHnDlwzggsRF33bFdzv0"
+        },
+        "rsocket-core-ts!RSocketInactivityTimer#touch:member(1)": {
+          "kind": "Method",
+          "name": "touch",
+          "parent": "rsocket-core-ts!RSocketInactivityTimer:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "PK2xJVQBPcXm2aimJgo591e8Km89crJcmR61IO9LBGw"
+        },
+        "rsocket-core-ts!RSocketPayload:interface": {
+          "kind": "Interface",
+          "name": "RSocketPayload",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "y5QSuq_iB9RVV1t3ZdkHuGoU1PI8dDmnP0V4CORNGUI"
+        },
+        "rsocket-core-ts!RSocketPayload#data:member": {
+          "kind": "PropertySignature",
+          "name": "data",
+          "parent": "rsocket-core-ts!RSocketPayload:interface",
+          "optional": true,
+          "abstract": false,
+          "hash": "-J964CFzZmioMOYAOoCL-7_gupMjf6Rc4-UIpf1WdNY"
+        },
+        "rsocket-core-ts!RSocketPayload#dataMimeType:member": {
+          "kind": "PropertySignature",
+          "name": "dataMimeType",
+          "parent": "rsocket-core-ts!RSocketPayload:interface",
+          "optional": true,
+          "abstract": false,
+          "hash": "2fXupKSEh4gNcwtmJhb87SC0F4Mx6oqgs3u60ZzK4gk"
+        },
+        "rsocket-core-ts!RSocketPayload#metadata:member": {
+          "kind": "PropertySignature",
+          "name": "metadata",
+          "parent": "rsocket-core-ts!RSocketPayload:interface",
+          "optional": true,
+          "abstract": false,
+          "hash": "ILypMN34XspC9ULlPY3v_EvWp-vylhlJiMXsgjKxCTA"
+        },
+        "rsocket-core-ts!RSocketPayload#metadataMimeType:member": {
+          "kind": "PropertySignature",
+          "name": "metadataMimeType",
+          "parent": "rsocket-core-ts!RSocketPayload:interface",
+          "optional": true,
+          "abstract": false,
+          "hash": "PXCH5kOIwfzkGsQsal4wyra90mTk29sjWCmwfDSGnP4"
+        },
+        "rsocket-core-ts!RSocketPayloadFrame:interface": {
+          "kind": "Interface",
+          "name": "RSocketPayloadFrame",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "pT9K009JBNXt_mhC2gqGbUBXHXkxFcLZbFyn_8DiMg8"
+        },
+        "rsocket-core-ts!RSocketPayloadFrame#dataPayload:member": {
+          "kind": "PropertySignature",
+          "name": "dataPayload",
+          "parent": "rsocket-core-ts!RSocketPayloadFrame:interface",
+          "optional": true,
+          "abstract": false,
+          "hash": "_9NDySsubd8Ur2CCAXNkmXOHOH7laBCCrL8xCN725l0"
+        },
+        "rsocket-core-ts!RSocketPayloadFrame#frame:member": {
+          "kind": "PropertySignature",
+          "name": "frame",
+          "parent": "rsocket-core-ts!RSocketPayloadFrame:interface",
+          "optional": false,
+          "abstract": false,
+          "hash": "pcPFGMNQr_AvAfaCN9wLR0HDiSb9q9Cag9DMxcsiTtI"
+        },
+        "rsocket-core-ts!RSocketPayloadFrame#metadataPayload:member": {
+          "kind": "PropertySignature",
+          "name": "metadataPayload",
+          "parent": "rsocket-core-ts!RSocketPayloadFrame:interface",
+          "optional": true,
+          "abstract": false,
+          "hash": "M6wCX3R-xWa5sXMQ1Q5z1UxZVjF412P1jLsbvnWmTno"
+        },
+        "rsocket-core-ts!RSocketPayloadInput:type": {
+          "kind": "TypeAlias",
+          "name": "RSocketPayloadInput",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "DfvajV8hNSvtpy9wicZJj8F6rh5fwnR6phG_FS5VLHU"
+        },
+        "rsocket-core-ts!RSocketProtocolError:class": {
+          "kind": "Class",
+          "name": "RSocketProtocolError",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "qgO6Cr9IlVy5S2ObHIdC7gIJJc3fUE0bRPnKJlXeelY"
+        },
+        "rsocket-core-ts!RSocketProtocolError:constructor(1)": {
+          "kind": "Constructor",
+          "name": "",
+          "parent": "rsocket-core-ts!RSocketProtocolError:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "gimEPFZvPIx6ZA6WO_lkrr7rxm8Zn9oiRqcg2L3xo4o"
+        },
+        "rsocket-core-ts!RSocketReplayBuffer:class": {
+          "kind": "Class",
+          "name": "RSocketReplayBuffer",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "bQKkgSfgnqSDGmWLjHv-XRxMhvz-yl8nrhUKDeevneo"
+        },
+        "rsocket-core-ts!RSocketReplayBuffer:constructor(1)": {
+          "kind": "Constructor",
+          "name": "",
+          "parent": "rsocket-core-ts!RSocketReplayBuffer:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "G0b67UYZZP5yJDOezia4ly0d0zg3TjxvV0-c9DyPKKo"
+        },
+        "rsocket-core-ts!RSocketReplayBuffer#acknowledge:member(1)": {
+          "kind": "Method",
+          "name": "acknowledge",
+          "parent": "rsocket-core-ts!RSocketReplayBuffer:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "ja39rUi3kkRrj6bb_kLHCUxpq0Z-JhEn6JJhdGSxsSY"
+        },
+        "rsocket-core-ts!RSocketReplayBuffer#canReplayFrom:member(1)": {
+          "kind": "Method",
+          "name": "canReplayFrom",
+          "parent": "rsocket-core-ts!RSocketReplayBuffer:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "tnaUyiOI1bf7gRUbb-QiPZEpMSTrfIr-l3ha5MSBP9k"
+        },
+        "rsocket-core-ts!RSocketReplayBuffer#clear:member(1)": {
+          "kind": "Method",
+          "name": "clear",
+          "parent": "rsocket-core-ts!RSocketReplayBuffer:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "8y__O-2Iu3h--z7TseZU3UbIzQH_4F__MH_Wl734SJs"
+        },
+        "rsocket-core-ts!RSocketReplayBuffer#firstAvailablePosition:member(1)": {
+          "kind": "Method",
+          "name": "firstAvailablePosition",
+          "parent": "rsocket-core-ts!RSocketReplayBuffer:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "mOAbPWBelLKKlcnc5GeZWNEx2FwzwfkPPNn0pSXDk1E"
+        },
+        "rsocket-core-ts!RSocketReplayBuffer#record:member(1)": {
+          "kind": "Method",
+          "name": "record",
+          "parent": "rsocket-core-ts!RSocketReplayBuffer:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "vijhNAxy7jEYt-TpV0YU-7aGlfi64UxpFoMJYpIFkio"
+        },
+        "rsocket-core-ts!RSocketReplayBuffer#replayFrom:member(1)": {
+          "kind": "Method",
+          "name": "replayFrom",
+          "parent": "rsocket-core-ts!RSocketReplayBuffer:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "ZN-8KZpLE-Xz8K3U0auZWywcII05rEzBaEcO-JWOY3I"
+        },
+        "rsocket-core-ts!RSocketReplayBufferOptions:interface": {
+          "kind": "Interface",
+          "name": "RSocketReplayBufferOptions",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "cWMsQ5Cvmh7bP4fw2Y2nguCXmm6Yg9XL9GV1AWp_cOk"
+        },
+        "rsocket-core-ts!RSocketReplayBufferOptions#maxBytes:member": {
+          "kind": "PropertySignature",
+          "name": "maxBytes",
+          "parent": "rsocket-core-ts!RSocketReplayBufferOptions:interface",
+          "optional": true,
+          "abstract": false,
+          "hash": "X5mfcznqsSDzMs0w_cbSziJiwCwGSzxCKLfbHvLTkKc"
+        },
+        "rsocket-core-ts!RSocketReplayBufferOptions#retainFrames:member": {
+          "kind": "PropertySignature",
+          "name": "retainFrames",
+          "parent": "rsocket-core-ts!RSocketReplayBufferOptions:interface",
+          "optional": true,
+          "abstract": false,
+          "hash": "90wX1z3IFNdymCHPzeBl-rlnQWdyxQSwwSx3m37l9IM"
+        },
+        "rsocket-core-ts!RSocketReplayEmitter:type": {
+          "kind": "TypeAlias",
+          "name": "RSocketReplayEmitter",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "bJBk4UwQu67efNwd0OGofnkEk0o8J_LZ9lvDqZ6SG_4"
+        },
+        "rsocket-core-ts!RSocketRoute:type": {
+          "kind": "TypeAlias",
+          "name": "RSocketRoute",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "Bc6fO4d8_AW3Fu_XyOxMAZUqcbmfs3NMu8qDYl8eeNk"
+        },
+        "rsocket-core-ts!RSocketTcpDuplexSocket:interface": {
+          "kind": "Interface",
+          "name": "RSocketTcpDuplexSocket",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "MrIWsZXC6NN5oDIWRXaeJ9C1YfA8gq8roE1FdLqKpZ0"
+        },
+        "rsocket-core-ts!RSocketTcpDuplexSocket#end:member(1)": {
+          "kind": "MethodSignature",
+          "name": "end",
+          "parent": "rsocket-core-ts!RSocketTcpDuplexSocket:interface",
+          "optional": false,
+          "abstract": false,
+          "hash": "RYxP2E2QNcZ8rQKNgO-0D_oUAGjznDidWoxLA2RH0cY"
+        },
+        "rsocket-core-ts!RSocketTcpDuplexSocket#setNoDelay:member(1)": {
+          "kind": "MethodSignature",
+          "name": "setNoDelay",
+          "parent": "rsocket-core-ts!RSocketTcpDuplexSocket:interface",
+          "optional": false,
+          "abstract": false,
+          "hash": "ydgFbtPK8loqqJZuO-dLXeJIxdnMM5Su9PjX7uqnuJw"
+        },
+        "rsocket-core-ts!RSocketTcpDuplexSocket#write:member(1)": {
+          "kind": "MethodSignature",
+          "name": "write",
+          "parent": "rsocket-core-ts!RSocketTcpDuplexSocket:interface",
+          "optional": false,
+          "abstract": false,
+          "hash": "oRnU6qbmLyCJ5iQaLFTobX-nkVOfGBqYKsN4kwIvrwE"
+        },
+        "rsocket-core-ts!RSocketTcpEventSocket:interface": {
+          "kind": "Interface",
+          "name": "RSocketTcpEventSocket",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "fDUFJhMk6NuFaNzrIkSXT-1bo_RLB22BPgdJDj1DLYU"
+        },
+        "rsocket-core-ts!RSocketTcpEventSocket#connecting:member": {
+          "kind": "PropertySignature",
+          "name": "connecting",
+          "parent": "rsocket-core-ts!RSocketTcpEventSocket:interface",
+          "optional": false,
+          "abstract": false,
+          "hash": "fNcpGTEBsQXSPmPnrLJb6EvrqG99VfRMpNF8t9Wkkt0"
+        },
+        "rsocket-core-ts!RSocketTcpEventSocket#destroy:member(1)": {
+          "kind": "MethodSignature",
+          "name": "destroy",
+          "parent": "rsocket-core-ts!RSocketTcpEventSocket:interface",
+          "optional": false,
+          "abstract": false,
+          "hash": "l7IH4yPAsXujt70w4ZbYC0ZY6g-oveL8k61DpU5cZuM"
+        },
+        "rsocket-core-ts!RSocketTcpEventSocket#destroyed:member": {
+          "kind": "PropertySignature",
+          "name": "destroyed",
+          "parent": "rsocket-core-ts!RSocketTcpEventSocket:interface",
+          "optional": false,
+          "abstract": false,
+          "hash": "ZGhcFv7dLPDYriZok76wCe12K2MwnqCOCkJktpaO5sE"
+        },
+        "rsocket-core-ts!RSocketTcpEventSocket#off:member(1)": {
+          "kind": "MethodSignature",
+          "name": "off",
+          "parent": "rsocket-core-ts!RSocketTcpEventSocket:interface",
+          "optional": false,
+          "abstract": false,
+          "hash": "uJVZIpgAJakZMbu0WDB6mu-IZhPnk7-gAgqRPczaIHk"
+        },
+        "rsocket-core-ts!RSocketTcpEventSocket#on:member(1)": {
+          "kind": "MethodSignature",
+          "name": "on",
+          "parent": "rsocket-core-ts!RSocketTcpEventSocket:interface",
+          "optional": false,
+          "abstract": false,
+          "hash": "PWs6kz2kC6QWfTVgCEPARgezYZtAZMKXg9zREVugLYk"
+        },
+        "rsocket-core-ts!RSocketTcpEventSocket#once:member(1)": {
+          "kind": "MethodSignature",
+          "name": "once",
+          "parent": "rsocket-core-ts!RSocketTcpEventSocket:interface",
+          "optional": false,
+          "abstract": false,
+          "hash": "jvX9GiuD8MSdDYJeApTDy_2mde85KePT1dLRdwwHgNs"
+        },
+        "rsocket-core-ts!RSocketTcpEventSocket#readyState:member": {
+          "kind": "PropertySignature",
+          "name": "readyState",
+          "parent": "rsocket-core-ts!RSocketTcpEventSocket:interface",
+          "optional": true,
+          "abstract": false,
+          "hash": "LmF9FCVTqb53AIhhiBwtBGG0haYVj9zEjoDiZ7lPuzM"
+        },
+        "rsocket-core-ts!RSocketTcpEventSocket#writable:member": {
+          "kind": "PropertySignature",
+          "name": "writable",
+          "parent": "rsocket-core-ts!RSocketTcpEventSocket:interface",
+          "optional": false,
+          "abstract": false,
+          "hash": "-XzUVOSDm4JbJkHaJ3A1i_WLATw4zFVmcgSxQ4IJgS0"
+        },
+        "rsocket-core-ts!RSocketTransportClose:interface": {
+          "kind": "Interface",
+          "name": "RSocketTransportClose",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "mAv13BPahfgL4iFIbHfmfUQK1HisY-b37vPjlP-klwc"
+        },
+        "rsocket-core-ts!RSocketTransportClose#cause:member": {
+          "kind": "PropertySignature",
+          "name": "cause",
+          "parent": "rsocket-core-ts!RSocketTransportClose:interface",
+          "optional": true,
+          "abstract": false,
+          "hash": "VPfGIyBoiwpC8jNQlxleT6bbiFN1aLmB6KbDhAAqFvQ"
+        },
+        "rsocket-core-ts!RSocketTransportClose#code:member": {
+          "kind": "PropertySignature",
+          "name": "code",
+          "parent": "rsocket-core-ts!RSocketTransportClose:interface",
+          "optional": true,
+          "abstract": false,
+          "hash": "xAWFLT5f_JHRZSo2mho_FD1hqNexHiRqdWNTb4Y3pz8"
+        },
+        "rsocket-core-ts!RSocketTransportClose#reason:member": {
+          "kind": "PropertySignature",
+          "name": "reason",
+          "parent": "rsocket-core-ts!RSocketTransportClose:interface",
+          "optional": true,
+          "abstract": false,
+          "hash": "22pF0sA50pgK-RtiB4aMt2PMlON1QKSAooXUU4Qk8-w"
+        },
+        "rsocket-core-ts!RSocketTransportCloseOptions:interface": {
+          "kind": "Interface",
+          "name": "RSocketTransportCloseOptions",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "CWe-E1FubLOXvbnmK5eVGbv-mv0pOc9-CISAJT3wGFI"
+        },
+        "rsocket-core-ts!RSocketTransportCloseOptions#code:member": {
+          "kind": "PropertySignature",
+          "name": "code",
+          "parent": "rsocket-core-ts!RSocketTransportCloseOptions:interface",
+          "optional": true,
+          "abstract": false,
+          "hash": "xAWFLT5f_JHRZSo2mho_FD1hqNexHiRqdWNTb4Y3pz8"
+        },
+        "rsocket-core-ts!RSocketTransportCloseOptions#error:member": {
+          "kind": "PropertySignature",
+          "name": "error",
+          "parent": "rsocket-core-ts!RSocketTransportCloseOptions:interface",
+          "optional": true,
+          "abstract": false,
+          "hash": "5jVAx8-j1RyAKZqhp_nHrzw8itW3JKn5rUNLHMUejvw"
+        },
+        "rsocket-core-ts!RSocketTransportCloseOptions#reason:member": {
+          "kind": "PropertySignature",
+          "name": "reason",
+          "parent": "rsocket-core-ts!RSocketTransportCloseOptions:interface",
+          "optional": true,
+          "abstract": false,
+          "hash": "22pF0sA50pgK-RtiB4aMt2PMlON1QKSAooXUU4Qk8-w"
+        },
+        "rsocket-core-ts!RSocketTransportConnection:interface": {
+          "kind": "Interface",
+          "name": "RSocketTransportConnection",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "w8tzShTbTPNhJqR4gWOm7-PmAaLQxhhWBJUzIVJSSu8"
+        },
+        "rsocket-core-ts!RSocketTransportConnection#close:member(1)": {
+          "kind": "MethodSignature",
+          "name": "close",
+          "parent": "rsocket-core-ts!RSocketTransportConnection:interface",
+          "optional": false,
+          "abstract": false,
+          "hash": "i5fTR7QWoxLNESZj0O9n_YOmNzCkYAYcMQ9Xm6oh3hw"
+        },
+        "rsocket-core-ts!RSocketTransportConnection#closes:member": {
+          "kind": "PropertySignature",
+          "name": "closes",
+          "parent": "rsocket-core-ts!RSocketTransportConnection:interface",
+          "optional": false,
+          "abstract": false,
+          "hash": "bduvlbv8eR1VHJL-BxANhkeV_V6rLQbzm67oFnHlDOQ"
+        },
+        "rsocket-core-ts!RSocketTransportConnection#errors:member": {
+          "kind": "PropertySignature",
+          "name": "errors",
+          "parent": "rsocket-core-ts!RSocketTransportConnection:interface",
+          "optional": false,
+          "abstract": false,
+          "hash": "AZucCiPviJkB2L50TuuFlpWo0KuvTXL3cJb71lwqUDI"
+        },
+        "rsocket-core-ts!RSocketTransportConnection#frames:member": {
+          "kind": "PropertySignature",
+          "name": "frames",
+          "parent": "rsocket-core-ts!RSocketTransportConnection:interface",
+          "optional": false,
+          "abstract": false,
+          "hash": "c6HC1HQtCZaTjtRtTAho_TZA126w_e-02Lauwxd3k0g"
+        },
+        "rsocket-core-ts!RSocketTransportConnection#isOpen:member": {
+          "kind": "PropertySignature",
+          "name": "isOpen",
+          "parent": "rsocket-core-ts!RSocketTransportConnection:interface",
+          "optional": false,
+          "abstract": false,
+          "hash": "22GZ4yuG085_e72lZnsVJRL147V0DI5DMQRRz2GF2as"
+        },
+        "rsocket-core-ts!RSocketTransportConnection#opened:member": {
+          "kind": "PropertySignature",
+          "name": "opened",
+          "parent": "rsocket-core-ts!RSocketTransportConnection:interface",
+          "optional": false,
+          "abstract": false,
+          "hash": "OAmLz9wPoVtzQf2ZLUjP8wdVmrzmafyLoz1qOtKcLV8"
+        },
+        "rsocket-core-ts!RSocketTransportConnection#write:member(1)": {
+          "kind": "MethodSignature",
+          "name": "write",
+          "parent": "rsocket-core-ts!RSocketTransportConnection:interface",
+          "optional": false,
+          "abstract": false,
+          "hash": "lUajgjRj8o5KPv7wQsqk15VwKZb_Hb5mu-IBTmbt3hQ"
+        },
+        "rsocket-core-ts!RSocketTransportHandler:interface": {
+          "kind": "Interface",
+          "name": "RSocketTransportHandler",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "CRrXX1vtW2w5fR1VVjhwN_ecqzvNGR05peCjKyBc1sQ"
+        },
+        "rsocket-core-ts!RSocketTransportHandler#close:member(1)": {
+          "kind": "MethodSignature",
+          "name": "close",
+          "parent": "rsocket-core-ts!RSocketTransportHandler:interface",
+          "optional": false,
+          "abstract": false,
+          "hash": "FJYO2az3k1GXl8tB7VoJQ-X4uANydg8MQkcu4VlpgJY"
+        },
+        "rsocket-core-ts!RSocketTransportHandler#error:member(1)": {
+          "kind": "MethodSignature",
+          "name": "error",
+          "parent": "rsocket-core-ts!RSocketTransportHandler:interface",
+          "optional": false,
+          "abstract": false,
+          "hash": "WgLDtW_c5Dw-nChtxVJZ4Bw5tzVSy1OaTUWSpcA-iW8"
+        },
+        "rsocket-core-ts!RSocketTransportHandler#frame:member(1)": {
+          "kind": "MethodSignature",
+          "name": "frame",
+          "parent": "rsocket-core-ts!RSocketTransportHandler:interface",
+          "optional": false,
+          "abstract": false,
+          "hash": "1dCjF2lhUUN_tVxMgPnXcdejCrMi4BI_dmvHpV9vqeA"
+        },
+        "rsocket-core-ts!RSocketTransportHandler#frameError:member(1)": {
+          "kind": "MethodSignature",
+          "name": "frameError",
+          "parent": "rsocket-core-ts!RSocketTransportHandler:interface",
+          "optional": false,
+          "abstract": false,
+          "hash": "GLiRI9tLuO38JckuM3fMjhsJmSOn_BLIhu5RpSbOvd4"
+        },
+        "rsocket-core-ts!SERVER_STREAM_ID:var": {
+          "kind": "Variable",
+          "name": "SERVER_STREAM_ID",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "kz-Yc0iTtnMaz0G0CF4mzAHnEGcsqt7Gy8kJYYyCQgs"
+        },
+        "rsocket-core-ts!tcpCloseFlux:function(1)": {
+          "kind": "Function",
+          "name": "tcpCloseFlux",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "TG2PPMuNb4kYi40aquuYa90D1bVXWiTLYLvA1rdEOzw"
+        },
+        "rsocket-core-ts!tcpErrorFlux:function(1)": {
+          "kind": "Function",
+          "name": "tcpErrorFlux",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "uAnYwsq9eGfW4H-6gyaimghcK8E99giGlKrtw9-gW64"
+        },
+        "rsocket-core-ts!TcpFrameConsumer:type": {
+          "kind": "TypeAlias",
+          "name": "TcpFrameConsumer",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "OMEgRdtRF-2PvBgempQJhagrZfm_Rpe0prOrVezSEjY"
+        },
+        "rsocket-core-ts!TcpFrameDecoder:class": {
+          "kind": "Class",
+          "name": "TcpFrameDecoder",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "movdLcErjv7g2WaZhp6P5o2E4XwBr1Ai1DydWNHzPoU"
+        },
+        "rsocket-core-ts!TcpFrameDecoder:constructor(1)": {
+          "kind": "Constructor",
+          "name": "",
+          "parent": "rsocket-core-ts!TcpFrameDecoder:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "C1FeGUzDyqT-lCqcFIvnxayWyJClriKQhyDkVDx8cX8"
+        },
+        "rsocket-core-ts!TcpFrameDecoder#bufferedBytes:member": {
+          "kind": "Property",
+          "name": "bufferedBytes",
+          "parent": "rsocket-core-ts!TcpFrameDecoder:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "a1_h_rVKo7xJA2JdUAkrqZXl-OLeCVuDojakz8jp28Q"
+        },
+        "rsocket-core-ts!TcpFrameDecoder#finish:member(1)": {
+          "kind": "Method",
+          "name": "finish",
+          "parent": "rsocket-core-ts!TcpFrameDecoder:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "bHx7WS3dTWDJNYqR3ZQwqJ8B8VB5gitOByvpj2E3SuI"
+        },
+        "rsocket-core-ts!TcpFrameDecoder#push:member(1)": {
+          "kind": "Method",
+          "name": "push",
+          "parent": "rsocket-core-ts!TcpFrameDecoder:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "J3GvMlwVBONmQ675VLrGdNZ-lL-GyS7Qjfo6iSGsYd0"
+        },
+        "rsocket-core-ts!TcpFrameDecoder#reset:member(1)": {
+          "kind": "Method",
+          "name": "reset",
+          "parent": "rsocket-core-ts!TcpFrameDecoder:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "wBjqm7GHJczecDcNpzAsFYsG61LuQRmDD-AB8YK4AZg"
+        },
+        "rsocket-core-ts!tcpFrameFlux:function(1)": {
+          "kind": "Function",
+          "name": "tcpFrameFlux",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "XtmMHyMh353pedyv32LnL5ZsBpzBdiASL8fHC8lFyOc"
+        },
+        "rsocket-core-ts!unrefTimer:function(1)": {
+          "kind": "Function",
+          "name": "unrefTimer",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "LkipQ2ipFSlDhqBCxkRULsv-cy-urTmOHLxFWr0nL9Y"
+        },
+        "rsocket-core-ts!webSocketBinaryData:function(1)": {
+          "kind": "Function",
+          "name": "webSocketBinaryData",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "R_yyqH5LZgnWWrQubFBAcALS3GvPgGTqE5UN1Way-Kw"
+        },
+        "rsocket-core-ts!webSocketCloseFlux:function(1)": {
+          "kind": "Function",
+          "name": "webSocketCloseFlux",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "hz4omvP-bAQiXvMg3LT9xYaSSP2LLfSZSpGRBxW8jOg"
+        },
+        "rsocket-core-ts!webSocketEventFlux:function(1)": {
+          "kind": "Function",
+          "name": "webSocketEventFlux",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "HV0-2UQjdiQZ9MZHVfxN9hDozN6gJ3EFQ4Mu8hPozUw"
+        },
+        "rsocket-core-ts!webSocketFrameFlux:function(1)": {
+          "kind": "Function",
+          "name": "webSocketFrameFlux",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "nS-CKJA5jzz_tbfGh62l2JgM6yEUe9MAgSTshEynkec"
+        },
+        "rsocket-core-ts!webSocketSendData:function(1)": {
+          "kind": "Function",
+          "name": "webSocketSendData",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "TLgcIlHLY9ZZMNiG62E6fAJOtCZVesIcuFPg_p9FWWQ"
+        },
+        "rsocket-core-ts!writeWebSocketFrame:function(1)": {
+          "kind": "Function",
+          "name": "writeWebSocketFrame",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "3qg2Yf3t3wYiWFqLrFkfRx3iViObPE9NDvZWJ9APAn4"
+        }
+      }
+    }
+  }
+}
