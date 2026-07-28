@@ -150,6 +150,9 @@ interface DisconnectedRSocket<D, M> {
         options?: RSocketMetadataPushOptions<PM>
     ): Mono<void>;
 
+    /** Sends one best-effort media datagram on a capable transport. */
+    media(payload: Uint8Array): Mono<void>;
+
     /** Updates MIME-keyed defaults merged into subsequent outgoing metadata. */
     metadataUpdate(update: RSocketMetadataPatch | RSocketMetadataUpdater): RSocketMetadataMap;
 }
@@ -205,6 +208,7 @@ export class RSocket<D = unknown, M = unknown> {
         requestStream: this.requestStream.bind(this) as ConnectedRSocket<D, M>["requestStream"],
         requestChannel: this.requestChannel.bind(this) as ConnectedRSocket<D, M>["requestChannel"],
         metadataPush: this.metadataPush.bind(this) as ConnectedRSocket<D, M>["metadataPush"],
+        media: this.media.bind(this),
         metadataUpdate: this.metadataUpdate.bind(this),
         disconnect: (code?: number, reason?: string) => this.disconnectNow(code, reason)
     });
@@ -624,6 +628,11 @@ export class RSocket<D = unknown, M = unknown> {
         });
     }
 
+    /** Sends one best-effort media datagram after a capable connection is available. */
+    media(payload: Uint8Array): Mono<void> {
+        return this.withReadyClientMono((client) => client.media(payload));
+    }
+
     /**
      * Checks whether reconnect remains enabled by user intent.
      */
@@ -919,7 +928,7 @@ export class RSocket<D = unknown, M = unknown> {
     private validateConnectOptions(): void {
         if (this.optionsValidated) return;
         normalizeClientOptions(this.clientConfiguration);
-        validateTransportOptions(this.transportOptions);
+        validateTransportOptions(this.transportOptions, this.resumeCoordinator.token !== undefined);
         this.optionsValidated = true;
     }
 

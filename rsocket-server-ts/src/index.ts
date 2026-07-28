@@ -25,6 +25,8 @@ export type {
     RSocketSetupDecision,
     RSocketTcpListenOptions,
     RSocketTcpServerAddress,
-    RSocketTcpServerListener
+    RSocketTcpServerListener,
+    RSocketWebTransportAcceptOptions,
+    RSocketAcceptedWebTransport
 } from "@/server/types.js";
 export type {RSocketAcceptedWebSocket} from "@/websocket/types.js";

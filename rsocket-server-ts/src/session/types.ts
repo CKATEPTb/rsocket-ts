@@ -38,6 +38,10 @@ export interface NormalizedServerOptions<D = unknown, M = unknown> {
         metadata: Metadata<M>,
         connection: RSocketServerConnection<D, M>
     ) => RSocketHandlerResult<void> | void) | undefined;
+    readonly media: ((
+        payload: Uint8Array,
+        connection: RSocketServerConnection<D, M>
+    ) => RSocketHandlerResult<void> | void) | undefined;
     readonly activityListener: RSocketServerFrameActivityListener<D, M> | undefined;
 }
 

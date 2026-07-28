@@ -14,3 +14,4 @@ export * from "@/tcp/index.js";
 export * from "@/timers/index.js";
 export * from "@/websocket/index.js";
 export * from "@/websocket/connection.js";
+export * from "@/webtransport/index.js";

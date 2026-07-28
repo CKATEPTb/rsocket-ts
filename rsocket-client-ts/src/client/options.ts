@@ -56,6 +56,8 @@ export interface NormalizedClientOptions<D = unknown, M = unknown> {
     readonly activityListener: RSocketFrameActivityListener | undefined;
     /** Optional dynamic switch for activity logging. */
     readonly activityEnabled: (() => boolean) | undefined;
+    /** Optional receiver for transport-specific best-effort media payloads. */
+    readonly mediaListener: ((payload: Uint8Array) => void) | undefined;
     /** Normalized SETUP frame options. */
     readonly setup: NormalizedSetup<D, M>;
 }
@@ -80,6 +82,7 @@ export function normalizeClientOptions<D, M>(
         maxFrameLength: frameLength(options.maxFrameLength ?? DEFAULT_MAX_FRAME_LENGTH),
         activityListener: options.activityListener,
         activityEnabled: options.activityEnabled,
+        mediaListener: options.mediaListener,
         setup: {
             keepAliveMs,
             lifetimeMs,

@@ -1,4 +1,4 @@
-/** Browser-first WebSocket facade over the transport-neutral requester. */
+/** Browser-first WebSocket and WebTransport facade over the shared requester. */
 import {RSocket as ClientRSocket} from "rsocket-client-ts";
 import {browserReconnectSignals} from "@/reconnect/index.js";
 import {

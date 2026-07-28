@@ -156,10 +156,10 @@ function verifyConnection(connection: RSocketServerConnection<SetupData, SetupMe
     void setupMetadata;
 }
 
-type ExpectedServerMethods = "accept" | "acceptWebSocket" | "listenTcp" | "close";
+type ExpectedServerMethods = "accept" | "acceptWebSocket" | "acceptWebTransport" | "listenTcp" | "close";
 const serverSurface: Assert<Equal<keyof typeof server, ExpectedServerMethods>> = true;
 
-type ExpectedConnectionMethods = "setup" | "metadataPush" | "lease" | "keepAlive" | "disconnect";
+type ExpectedConnectionMethods = "setup" | "metadataPush" | "lease" | "keepAlive" | "media" | "disconnect";
 const connectionSurface: Assert<Equal<keyof RSocketServerConnection, ExpectedConnectionMethods>> = true;
 type AcceptedConnection = NonNullable<Awaited<ReturnType<ReturnType<typeof server.accept>["block"]>>>;
 const acceptedConnectionType: Assert<Equal<

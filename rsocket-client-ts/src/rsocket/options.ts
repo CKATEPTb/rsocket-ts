@@ -7,6 +7,10 @@ import type {RSocketReconnectOptionInput} from "@/reconnect/options.js";
 import type {RSocketLogOptions, RSocketLogSink} from "@/logging/types.js";
 import type {RSocketTcpAddress} from "@/tcp/options.js";
 import type {RSocketWebSocketFactory} from "@/websocket/types.js";
+import type {
+    RSocketWebTransportFactory,
+    RSocketWebTransportMediaListener
+} from "@/webtransport/types.js";
 
 /** Socket-level diagnostics; interaction events are enabled per controller through `controller.log()`. */
 type RSocketSocketLogInput = boolean | string | RSocketLogSink | Omit<RSocketLogOptions, "interactions">;
@@ -29,12 +33,28 @@ export interface RSocketTcpOptions extends RSocketTcpAddress {
     readonly type: "tcp";
 }
 
+/** WebTransport selected by the transport-neutral client facade. */
+export interface RSocketWebTransportOptions {
+    /** Selects the multiplexed WebTransport adapter. */
+    readonly type: "webtransport";
+    /** Absolute `https:` WebTransport endpoint. */
+    readonly url: string | URL;
+    /** Optional native-compatible session factory. */
+    readonly factory?: RSocketWebTransportFactory;
+    /** Defensive cap for frames waiting behind another QUIC stream. */
+    readonly maxReorderBufferBytes?: number;
+    /** Uses best-effort datagrams for complete FNF requests. Incompatible with Resume. */
+    readonly unreliableFireAndForget?: boolean;
+    /** Receives best-effort media extension datagrams. */
+    readonly media?: RSocketWebTransportMediaListener;
+}
+
 /** Physical transport accepted by `new RSocket(...)`. */
-export type RSocketTransportOptions = RSocketWebSocketOptions | RSocketTcpOptions;
+export type RSocketTransportOptions = RSocketWebSocketOptions | RSocketTcpOptions | RSocketWebTransportOptions;
 
 /** User-facing constructor options for the requester facade. */
 export interface RSocketOptions<D = unknown, M = unknown> extends RSocketReconnectOptionInput {
-    /** WebSocket or Node TCP transport used for SETUP and reconnect attempts. */
+    /** WebSocket, WebTransport, or Node TCP transport used for SETUP and reconnect attempts. */
     readonly transport: RSocketTransportOptions;
     /** Optional socket-level diagnostics. */
     readonly log?: RSocketSocketLogInput;
@@ -86,9 +106,14 @@ export function toClientConfiguration<D, M>(
     assignOptional(setup, "dataMimeType", mimetype?.data);
     assignOptional(setup, "metadataMimeType", mimetype?.metadata);
     assignOptional(setup, "payload", setupInput?.payload);
-    return setupInput?.fragmentSize === undefined
-        ? {setup}
-        : {setup, maxFrameLength: setupInput.fragmentSize};
+    const mediaListener = options.transport.type === "webtransport"
+        ? options.transport.media
+        : undefined;
+    return {
+        setup,
+        ...(setupInput?.fragmentSize === undefined ? {} : {maxFrameLength: setupInput.fragmentSize}),
+        ...(mediaListener === undefined ? {} : {mediaListener})
+    };
 }
 
 /** Returns client configuration carrying the token for the next SETUP or RESUME handshake. */

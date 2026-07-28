@@ -1,7 +1,7 @@
 {
   "name": "rsocket-server-ts",
   "version": "1.0.0",
-  "description": "Complete RSocket 1.0 responder runtime for TypeScript servers.",
+  "description": "Complete RSocket 1.0 responder for WebSocket, WebTransport, and TCP TypeScript servers.",
   "type": "module",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -54,6 +54,7 @@
     "server",
     "responder",
     "websocket",
+    "webtransport",
     "tcp",
     "reactive-streams",
     "typescript"

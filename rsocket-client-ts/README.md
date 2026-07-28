@@ -1,6 +1,6 @@
 # rsocket-client-ts
 
-TypeScript RSocket requester with WebSocket and Node TCP transports. It includes
+TypeScript RSocket requester with WebSocket, WebTransport, and Node TCP transports. It includes
 all four interaction models, Reactive Streams backpressure, automatic
 fragmentation, reconnect, protocol Resume, lifecycle events, logging, persistent
 metadata, and declarative controllers.
@@ -68,6 +68,7 @@ A disconnected `RSocket` exposes only:
 ```text
 connect
 metadataPush
+media
 metadataUpdate
 fireAndForget
 requestResponse
@@ -106,6 +107,50 @@ const socket = new RSocket({
   }
 });
 ```
+
+Select WebTransport with an HTTPS URL:
+
+```ts
+const socket = new RSocket({
+  transport: {
+    type: "webtransport",
+    url: "https://api.example.com/rsocket"
+  }
+});
+```
+
+The global `WebTransport` constructor is used by default. The mapping opens one
+control bidi stream, one bidi stream per request-response/stream/channel, and a
+reliable uni stream for FNF and metadata push. Frame ordering, fragmentation,
+backpressure, and Resume are handled automatically.
+
+WebTransport is a transport mapping supplied by this project, not a transport
+defined by RSocket 1.0. The responder must use the same mapping, such as
+`rsocket-server-ts.acceptWebTransport(session)`.
+
+Best-effort datagrams are opt-in:
+
+```ts
+const socket = new RSocket({
+  transport: {
+    type: "webtransport",
+    url: "https://api.example.com/rsocket",
+    unreliableFireAndForget: true,
+    media(payload) {
+      playMediaChunk(payload);
+    }
+  }
+});
+
+await socket.media(encodedMediaChunk).block();
+```
+
+Complete FNF requests use datagrams only when they fit the native datagram
+limit. Fragmented FNF remains reliable. A small reliable marker lets the peer
+continue when a datagram is lost. `unreliableFireAndForget` cannot be combined
+with protocol Resume; media datagrams never enter RSocket Resume positions.
+The native constructor requests unreliable capability automatically; a custom
+factory must also return an unreliable-capable session.
 
 Select Node TCP with a host and port:
 
@@ -401,4 +446,4 @@ npm run build
 ```
 
 `npm test` runs the transport-neutral protocol contract plus independent real
-TCP and WebSocket requester integration suites.
+TCP, WebSocket, and WebTransport requester integration suites.

@@ -14,6 +14,8 @@ export interface ServerConnectionOperations<D = unknown, M = unknown> {
     lease(options: RSocketLeaseOptions<M>): void;
     /** Requests an immediate peer KEEPALIVE response. */
     keepAlive(data?: Uint8Array): void;
+    /** Sends one best-effort WebTransport media extension datagram. */
+    media(payload: Uint8Array): void;
     /** Terminates the logical connection. */
     disconnect(reason?: string): void;
 }
@@ -34,6 +36,9 @@ export interface RSocketServerConnection<D = unknown, M = unknown> {
 
     /** Initiates an optional server-side KEEPALIVE request. */
     keepAlive(data?: Uint8Array): Mono<void>;
+
+    /** Sends one best-effort media datagram when this session uses WebTransport. */
+    media(payload: Uint8Array): Mono<void>;
 
     /** Sends a connection close error and terminates the logical session. */
     disconnect(reason?: string): Mono<void>;
@@ -73,6 +78,10 @@ export function createServerConnection<D, M>(
         /** Defers one server KEEPALIVE request until subscription. */
         keepAlive(data?: Uint8Array): Mono<void> {
             return actionMono(() => current().keepAlive(data));
+        },
+        /** Defers one best-effort media datagram until subscription. */
+        media(payload: Uint8Array): Mono<void> {
+            return actionMono(() => current().media(payload));
         },
         /** Defers logical disconnection until subscription. */
         disconnect(reason?: string): Mono<void> {

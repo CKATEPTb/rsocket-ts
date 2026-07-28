@@ -64,6 +64,7 @@ describe("RSocket WebSocket client integration", () => {
         expect(Object.keys(connected).sort()).toEqual([
             "disconnect",
             "fireAndForget",
+            "media",
             "metadataPush",
             "metadataUpdate",
             "process",

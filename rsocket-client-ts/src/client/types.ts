@@ -83,6 +83,8 @@ export interface RSocketClientConfiguration<D = unknown, M = unknown> {
     readonly activityListener?: RSocketFrameActivityListener;
     /** Optional dynamic switch for frame activity delivery. */
     readonly activityEnabled?: () => boolean;
+    /** Optional receiver for transport-specific best-effort media payloads. */
+    readonly mediaListener?: (payload: Uint8Array) => void;
     /** Optional signal used to abort connection opening. */
     readonly abortSignal?: AbortSignal;
     /** SETUP frame options. */

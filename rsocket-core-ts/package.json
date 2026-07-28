@@ -49,6 +49,7 @@
   "keywords": [
     "rsocket",
     "core",
+    "webtransport",
     "reactive-streams",
     "reactor",
     "typescript"
