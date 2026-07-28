@@ -1,0 +1,2946 @@
+{
+  "formatVersion": 1,
+  "packageName": "rsocket-frames-ts",
+  "entries": {
+    ".": {
+      "conditions": [
+        "types",
+        "import",
+        "default"
+      ],
+      "exports": {
+        "AuthType": "Class",
+        "CancelFrame": "Class",
+        "ErrorFrame": "Class",
+        "ExtensionFlag": "TypeAlias|Variable",
+        "ExtensionFrame": "Class",
+        "FireAndForgetFlag": "TypeAlias|Variable",
+        "Frame": "Class",
+        "FrameCodec": "Class",
+        "FrameCodecOptions": "Interface",
+        "FrameDeserializer": "Variable",
+        "FrameErrorCode": "Enum|Namespace",
+        "FrameFlag": "TypeAlias|Variable",
+        "FrameTransport": "TypeAlias",
+        "FrameType": "Enum|Namespace",
+        "Header": "Class",
+        "KeepaliveFlag": "TypeAlias|Variable",
+        "KeepaliveFrame": "Class",
+        "LeaseFrame": "Class",
+        "MAX_FRAME_SIZE": "Variable",
+        "Metadata": "Class",
+        "MetadataPushFrame": "Class",
+        "MimeType_2": "Class",
+        "Payload": "Class",
+        "PayloadFlag": "TypeAlias|Variable",
+        "PayloadFrame": "Class",
+        "RSocketResumeToken": "TypeAlias",
+        "RequestChannelFlag": "TypeAlias|Variable",
+        "RequestChannelFrame": "Class",
+        "RequestFireAndForgetFrame": "Class",
+        "RequestNFrame": "Class",
+        "RequestResponseFlag": "TypeAlias|Variable",
+        "RequestResponseFrame": "Class",
+        "RequestStreamFlag": "TypeAlias|Variable",
+        "RequestStreamFrame": "Class",
+        "ResumeFrame": "Class",
+        "ResumeOkFrame": "Class",
+        "SetupFlag": "TypeAlias|Variable",
+        "SetupFrame": "Class",
+        "UnknownFrame": "Class",
+        "WellKnownAuthType": "Namespace",
+        "WellKnownMimeType": "Namespace"
+      },
+      "items": {
+        "rsocket-frames-ts!~_ExtensionFlag:enum": {
+          "kind": "Enum",
+          "name": "_ExtensionFlag",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "QdDxAdvGNgKK3YfnD2Ix5VcBeivqSNKLb9RIHlJxcnE"
+        },
+        "rsocket-frames-ts!~_ExtensionFlag.EXT_1:member": {
+          "kind": "EnumMember",
+          "name": "EXT_1",
+          "parent": "rsocket-frames-ts!~_ExtensionFlag:enum",
+          "optional": false,
+          "abstract": false,
+          "hash": "S_Q9mvgFyO2S3ns-lBVzJUqxTMdsnjEkglxjsAypPdQ"
+        },
+        "rsocket-frames-ts!~_ExtensionFlag.EXT_2:member": {
+          "kind": "EnumMember",
+          "name": "EXT_2",
+          "parent": "rsocket-frames-ts!~_ExtensionFlag:enum",
+          "optional": false,
+          "abstract": false,
+          "hash": "fL81mt2sSlFsvmuT0_wzxoRGri9fPW8rBv0hXRcnLfY"
+        },
+        "rsocket-frames-ts!~_ExtensionFlag.EXT_3:member": {
+          "kind": "EnumMember",
+          "name": "EXT_3",
+          "parent": "rsocket-frames-ts!~_ExtensionFlag:enum",
+          "optional": false,
+          "abstract": false,
+          "hash": "rawRhxnbxQb_MRUyjUd-G8oqSk3eDRTBMv2m3D5BkV4"
+        },
+        "rsocket-frames-ts!~_ExtensionFlag.EXT_4:member": {
+          "kind": "EnumMember",
+          "name": "EXT_4",
+          "parent": "rsocket-frames-ts!~_ExtensionFlag:enum",
+          "optional": false,
+          "abstract": false,
+          "hash": "1prMk3UlltXH6S29WGr7oIbxphuCdghbWQVv9vtZrBY"
+        },
+        "rsocket-frames-ts!~_ExtensionFlag.EXT_5:member": {
+          "kind": "EnumMember",
+          "name": "EXT_5",
+          "parent": "rsocket-frames-ts!~_ExtensionFlag:enum",
+          "optional": false,
+          "abstract": false,
+          "hash": "rRz6PSWhoon95ewsraa0_8yuOlGNObWSzmTb7ctId84"
+        },
+        "rsocket-frames-ts!~_ExtensionFlag.EXT_6:member": {
+          "kind": "EnumMember",
+          "name": "EXT_6",
+          "parent": "rsocket-frames-ts!~_ExtensionFlag:enum",
+          "optional": false,
+          "abstract": false,
+          "hash": "dxkizZzMHuxGTD2zRRRov4sj9DYLk_sRIubb34pdLv8"
+        },
+        "rsocket-frames-ts!~_ExtensionFlag.EXT_7:member": {
+          "kind": "EnumMember",
+          "name": "EXT_7",
+          "parent": "rsocket-frames-ts!~_ExtensionFlag:enum",
+          "optional": false,
+          "abstract": false,
+          "hash": "Oqn2F5g8V7UCQTJz_RXXFAPignUYoN1xDblvES8I3Do"
+        },
+        "rsocket-frames-ts!~_ExtensionFlag.EXT_8:member": {
+          "kind": "EnumMember",
+          "name": "EXT_8",
+          "parent": "rsocket-frames-ts!~_ExtensionFlag:enum",
+          "optional": false,
+          "abstract": false,
+          "hash": "CTFITCbCOBMSvcMsKUwc8DGEaodtUFqCgblCS8Yr8pE"
+        },
+        "rsocket-frames-ts!~_FrameFlag:enum": {
+          "kind": "Enum",
+          "name": "_FrameFlag",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "r5taNHkZuMyF5eXU2g4hblKlBBKBYffKmhC87GNbx6A"
+        },
+        "rsocket-frames-ts!~_FrameFlag.IGNORE:member": {
+          "kind": "EnumMember",
+          "name": "IGNORE",
+          "parent": "rsocket-frames-ts!~_FrameFlag:enum",
+          "optional": false,
+          "abstract": false,
+          "hash": "zXqXdmKdksdhxFNQ5CVQTmst7Zt4Iw_Jo4RTOlOtESo"
+        },
+        "rsocket-frames-ts!~_FrameFlag.METADATA:member": {
+          "kind": "EnumMember",
+          "name": "METADATA",
+          "parent": "rsocket-frames-ts!~_FrameFlag:enum",
+          "optional": false,
+          "abstract": false,
+          "hash": "Wreit6mBvzTHZSm5qT3DR-fcPX7ujv0WvQXtlOsWzWg"
+        },
+        "rsocket-frames-ts!~_FrameFlag.NONE:member": {
+          "kind": "EnumMember",
+          "name": "NONE",
+          "parent": "rsocket-frames-ts!~_FrameFlag:enum",
+          "optional": false,
+          "abstract": false,
+          "hash": "k95hoRhhR7j2BcpD1UT6kI2Y8IG8pX95nz8a14XW8z8"
+        },
+        "rsocket-frames-ts!~_KeepaliveFlag:enum": {
+          "kind": "Enum",
+          "name": "_KeepaliveFlag",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "c4NfjOp6nnTjCPHauCgwU_4ljAxflXL_smHb_O-5NVg"
+        },
+        "rsocket-frames-ts!~_KeepaliveFlag.RESPOND:member": {
+          "kind": "EnumMember",
+          "name": "RESPOND",
+          "parent": "rsocket-frames-ts!~_KeepaliveFlag:enum",
+          "optional": false,
+          "abstract": false,
+          "hash": "NpEQ5_qj0EWCrwdHFU38yhp-kixxW7pYtvxOJ5CV2cw"
+        },
+        "rsocket-frames-ts!~_PayloadFlag:enum": {
+          "kind": "Enum",
+          "name": "_PayloadFlag",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "fLFFKkyCZmBJk82aNkEV9cT-0gTEjHSUMtNUBuHPXUg"
+        },
+        "rsocket-frames-ts!~_PayloadFlag.NEXT:member": {
+          "kind": "EnumMember",
+          "name": "NEXT",
+          "parent": "rsocket-frames-ts!~_PayloadFlag:enum",
+          "optional": false,
+          "abstract": false,
+          "hash": "iTcIdnYmbO-zqZWAp6714L624c2fWxIOCVb2MeJk9fM"
+        },
+        "rsocket-frames-ts!~_SetupFlag:enum": {
+          "kind": "Enum",
+          "name": "_SetupFlag",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "QNbFSKcSbSs3geVdOeysg242vr_h70Tn0ncfWYcQAuI"
+        },
+        "rsocket-frames-ts!~_SetupFlag.LEASE:member": {
+          "kind": "EnumMember",
+          "name": "LEASE",
+          "parent": "rsocket-frames-ts!~_SetupFlag:enum",
+          "optional": false,
+          "abstract": false,
+          "hash": "XU6JZDjuZbKKbnUPfRWvxRv_V5CaqRuduCDBseSm9GQ"
+        },
+        "rsocket-frames-ts!~_SetupFlag.RESUME:member": {
+          "kind": "EnumMember",
+          "name": "RESUME",
+          "parent": "rsocket-frames-ts!~_SetupFlag:enum",
+          "optional": false,
+          "abstract": false,
+          "hash": "_9ZqhgcdpKc07boQ7h37Jlj7ilXsMP9QIAdZEi-T30E"
+        },
+        "rsocket-frames-ts!~ApplicationJson:class": {
+          "kind": "Class",
+          "name": "ApplicationJson",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "leWbHPLYFyFNmetmN6E44Ud9w-RiOzKycuBq2-Do-Kc"
+        },
+        "rsocket-frames-ts!~ApplicationJson#deserializeMetadata:member(1)": {
+          "kind": "Method",
+          "name": "deserializeMetadata",
+          "parent": "rsocket-frames-ts!~ApplicationJson:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "5e4YmpOPobKCidrmuvruFiXNF87hXnWRadFP97B2Usk"
+        },
+        "rsocket-frames-ts!~ApplicationJson#deserializePayload:member(1)": {
+          "kind": "Method",
+          "name": "deserializePayload",
+          "parent": "rsocket-frames-ts!~ApplicationJson:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "xk5r2T7FJTsqG8UDJ6psEPrxuvDwaaTWGfk8FXLkx3Y"
+        },
+        "rsocket-frames-ts!~ApplicationJson#serializeMetadata:member(1)": {
+          "kind": "Method",
+          "name": "serializeMetadata",
+          "parent": "rsocket-frames-ts!~ApplicationJson:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "FZCN9wcwlyteh8bH3mpTgkVR1sEKjPUc23CNnThuuMA"
+        },
+        "rsocket-frames-ts!~ApplicationJson#serializePayload:member(1)": {
+          "kind": "Method",
+          "name": "serializePayload",
+          "parent": "rsocket-frames-ts!~ApplicationJson:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "sRdhJniv4mETHvP0LqYRGYdrQ0xZweOUVNtmfI0x4us"
+        },
+        "rsocket-frames-ts!~AuthData:type": {
+          "kind": "TypeAlias",
+          "name": "AuthData",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "0Oz_-9MJaGiwwt8wamJexbnpeseUzRpTentKin-VH4I"
+        },
+        "rsocket-frames-ts!~BearerAuthType:class": {
+          "kind": "Class",
+          "name": "BearerAuthType",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "_BXbJH3kwZDyD73gVhEIy4tp6wmFAV8j-L7sovbqr1c"
+        },
+        "rsocket-frames-ts!~BearerAuthType#read:member(1)": {
+          "kind": "Method",
+          "name": "read",
+          "parent": "rsocket-frames-ts!~BearerAuthType:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "mEj9rIZNUPnQZqDaNh06EV_c5DhO_s0NjjQRFyTWcIE"
+        },
+        "rsocket-frames-ts!~BearerAuthType#write:member(1)": {
+          "kind": "Method",
+          "name": "write",
+          "parent": "rsocket-frames-ts!~BearerAuthType:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "ER16aWP037oe8OAvr-rM42WOmRxd5jtvfplbRP2_ldw"
+        },
+        "rsocket-frames-ts!~CompleteFlag:enum": {
+          "kind": "Enum",
+          "name": "CompleteFlag",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "1XCJktEJtQ7SjqM8jYbOxrts5rPCKEWQmJ8mPGVq-Mk"
+        },
+        "rsocket-frames-ts!~CompleteFlag.COMPLETE:member": {
+          "kind": "EnumMember",
+          "name": "COMPLETE",
+          "parent": "rsocket-frames-ts!~CompleteFlag:enum",
+          "optional": false,
+          "abstract": false,
+          "hash": "NksjjhrgFWuM6th4i_n86ucGSdwQo-57bWF_0cWx_X0"
+        },
+        "rsocket-frames-ts!~FollowsFlag:enum": {
+          "kind": "Enum",
+          "name": "FollowsFlag",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "f08CklY7mN85n2DL8ks1QQAINGEPyvGW3jZ6k4xrTks"
+        },
+        "rsocket-frames-ts!~FollowsFlag.FOLLOWS:member": {
+          "kind": "EnumMember",
+          "name": "FOLLOWS",
+          "parent": "rsocket-frames-ts!~FollowsFlag:enum",
+          "optional": false,
+          "abstract": false,
+          "hash": "oCr0VZzOSQDj_9jYy2iL8GZ26aYAf-HIhNEWo-w466Q"
+        },
+        "rsocket-frames-ts!~FrameWriter:class": {
+          "kind": "Class",
+          "name": "FrameWriter",
+          "parent": "",
+          "optional": false,
+          "abstract": true,
+          "hash": "0bzWhalBVi2nZgMzIFJjsS2EtfjhccCdnFh6e01fhPw"
+        },
+        "rsocket-frames-ts!~FrameWriter#write:member(1)": {
+          "kind": "Method",
+          "name": "write",
+          "parent": "rsocket-frames-ts!~FrameWriter:class",
+          "optional": false,
+          "abstract": true,
+          "hash": "UAzWomvckxlBkDqSGX4bebSov2YZ5phhT7rMDX4q9Sw"
+        },
+        "rsocket-frames-ts!~RSocketAuth:class": {
+          "kind": "Class",
+          "name": "RSocketAuth",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "L9LphpzC4bLAEA0mhR81GBHbEekcSH3vc2uURo6TwfE"
+        },
+        "rsocket-frames-ts!~RSocketAuth#deserializeMetadata:member(1)": {
+          "kind": "Method",
+          "name": "deserializeMetadata",
+          "parent": "rsocket-frames-ts!~RSocketAuth:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "Bnrrwy6K6yym4f0k5_FqglGAd-GkqCZitZWIJOMznQQ"
+        },
+        "rsocket-frames-ts!~RSocketAuth#serializeMetadata:member(1)": {
+          "kind": "Method",
+          "name": "serializeMetadata",
+          "parent": "rsocket-frames-ts!~RSocketAuth:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "geceW4cx_7wuYic1K2ee45Jjim3s-ARp4imRzZlZACo"
+        },
+        "rsocket-frames-ts!~RSocketComposite:class": {
+          "kind": "Class",
+          "name": "RSocketComposite",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "5XSVjC24ZZilUmWXUAUTWSzW0TxmRRP6cTA2hcVpzJc"
+        },
+        "rsocket-frames-ts!~RSocketComposite#deserializeMetadata:member(1)": {
+          "kind": "Method",
+          "name": "deserializeMetadata",
+          "parent": "rsocket-frames-ts!~RSocketComposite:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "Ove6h_DHGtkcXtj8hkwKf8Xd1wMA8f6Olxr_7MDfSNs"
+        },
+        "rsocket-frames-ts!~RSocketComposite#serializeMetadata:member(1)": {
+          "kind": "Method",
+          "name": "serializeMetadata",
+          "parent": "rsocket-frames-ts!~RSocketComposite:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "eUHSiFkY52Qy25G7_CYfu8gIlpjDTraDSEmItVp-xlk"
+        },
+        "rsocket-frames-ts!~RSocketMimeType:class": {
+          "kind": "Class",
+          "name": "RSocketMimeType",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "l9TLh8XgLx3nxP4fnbyPC5_2BcTWXyFdTA0dCNVvOUY"
+        },
+        "rsocket-frames-ts!~RSocketMimeType#deserializeMetadata:member(1)": {
+          "kind": "Method",
+          "name": "deserializeMetadata",
+          "parent": "rsocket-frames-ts!~RSocketMimeType:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "HEtGz_g6QffJSiL5A_BiETgpqDVNaWFE3VscvB02mks"
+        },
+        "rsocket-frames-ts!~RSocketMimeType#serializeMetadata:member(1)": {
+          "kind": "Method",
+          "name": "serializeMetadata",
+          "parent": "rsocket-frames-ts!~RSocketMimeType:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "e1T85F4bwP9N-8MsZGQOmwOFpb0Nn20JYP6Yeze1ANA"
+        },
+        "rsocket-frames-ts!~RSocketMimeTypes:class": {
+          "kind": "Class",
+          "name": "RSocketMimeTypes",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "IGbN-w4bDWyzYEEOPS2CPDTZmGTQnv3OTtf4t4zkp4E"
+        },
+        "rsocket-frames-ts!~RSocketMimeTypes#deserializeMetadata:member(1)": {
+          "kind": "Method",
+          "name": "deserializeMetadata",
+          "parent": "rsocket-frames-ts!~RSocketMimeTypes:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "zXhU3jH8fy46pZTC-a3J_kRBCD_z7L6mhZj2zPRBYCA"
+        },
+        "rsocket-frames-ts!~RSocketMimeTypes#serializeMetadata:member(1)": {
+          "kind": "Method",
+          "name": "serializeMetadata",
+          "parent": "rsocket-frames-ts!~RSocketMimeTypes:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "MBxilrozM-nig-duxAYjQ4BV_F7EPDc6A4w11R0T1U4"
+        },
+        "rsocket-frames-ts!~RSocketRouting:class": {
+          "kind": "Class",
+          "name": "RSocketRouting",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "L0Ed3_UwIzmYBzHGTpqb3vSbyNmZ9-vikG9X0gKsmr0"
+        },
+        "rsocket-frames-ts!~RSocketRouting#deserializeMetadata:member(1)": {
+          "kind": "Method",
+          "name": "deserializeMetadata",
+          "parent": "rsocket-frames-ts!~RSocketRouting:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "VRgoAQZKXczO7Jf33ssY-a3LLV0P_BfgCSeJTY7bLBY"
+        },
+        "rsocket-frames-ts!~RSocketRouting#serializeMetadata:member(1)": {
+          "kind": "Method",
+          "name": "serializeMetadata",
+          "parent": "rsocket-frames-ts!~RSocketRouting:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "TqhUkFWe74cknvh02Jg83achNNy1noJTGD-BwJVszF8"
+        },
+        "rsocket-frames-ts!~RSocketTracingZipkin:class": {
+          "kind": "Class",
+          "name": "RSocketTracingZipkin",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "-LVxf_-Lb3dj88jH0Rui0odgSHf8pXUV6hBCfRjRebE"
+        },
+        "rsocket-frames-ts!~RSocketTracingZipkin#deserializeMetadata:member(1)": {
+          "kind": "Method",
+          "name": "deserializeMetadata",
+          "parent": "rsocket-frames-ts!~RSocketTracingZipkin:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "yyMTz-rTx_WokkYNG_UhloIn3RECEYLMUbOep56GWOE"
+        },
+        "rsocket-frames-ts!~RSocketTracingZipkin#serializeMetadata:member(1)": {
+          "kind": "Method",
+          "name": "serializeMetadata",
+          "parent": "rsocket-frames-ts!~RSocketTracingZipkin:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "By8saIiC8HAVg-lx0z1jFejUcto1Qer_zxkPbHIGEGc"
+        },
+        "rsocket-frames-ts!~SimpleAuthType:class": {
+          "kind": "Class",
+          "name": "SimpleAuthType",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "J1JHOKJ7nhz5mafCQMYZsVXqNhPLYDrI4gnL1fM5HqU"
+        },
+        "rsocket-frames-ts!~SimpleAuthType#password:member": {
+          "kind": "PropertySignature",
+          "name": "password",
+          "parent": "rsocket-frames-ts!~SimpleAuthType:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "43RDmU3H_YsEz05tL6REcY8LRSuQc7Ie1fjX_01VHTI"
+        },
+        "rsocket-frames-ts!~SimpleAuthType#read:member(1)": {
+          "kind": "Method",
+          "name": "read",
+          "parent": "rsocket-frames-ts!~SimpleAuthType:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "wOmqqCxxzb1A9uVdM43eZXcPT1P71u78qyJ18Yp4Fkk"
+        },
+        "rsocket-frames-ts!~SimpleAuthType#username:member": {
+          "kind": "PropertySignature",
+          "name": "username",
+          "parent": "rsocket-frames-ts!~SimpleAuthType:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "FzkPCFLyyhWwdrDM85qyioehWFLvXp9b7K12aB0ZCq0"
+        },
+        "rsocket-frames-ts!~SimpleAuthType#write:member(1)": {
+          "kind": "Method",
+          "name": "write",
+          "parent": "rsocket-frames-ts!~SimpleAuthType:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "UZ-oRjIzDY7sOMD56BSG2Vwx8FRYXgJ0uZwKvvEJl9s"
+        },
+        "rsocket-frames-ts!~TextPlain:class": {
+          "kind": "Class",
+          "name": "TextPlain",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "4z7YDTo-uJ05Yvk9lawcH9itDQul__4ZgIB4sT_n6SM"
+        },
+        "rsocket-frames-ts!~TextPlain#deserializeMetadata:member(1)": {
+          "kind": "Method",
+          "name": "deserializeMetadata",
+          "parent": "rsocket-frames-ts!~TextPlain:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "5e4YmpOPobKCidrmuvruFiXNF87hXnWRadFP97B2Usk"
+        },
+        "rsocket-frames-ts!~TextPlain#deserializePayload:member(1)": {
+          "kind": "Method",
+          "name": "deserializePayload",
+          "parent": "rsocket-frames-ts!~TextPlain:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "xk5r2T7FJTsqG8UDJ6psEPrxuvDwaaTWGfk8FXLkx3Y"
+        },
+        "rsocket-frames-ts!~TextPlain#serializeMetadata:member(1)": {
+          "kind": "Method",
+          "name": "serializeMetadata",
+          "parent": "rsocket-frames-ts!~TextPlain:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "FZCN9wcwlyteh8bH3mpTgkVR1sEKjPUc23CNnThuuMA"
+        },
+        "rsocket-frames-ts!~TextPlain#serializePayload:member(1)": {
+          "kind": "Method",
+          "name": "serializePayload",
+          "parent": "rsocket-frames-ts!~TextPlain:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "sRdhJniv4mETHvP0LqYRGYdrQ0xZweOUVNtmfI0x4us"
+        },
+        "rsocket-frames-ts!~TracingZipkinFlags:type": {
+          "kind": "TypeAlias",
+          "name": "TracingZipkinFlags",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "yKtVL2xsha0XzXc9M4Bi67YMWzPJytMDvy9RgAjmM3g"
+        },
+        "rsocket-frames-ts!~TracingZipkinPayload:type": {
+          "kind": "TypeAlias",
+          "name": "TracingZipkinPayload",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "rrcV18-QwBskwjs4zlwnj6YbNOY4-IuJHGqY_CtR0Z8"
+        },
+        "rsocket-frames-ts!AuthType:class": {
+          "kind": "Class",
+          "name": "AuthType",
+          "parent": "",
+          "optional": false,
+          "abstract": true,
+          "hash": "WzJJ4z0iQ80AYyHBQfu9UN6h1nxzliEWFXURSVuU-n0"
+        },
+        "rsocket-frames-ts!AuthType:constructor(1)": {
+          "kind": "Constructor",
+          "name": "",
+          "parent": "rsocket-frames-ts!AuthType:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "aHVgOjlpQdWgE6aqfRE6R_Ni1SEDXWXfOT4QZfiJDQQ"
+        },
+        "rsocket-frames-ts!AuthType.valueOf:member(1)": {
+          "kind": "Method",
+          "name": "valueOf",
+          "parent": "rsocket-frames-ts!AuthType:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "WlD7PupMv1Q6GrQ72bHzUTDXGWCZkidFzEaYfZKCjEU"
+        },
+        "rsocket-frames-ts!AuthType#auth:member(1)": {
+          "kind": "Method",
+          "name": "auth",
+          "parent": "rsocket-frames-ts!AuthType:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "FSZY1g9rAZTe3DDIV4s2bRLLVQtLK_p6JbbiMwatWqQ"
+        },
+        "rsocket-frames-ts!AuthType#authType:member": {
+          "kind": "Property",
+          "name": "authType",
+          "parent": "rsocket-frames-ts!AuthType:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "Thp2ENPRlUbfmfrv7u0hhTrb0zbul_anCDlwR1pvRss"
+        },
+        "rsocket-frames-ts!AuthType#identifier:member": {
+          "kind": "Property",
+          "name": "identifier",
+          "parent": "rsocket-frames-ts!AuthType:class",
+          "optional": true,
+          "abstract": false,
+          "hash": "GuF5Az9MDkKq7Njm9FSwZ5d_YFWLlMdJE-4Qm0Ylo3M"
+        },
+        "rsocket-frames-ts!AuthType#isWellKnown:member": {
+          "kind": "Property",
+          "name": "isWellKnown",
+          "parent": "rsocket-frames-ts!AuthType:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "FncJlPQLfY_5ceyHmxe15ZBoxFe5niQZkOIqZRPiqII"
+        },
+        "rsocket-frames-ts!AuthType#read:member(1)": {
+          "kind": "Method",
+          "name": "read",
+          "parent": "rsocket-frames-ts!AuthType:class",
+          "optional": false,
+          "abstract": true,
+          "hash": "WTJWdab_PyMQOuWlL0PIfpMJkOZK-JHAKFPUS7bxmUw"
+        },
+        "rsocket-frames-ts!AuthType#write:member(1)": {
+          "kind": "Method",
+          "name": "write",
+          "parent": "rsocket-frames-ts!AuthType:class",
+          "optional": false,
+          "abstract": true,
+          "hash": "onUE4nHob-xQuK_O6_lqHGnoFNTJi605c3A_hGc_Bp8"
+        },
+        "rsocket-frames-ts!CancelFrame:class": {
+          "kind": "Class",
+          "name": "CancelFrame",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "VFajiaeDm2HDw5HyXPN7V8e6IszSOiwoAMy0BSp6qLY"
+        },
+        "rsocket-frames-ts!CancelFrame:constructor(1)": {
+          "kind": "Constructor",
+          "name": "",
+          "parent": "rsocket-frames-ts!CancelFrame:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "WR6FQ6pL5ZJVnk_VDpMoOGcb6jmP4ywsJfsV5CtUT2M"
+        },
+        "rsocket-frames-ts!CancelFrame.from:member(1)": {
+          "kind": "Method",
+          "name": "from",
+          "parent": "rsocket-frames-ts!CancelFrame:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "wz2u8ST7g_GUNJMPjUB-ruAHMmuZUVrqHh6KEPaqIwk"
+        },
+        "rsocket-frames-ts!CancelFrame#canBeIgnored:member(1)": {
+          "kind": "Method",
+          "name": "canBeIgnored",
+          "parent": "rsocket-frames-ts!CancelFrame:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "jXXOeGpb4oLytCK5tv90jeMh8z3XkoaoLKIF-Q52CWg"
+        },
+        "rsocket-frames-ts!CancelFrame#hasMetadata:member(1)": {
+          "kind": "Method",
+          "name": "hasMetadata",
+          "parent": "rsocket-frames-ts!CancelFrame:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "-CCSlCwWjUKfKBucbqV8GZtGGNiKCs_ZpHzNJL2Ei3Y"
+        },
+        "rsocket-frames-ts!CancelFrame#write:member(1)": {
+          "kind": "Method",
+          "name": "write",
+          "parent": "rsocket-frames-ts!CancelFrame:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "qdXm4KBho3owaR3Huxu1YobrhaotErBg-V-56zmo348"
+        },
+        "rsocket-frames-ts!ErrorFrame:class": {
+          "kind": "Class",
+          "name": "ErrorFrame",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "sIhV0QwGgvoqEAc6i-YMkSJaGFFNWqzmzufNU-CEM1k"
+        },
+        "rsocket-frames-ts!ErrorFrame:constructor(1)": {
+          "kind": "Constructor",
+          "name": "",
+          "parent": "rsocket-frames-ts!ErrorFrame:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "wRi_LGO54Oa0l9TD6Y1Ldk1FurvjPvTQTKEAa2i9sTU"
+        },
+        "rsocket-frames-ts!ErrorFrame.from:member(1)": {
+          "kind": "Method",
+          "name": "from",
+          "parent": "rsocket-frames-ts!ErrorFrame:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "zfcqyleBA7EPrj5i3VzuMeMc3iQj7EHzgA_3eiy5DbQ"
+        },
+        "rsocket-frames-ts!ErrorFrame#canBeIgnored:member(1)": {
+          "kind": "Method",
+          "name": "canBeIgnored",
+          "parent": "rsocket-frames-ts!ErrorFrame:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "jXXOeGpb4oLytCK5tv90jeMh8z3XkoaoLKIF-Q52CWg"
+        },
+        "rsocket-frames-ts!ErrorFrame#code:member": {
+          "kind": "Property",
+          "name": "code",
+          "parent": "rsocket-frames-ts!ErrorFrame:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "SCHOUULbPSTaiIxcc9pwabBGgPmsHZNPoUPHGZN_0_Y"
+        },
+        "rsocket-frames-ts!ErrorFrame#hasMetadata:member(1)": {
+          "kind": "Method",
+          "name": "hasMetadata",
+          "parent": "rsocket-frames-ts!ErrorFrame:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "-CCSlCwWjUKfKBucbqV8GZtGGNiKCs_ZpHzNJL2Ei3Y"
+        },
+        "rsocket-frames-ts!ErrorFrame#write:member(1)": {
+          "kind": "Method",
+          "name": "write",
+          "parent": "rsocket-frames-ts!ErrorFrame:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "01E29G40g958bV8wOgQT2teX0jgVkIoMuOjyjPAOFxw"
+        },
+        "rsocket-frames-ts!ExtensionFlag:type": {
+          "kind": "TypeAlias",
+          "name": "ExtensionFlag",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "aFQlo8P1FGQibUydIPPDsJBMfoFXk3wIYisPbvEtBRs"
+        },
+        "rsocket-frames-ts!ExtensionFlag:var": {
+          "kind": "Variable",
+          "name": "ExtensionFlag",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "tTCT8P2bOY2eHt_umHy4gc7z94W5WMtlKISZ51eYhUQ"
+        },
+        "rsocket-frames-ts!ExtensionFrame:class": {
+          "kind": "Class",
+          "name": "ExtensionFrame",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "T6aejc7X5b8nNAesBjRa97U-yd03Y0l69Ek2Ei9dDSE"
+        },
+        "rsocket-frames-ts!ExtensionFrame:constructor(1)": {
+          "kind": "Constructor",
+          "name": "",
+          "parent": "rsocket-frames-ts!ExtensionFrame:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "fb1ui5pM7C9i7i84lYQXT3Bjgefc5o6t0AfPCQyZT04"
+        },
+        "rsocket-frames-ts!ExtensionFrame.from:member(1)": {
+          "kind": "Method",
+          "name": "from",
+          "parent": "rsocket-frames-ts!ExtensionFrame:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "jnWjwvsWmtMa0978CX2PY7v6pdMrwg8OYi-TCTuTBvo"
+        },
+        "rsocket-frames-ts!ExtensionFrame#extendedType:member": {
+          "kind": "Property",
+          "name": "extendedType",
+          "parent": "rsocket-frames-ts!ExtensionFrame:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "8V1Bk-99ZBt02CDMjWca8KU-verlTIlikweo2Nz1yog"
+        },
+        "rsocket-frames-ts!ExtensionFrame#isFlagSet:member(1)": {
+          "kind": "Method",
+          "name": "isFlagSet",
+          "parent": "rsocket-frames-ts!ExtensionFrame:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "5Z0sfw8qu6gw-BRLbTnFSnnY6WjeuJLCd2S8mLZUSkE"
+        },
+        "rsocket-frames-ts!ExtensionFrame#write:member(1)": {
+          "kind": "Method",
+          "name": "write",
+          "parent": "rsocket-frames-ts!ExtensionFrame:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "01E29G40g958bV8wOgQT2teX0jgVkIoMuOjyjPAOFxw"
+        },
+        "rsocket-frames-ts!FireAndForgetFlag:type": {
+          "kind": "TypeAlias",
+          "name": "FireAndForgetFlag",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "OVByFPWgbq8Iu9jImC0AUI5j1lf8D-WdsertfIEMB5A"
+        },
+        "rsocket-frames-ts!FireAndForgetFlag:var": {
+          "kind": "Variable",
+          "name": "FireAndForgetFlag",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "c3T80cFHCgNuueeVzLb2Ev0sxI7K3B-uxU6ipgDj_6U"
+        },
+        "rsocket-frames-ts!Frame:class": {
+          "kind": "Class",
+          "name": "Frame",
+          "parent": "",
+          "optional": false,
+          "abstract": true,
+          "hash": "DupHYSWr8Aa2BWoRDOJ166arWYpRsItJdsKXHtYaC28"
+        },
+        "rsocket-frames-ts!Frame:constructor(1)": {
+          "kind": "Constructor",
+          "name": "",
+          "parent": "rsocket-frames-ts!Frame:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "sNsVCK3ox3AMtpC79vhU0PxNh2w9YSqA6JYh7KEIKPc"
+        },
+        "rsocket-frames-ts!Frame#canBeIgnored:member(1)": {
+          "kind": "Method",
+          "name": "canBeIgnored",
+          "parent": "rsocket-frames-ts!Frame:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "jXXOeGpb4oLytCK5tv90jeMh8z3XkoaoLKIF-Q52CWg"
+        },
+        "rsocket-frames-ts!Frame#hasMetadata:member(1)": {
+          "kind": "Method",
+          "name": "hasMetadata",
+          "parent": "rsocket-frames-ts!Frame:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "-CCSlCwWjUKfKBucbqV8GZtGGNiKCs_ZpHzNJL2Ei3Y"
+        },
+        "rsocket-frames-ts!Frame#header:member": {
+          "kind": "Property",
+          "name": "header",
+          "parent": "rsocket-frames-ts!Frame:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "hGh7lxKJ30NPKc2wtG52tOu4YvHtXuGtBPnTL85rGCg"
+        },
+        "rsocket-frames-ts!Frame#isFlagSet:member(1)": {
+          "kind": "Method",
+          "name": "isFlagSet",
+          "parent": "rsocket-frames-ts!Frame:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "_8OaWxcmrE6KBFaSKASGd1QMjtD8TGXfD38gocJWL3w"
+        },
+        "rsocket-frames-ts!Frame#metadata:member": {
+          "kind": "Property",
+          "name": "metadata",
+          "parent": "rsocket-frames-ts!Frame:class",
+          "optional": true,
+          "abstract": false,
+          "hash": "LJoRRLyxMN9R2VvHccEPY_NQFmJFvd8Ne8YFJI8hA5U"
+        },
+        "rsocket-frames-ts!Frame#payload:member": {
+          "kind": "Property",
+          "name": "payload",
+          "parent": "rsocket-frames-ts!Frame:class",
+          "optional": true,
+          "abstract": false,
+          "hash": "kn0kF97OUv0QrwpCvPMu9OnICRrESqClYeI2kHEOhEE"
+        },
+        "rsocket-frames-ts!Frame#toUint8Array:member(1)": {
+          "kind": "Method",
+          "name": "toUint8Array",
+          "parent": "rsocket-frames-ts!Frame:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "B8zPgZjBPeLuLHC0x0Jb6q0Ppe1j8ydLNlvB1_RY5uk"
+        },
+        "rsocket-frames-ts!Frame#type:member": {
+          "kind": "Property",
+          "name": "type",
+          "parent": "rsocket-frames-ts!Frame:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "VfBUFdITVDldpMAN_UXq37rvabI9RaIJNu34B8m4pt4"
+        },
+        "rsocket-frames-ts!FrameCodec:class": {
+          "kind": "Class",
+          "name": "FrameCodec",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "e3rzDSgmZoTPuv05qtYQ2cVguyN02yBdjO0fHaAAgdQ"
+        },
+        "rsocket-frames-ts!FrameCodec:constructor(1)": {
+          "kind": "Constructor",
+          "name": "",
+          "parent": "rsocket-frames-ts!FrameCodec:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "UB0bCje5jDic2YuVKIT_xTpT_OmPkn1kg1kGlaz8FGU"
+        },
+        "rsocket-frames-ts!FrameCodec#deserialize:member(1)": {
+          "kind": "Method",
+          "name": "deserialize",
+          "parent": "rsocket-frames-ts!FrameCodec:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "cOxqKL5D7acukK6QMgSMEBxjPoi5zz0T3UzYxhax0xs"
+        },
+        "rsocket-frames-ts!FrameCodec#finish:member(1)": {
+          "kind": "Method",
+          "name": "finish",
+          "parent": "rsocket-frames-ts!FrameCodec:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "bHx7WS3dTWDJNYqR3ZQwqJ8B8VB5gitOByvpj2E3SuI"
+        },
+        "rsocket-frames-ts!FrameCodec#reset:member(1)": {
+          "kind": "Method",
+          "name": "reset",
+          "parent": "rsocket-frames-ts!FrameCodec:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "wBjqm7GHJczecDcNpzAsFYsG61LuQRmDD-AB8YK4AZg"
+        },
+        "rsocket-frames-ts!FrameCodec#serialize:member(1)": {
+          "kind": "Method",
+          "name": "serialize",
+          "parent": "rsocket-frames-ts!FrameCodec:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "NKqA8UBQI-72nzz5oaJmCkkwfiEtcaEDtbTVsaGUDqE"
+        },
+        "rsocket-frames-ts!FrameCodecOptions:interface": {
+          "kind": "Interface",
+          "name": "FrameCodecOptions",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "ZMPmdx9wsNZ-_IPDp00Mu9E0r4DPfm-kRes6Z-BCq7M"
+        },
+        "rsocket-frames-ts!FrameCodecOptions#maxFrameSize:member": {
+          "kind": "PropertySignature",
+          "name": "maxFrameSize",
+          "parent": "rsocket-frames-ts!FrameCodecOptions:interface",
+          "optional": true,
+          "abstract": false,
+          "hash": "A6aR6b2ZYqKfqx5EMk7mu4DvZZbo-ntvAdRWg-tIJ1c"
+        },
+        "rsocket-frames-ts!FrameCodecOptions#mimetype:member": {
+          "kind": "PropertySignature",
+          "name": "mimetype",
+          "parent": "rsocket-frames-ts!FrameCodecOptions:interface",
+          "optional": false,
+          "abstract": false,
+          "hash": "zy3DuI67boJxhFOeiQAx7naPTZZPkyMiHvw1-OVVEkI"
+        },
+        "rsocket-frames-ts!FrameCodecOptions#transport:member": {
+          "kind": "PropertySignature",
+          "name": "transport",
+          "parent": "rsocket-frames-ts!FrameCodecOptions:interface",
+          "optional": false,
+          "abstract": false,
+          "hash": "SRx9rOim2eBoP9cQdrf0X-daqeXwxN7lP4Tm9AYQVMY"
+        },
+        "rsocket-frames-ts!FrameDeserializer:var": {
+          "kind": "Variable",
+          "name": "FrameDeserializer",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "NKdKNZA8lvISrOlEx6UjfOh_oPExFjQhfi2LNe5nJCM"
+        },
+        "rsocket-frames-ts!FrameErrorCode:enum": {
+          "kind": "Enum",
+          "name": "FrameErrorCode",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "mTLc1x9rLT52G4eOGayal7PaLJjUD2s_tuGCWZimB9k"
+        },
+        "rsocket-frames-ts!FrameErrorCode:namespace": {
+          "kind": "Namespace",
+          "name": "FrameErrorCode",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "rNVhn1OPWvuzR9mnun8UvYKemwIk2Wkxd5sHvuChN2k"
+        },
+        "rsocket-frames-ts!FrameErrorCode.APPLICATION_ERROR:member": {
+          "kind": "EnumMember",
+          "name": "APPLICATION_ERROR",
+          "parent": "rsocket-frames-ts!FrameErrorCode:enum",
+          "optional": false,
+          "abstract": false,
+          "hash": "bmiDA3wB5yswX_o0mljLpl1DGsZbZ0vt4BeHenCg23g"
+        },
+        "rsocket-frames-ts!FrameErrorCode.CANCELED:member": {
+          "kind": "EnumMember",
+          "name": "CANCELED",
+          "parent": "rsocket-frames-ts!FrameErrorCode:enum",
+          "optional": false,
+          "abstract": false,
+          "hash": "Z0GNktMBT2_k5jyYm187aHSE51xiwatCvT45FLXFhrc"
+        },
+        "rsocket-frames-ts!FrameErrorCode.CONNECTION_CLOSE:member": {
+          "kind": "EnumMember",
+          "name": "CONNECTION_CLOSE",
+          "parent": "rsocket-frames-ts!FrameErrorCode:enum",
+          "optional": false,
+          "abstract": false,
+          "hash": "wTz_Tn7y45EzB6pOb9iqbs4mhiY7OdwG-ZJUYLNxbYw"
+        },
+        "rsocket-frames-ts!FrameErrorCode.CONNECTION_ERROR:member": {
+          "kind": "EnumMember",
+          "name": "CONNECTION_ERROR",
+          "parent": "rsocket-frames-ts!FrameErrorCode:enum",
+          "optional": false,
+          "abstract": false,
+          "hash": "jtRW9WslezGGnUP4ClvVf9fCzrqw4sqsekLNnzvGf0U"
+        },
+        "rsocket-frames-ts!FrameErrorCode.fromByte:function(1)": {
+          "kind": "Function",
+          "name": "fromByte",
+          "parent": "rsocket-frames-ts!FrameErrorCode:namespace",
+          "optional": false,
+          "abstract": false,
+          "hash": "WK7hNzO3iCRL2ciA4EH5a0WRsVzrnOtwJHxHdbXsPIg"
+        },
+        "rsocket-frames-ts!FrameErrorCode.INVALID_SETUP:member": {
+          "kind": "EnumMember",
+          "name": "INVALID_SETUP",
+          "parent": "rsocket-frames-ts!FrameErrorCode:enum",
+          "optional": false,
+          "abstract": false,
+          "hash": "VhzYq9-yIZxjoaF-Lyq_y4KAxpiKETo6sa_nhXEiOW0"
+        },
+        "rsocket-frames-ts!FrameErrorCode.INVALID:member": {
+          "kind": "EnumMember",
+          "name": "INVALID",
+          "parent": "rsocket-frames-ts!FrameErrorCode:enum",
+          "optional": false,
+          "abstract": false,
+          "hash": "yrPbyjLakxNAP2n3_o5RQUriS5LWVBZudOB-DEpWLsU"
+        },
+        "rsocket-frames-ts!FrameErrorCode.REJECTED_RESUME:member": {
+          "kind": "EnumMember",
+          "name": "REJECTED_RESUME",
+          "parent": "rsocket-frames-ts!FrameErrorCode:enum",
+          "optional": false,
+          "abstract": false,
+          "hash": "qAkaGytNl7Uu7VO7_F_TWUfyvKZa1XJvAs4ZNOy8J1Q"
+        },
+        "rsocket-frames-ts!FrameErrorCode.REJECTED_SETUP:member": {
+          "kind": "EnumMember",
+          "name": "REJECTED_SETUP",
+          "parent": "rsocket-frames-ts!FrameErrorCode:enum",
+          "optional": false,
+          "abstract": false,
+          "hash": "mjyKFaJFGDb2Sv-KTaxrvsCgAwjSyh2tYME1Dl4hZ0Q"
+        },
+        "rsocket-frames-ts!FrameErrorCode.REJECTED:member": {
+          "kind": "EnumMember",
+          "name": "REJECTED",
+          "parent": "rsocket-frames-ts!FrameErrorCode:enum",
+          "optional": false,
+          "abstract": false,
+          "hash": "Oo_4a1IwDiH965jr4EIo0ykXtkIxpBemQcwh1AMQn4I"
+        },
+        "rsocket-frames-ts!FrameErrorCode.RESERVED_ONE:member": {
+          "kind": "EnumMember",
+          "name": "RESERVED_ONE",
+          "parent": "rsocket-frames-ts!FrameErrorCode:enum",
+          "optional": false,
+          "abstract": false,
+          "hash": "7v-zARYIimqyRJKSBrclDY9hO6XLLjQ52TQHigOorLM"
+        },
+        "rsocket-frames-ts!FrameErrorCode.RESERVED_ZERO:member": {
+          "kind": "EnumMember",
+          "name": "RESERVED_ZERO",
+          "parent": "rsocket-frames-ts!FrameErrorCode:enum",
+          "optional": false,
+          "abstract": false,
+          "hash": "SPBy0o0lKDuWVjKI2NUmpAw46PdQryIPeirlndhOCUQ"
+        },
+        "rsocket-frames-ts!FrameErrorCode.UNSUPPORTED_SETUP:member": {
+          "kind": "EnumMember",
+          "name": "UNSUPPORTED_SETUP",
+          "parent": "rsocket-frames-ts!FrameErrorCode:enum",
+          "optional": false,
+          "abstract": false,
+          "hash": "6ImUdWbL7kHtxDXVs8cAvqVk20LvDdL6ezjT9DS3EQE"
+        },
+        "rsocket-frames-ts!FrameFlag:type": {
+          "kind": "TypeAlias",
+          "name": "FrameFlag",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "wfxAD74TQlQ36VEgAqJbCfsV1xoZL27OAh343iqpSaA"
+        },
+        "rsocket-frames-ts!FrameFlag:var": {
+          "kind": "Variable",
+          "name": "FrameFlag",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "KxWLfaQtAlMuXlTlpTEGCPTJfxnYc_YvsEahFLec8Jw"
+        },
+        "rsocket-frames-ts!FrameTransport:type": {
+          "kind": "TypeAlias",
+          "name": "FrameTransport",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "J6M19IcRy8vHLLNLvbLDplXOpX5F2Qe9ZdJYrLc4M04"
+        },
+        "rsocket-frames-ts!FrameType:enum": {
+          "kind": "Enum",
+          "name": "FrameType",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "VK4yvXIPZ8z2nVO0ZlQfJTKqaAei5wMssZhDl4htR7Q"
+        },
+        "rsocket-frames-ts!FrameType:namespace": {
+          "kind": "Namespace",
+          "name": "FrameType",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "Thju94Fv_wJUmKdaCJ4PeklGD1Qaw5SkyNdbvtpYT8U"
+        },
+        "rsocket-frames-ts!FrameType.CANCEL:member": {
+          "kind": "EnumMember",
+          "name": "CANCEL",
+          "parent": "rsocket-frames-ts!FrameType:enum",
+          "optional": false,
+          "abstract": false,
+          "hash": "OIgexK6vctfwwzh9LBxFkrtyDD8EGy-CBd0pi7rMTvg"
+        },
+        "rsocket-frames-ts!FrameType.ERROR:member": {
+          "kind": "EnumMember",
+          "name": "ERROR",
+          "parent": "rsocket-frames-ts!FrameType:enum",
+          "optional": false,
+          "abstract": false,
+          "hash": "KVvJD87r4_IucxwdNTPcKnycJpMYU_zQFayjLiLg-RI"
+        },
+        "rsocket-frames-ts!FrameType.EXT:member": {
+          "kind": "EnumMember",
+          "name": "EXT",
+          "parent": "rsocket-frames-ts!FrameType:enum",
+          "optional": false,
+          "abstract": false,
+          "hash": "trX3oPiU0lMeAL02SYqdLZj9kcjXVD9G-FOo-E-VgKU"
+        },
+        "rsocket-frames-ts!FrameType.fromByte:function(1)": {
+          "kind": "Function",
+          "name": "fromByte",
+          "parent": "rsocket-frames-ts!FrameType:namespace",
+          "optional": false,
+          "abstract": false,
+          "hash": "8VHYJT2yVazYr-sl-hA6UYmQy2xpQ2zrtQtBFR-Ldu8"
+        },
+        "rsocket-frames-ts!FrameType.fromWireByte:function(1)": {
+          "kind": "Function",
+          "name": "fromWireByte",
+          "parent": "rsocket-frames-ts!FrameType:namespace",
+          "optional": false,
+          "abstract": false,
+          "hash": "g66dbGtmRcrT7jnOn1X9vtOScdbsuBkAqHpK0JiqgIQ"
+        },
+        "rsocket-frames-ts!FrameType.KEEPALIVE:member": {
+          "kind": "EnumMember",
+          "name": "KEEPALIVE",
+          "parent": "rsocket-frames-ts!FrameType:enum",
+          "optional": false,
+          "abstract": false,
+          "hash": "XO20W9Xku_Q2FtImCkXxuLstB19PS6lOmKewKVgsMss"
+        },
+        "rsocket-frames-ts!FrameType.LEASE:member": {
+          "kind": "EnumMember",
+          "name": "LEASE",
+          "parent": "rsocket-frames-ts!FrameType:enum",
+          "optional": false,
+          "abstract": false,
+          "hash": "OFOqmNn2XEMG4w4Qacp2Jlr9bSkSG7ORptws9Urf1s8"
+        },
+        "rsocket-frames-ts!FrameType.METADATA_PUSH:member": {
+          "kind": "EnumMember",
+          "name": "METADATA_PUSH",
+          "parent": "rsocket-frames-ts!FrameType:enum",
+          "optional": false,
+          "abstract": false,
+          "hash": "YtuEC8hsWnr3jCo0cXS-1YT9h04hFlw6bRgZMba0f4c"
+        },
+        "rsocket-frames-ts!FrameType.PAYLOAD:member": {
+          "kind": "EnumMember",
+          "name": "PAYLOAD",
+          "parent": "rsocket-frames-ts!FrameType:enum",
+          "optional": false,
+          "abstract": false,
+          "hash": "-eQH2aN6Z7XPY9gVGA6CXMDAF6y8LiQJZv03n22ktVs"
+        },
+        "rsocket-frames-ts!FrameType.REQUEST_CHANNEL:member": {
+          "kind": "EnumMember",
+          "name": "REQUEST_CHANNEL",
+          "parent": "rsocket-frames-ts!FrameType:enum",
+          "optional": false,
+          "abstract": false,
+          "hash": "NnB1rQkXsGFZtRroDMsT9_PM1b2y2-EXGhUaHdYPiYY"
+        },
+        "rsocket-frames-ts!FrameType.REQUEST_FNF:member": {
+          "kind": "EnumMember",
+          "name": "REQUEST_FNF",
+          "parent": "rsocket-frames-ts!FrameType:enum",
+          "optional": false,
+          "abstract": false,
+          "hash": "YUGejGD0wmej3WSj0y0wTtzj-NKZS3oNBnhvtAJ7CDo"
+        },
+        "rsocket-frames-ts!FrameType.REQUEST_N:member": {
+          "kind": "EnumMember",
+          "name": "REQUEST_N",
+          "parent": "rsocket-frames-ts!FrameType:enum",
+          "optional": false,
+          "abstract": false,
+          "hash": "2I7R8RIKYnrFVgPKQdjX3RGO7Ok2pHl0BqYrYC8MeJk"
+        },
+        "rsocket-frames-ts!FrameType.REQUEST_RESPONSE:member": {
+          "kind": "EnumMember",
+          "name": "REQUEST_RESPONSE",
+          "parent": "rsocket-frames-ts!FrameType:enum",
+          "optional": false,
+          "abstract": false,
+          "hash": "3h5vLe9I9cFnA1D2hiYwaTeRYU_AHk7dIXiliah_g_M"
+        },
+        "rsocket-frames-ts!FrameType.REQUEST_STREAM:member": {
+          "kind": "EnumMember",
+          "name": "REQUEST_STREAM",
+          "parent": "rsocket-frames-ts!FrameType:enum",
+          "optional": false,
+          "abstract": false,
+          "hash": "WIugxNs2NmeaPRyZWYxHy_yaaENLEJNCIyZiCRQr-Dc"
+        },
+        "rsocket-frames-ts!FrameType.RESERVED:member": {
+          "kind": "EnumMember",
+          "name": "RESERVED",
+          "parent": "rsocket-frames-ts!FrameType:enum",
+          "optional": false,
+          "abstract": false,
+          "hash": "Naobiwv0Inuc41X7xPzHpvKlzeP09qoUEzykAMUvRTg"
+        },
+        "rsocket-frames-ts!FrameType.RESUME_OK:member": {
+          "kind": "EnumMember",
+          "name": "RESUME_OK",
+          "parent": "rsocket-frames-ts!FrameType:enum",
+          "optional": false,
+          "abstract": false,
+          "hash": "jskqL7rtjoAQ--gonmbbBAEfoplruOZcFu1yga5ovmQ"
+        },
+        "rsocket-frames-ts!FrameType.RESUME:member": {
+          "kind": "EnumMember",
+          "name": "RESUME",
+          "parent": "rsocket-frames-ts!FrameType:enum",
+          "optional": false,
+          "abstract": false,
+          "hash": "sI8qfiei3ASsIPW6zCID_4F8yrOp1NKs65d2A-giQjo"
+        },
+        "rsocket-frames-ts!FrameType.SETUP:member": {
+          "kind": "EnumMember",
+          "name": "SETUP",
+          "parent": "rsocket-frames-ts!FrameType:enum",
+          "optional": false,
+          "abstract": false,
+          "hash": "rSDXTsZhxLDsBvCVucLDYigwvdIFYDv2Pj_j0aGWOio"
+        },
+        "rsocket-frames-ts!Header:class": {
+          "kind": "Class",
+          "name": "Header",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "m4OXbOeHbQCZM4EI_uGvAdnmUphiY8SZmfvvQIfRfyI"
+        },
+        "rsocket-frames-ts!Header:constructor(1)": {
+          "kind": "Constructor",
+          "name": "",
+          "parent": "rsocket-frames-ts!Header:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "KasN4AnJfjQf0Gc1Rwvj8OOkgoMM6t_9icOIctJ8UJc"
+        },
+        "rsocket-frames-ts!Header.from:member(1)": {
+          "kind": "Method",
+          "name": "from",
+          "parent": "rsocket-frames-ts!Header:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "_kuGsDpQHhit8rWfLA0xitgDwurpTC_h-xTxjZHAA4o"
+        },
+        "rsocket-frames-ts!Header#flags:member": {
+          "kind": "Property",
+          "name": "flags",
+          "parent": "rsocket-frames-ts!Header:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "RJUP1IMZEAYL41bt4fqHdoANdqxxa1DGdaj7w6PjV6Y"
+        },
+        "rsocket-frames-ts!Header#frameType:member": {
+          "kind": "Property",
+          "name": "frameType",
+          "parent": "rsocket-frames-ts!Header:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "Ttq4LtlPdGgbS6FVZsIe89gNjLbh5QkW8prmW7Kd6rU"
+        },
+        "rsocket-frames-ts!Header#isFlagSet:member(1)": {
+          "kind": "Method",
+          "name": "isFlagSet",
+          "parent": "rsocket-frames-ts!Header:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "_8OaWxcmrE6KBFaSKASGd1QMjtD8TGXfD38gocJWL3w"
+        },
+        "rsocket-frames-ts!Header#streamId:member": {
+          "kind": "Property",
+          "name": "streamId",
+          "parent": "rsocket-frames-ts!Header:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "LuGpxZHYLO6TuOfquYq-pkBBME85Q9dBHxgdihcZEcI"
+        },
+        "rsocket-frames-ts!Header#write:member(1)": {
+          "kind": "Method",
+          "name": "write",
+          "parent": "rsocket-frames-ts!Header:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "jBnYRPRIDdFE8nHUYuMyqw-hhy3Ei_AWIryx3cBe63Q"
+        },
+        "rsocket-frames-ts!KeepaliveFlag:type": {
+          "kind": "TypeAlias",
+          "name": "KeepaliveFlag",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "rFOHkc_BSRnNcUhAEfn4jHygAfX01OLzJdV1BRJf2Xs"
+        },
+        "rsocket-frames-ts!KeepaliveFlag:var": {
+          "kind": "Variable",
+          "name": "KeepaliveFlag",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "3wEZeS8KCukVFyOdc58HRqsgDjbza7-WB8Ubb4p62M0"
+        },
+        "rsocket-frames-ts!KeepaliveFrame:class": {
+          "kind": "Class",
+          "name": "KeepaliveFrame",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "DSJ7kuF7ModHzuG2FRTRbKFyFuw1wiQK9sBVn5R5l9g"
+        },
+        "rsocket-frames-ts!KeepaliveFrame:constructor(1)": {
+          "kind": "Constructor",
+          "name": "",
+          "parent": "rsocket-frames-ts!KeepaliveFrame:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "LEoNtIbFFjEmFQ1XdW2GqW1JMfkemlTWr3uoiEyL5M4"
+        },
+        "rsocket-frames-ts!KeepaliveFrame.from:member(1)": {
+          "kind": "Method",
+          "name": "from",
+          "parent": "rsocket-frames-ts!KeepaliveFrame:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "kDB1_1MJjEE7oxpMQtu11iQs-nGu_C9sEEbNuWTLzdg"
+        },
+        "rsocket-frames-ts!KeepaliveFrame#canBeIgnored:member(1)": {
+          "kind": "Method",
+          "name": "canBeIgnored",
+          "parent": "rsocket-frames-ts!KeepaliveFrame:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "jXXOeGpb4oLytCK5tv90jeMh8z3XkoaoLKIF-Q52CWg"
+        },
+        "rsocket-frames-ts!KeepaliveFrame#hasMetadata:member(1)": {
+          "kind": "Method",
+          "name": "hasMetadata",
+          "parent": "rsocket-frames-ts!KeepaliveFrame:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "-CCSlCwWjUKfKBucbqV8GZtGGNiKCs_ZpHzNJL2Ei3Y"
+        },
+        "rsocket-frames-ts!KeepaliveFrame#isFlagSet:member(1)": {
+          "kind": "Method",
+          "name": "isFlagSet",
+          "parent": "rsocket-frames-ts!KeepaliveFrame:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "nqCiVQE2LBu1WzwCQb9exaQHk-oS2JTo9vx3D5lQCew"
+        },
+        "rsocket-frames-ts!KeepaliveFrame#isRequireRespond:member(1)": {
+          "kind": "Method",
+          "name": "isRequireRespond",
+          "parent": "rsocket-frames-ts!KeepaliveFrame:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "HqLcf5z75pfB1USsEklYmyCPwqFBZINDHC93VbpJamc"
+        },
+        "rsocket-frames-ts!KeepaliveFrame#lastReceivedPosition:member": {
+          "kind": "Property",
+          "name": "lastReceivedPosition",
+          "parent": "rsocket-frames-ts!KeepaliveFrame:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "LRWVqLY5s12zAe2yqgCj1wvw_BMLbIscykmmXjnyn68"
+        },
+        "rsocket-frames-ts!KeepaliveFrame#write:member(1)": {
+          "kind": "Method",
+          "name": "write",
+          "parent": "rsocket-frames-ts!KeepaliveFrame:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "01E29G40g958bV8wOgQT2teX0jgVkIoMuOjyjPAOFxw"
+        },
+        "rsocket-frames-ts!LeaseFrame:class": {
+          "kind": "Class",
+          "name": "LeaseFrame",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "nNx5yR9aO9yaunFxShucKP7TqOTzPLaH87Y-EvIrKSs"
+        },
+        "rsocket-frames-ts!LeaseFrame:constructor(1)": {
+          "kind": "Constructor",
+          "name": "",
+          "parent": "rsocket-frames-ts!LeaseFrame:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "MukMy6L5rr7CNNHu5P9yMSTMW6LsFCTkduQgnwI402Y"
+        },
+        "rsocket-frames-ts!LeaseFrame.from:member(1)": {
+          "kind": "Method",
+          "name": "from",
+          "parent": "rsocket-frames-ts!LeaseFrame:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "-ZDqxMjtE0EGZdAWrO8LlTdz47PrL-bqRTPDXBq09n4"
+        },
+        "rsocket-frames-ts!LeaseFrame#canBeIgnored:member(1)": {
+          "kind": "Method",
+          "name": "canBeIgnored",
+          "parent": "rsocket-frames-ts!LeaseFrame:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "jXXOeGpb4oLytCK5tv90jeMh8z3XkoaoLKIF-Q52CWg"
+        },
+        "rsocket-frames-ts!LeaseFrame#requestLimit:member": {
+          "kind": "Property",
+          "name": "requestLimit",
+          "parent": "rsocket-frames-ts!LeaseFrame:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "qLoisyFGYmHrqpsFLnNO8CyW78QZ4KrgXJyXl5LtZ0w"
+        },
+        "rsocket-frames-ts!LeaseFrame#ttl:member": {
+          "kind": "Property",
+          "name": "ttl",
+          "parent": "rsocket-frames-ts!LeaseFrame:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "lLQIxJHgRUQPHMmpuLnCepqrjogZAYRPePi6Tuq0H9g"
+        },
+        "rsocket-frames-ts!LeaseFrame#write:member(1)": {
+          "kind": "Method",
+          "name": "write",
+          "parent": "rsocket-frames-ts!LeaseFrame:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "01E29G40g958bV8wOgQT2teX0jgVkIoMuOjyjPAOFxw"
+        },
+        "rsocket-frames-ts!MAX_FRAME_SIZE:var": {
+          "kind": "Variable",
+          "name": "MAX_FRAME_SIZE",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "I7Vy-KLAa23v_TZJJzszT-TLv-9SIpq7V6sLKhSsA-E"
+        },
+        "rsocket-frames-ts!Metadata:class": {
+          "kind": "Class",
+          "name": "Metadata",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "q-JXM6ROtzJh53KK3xLfq_qAHDzFjF2ZfRTt1knIoVo"
+        },
+        "rsocket-frames-ts!Metadata:constructor(1)": {
+          "kind": "Constructor",
+          "name": "",
+          "parent": "rsocket-frames-ts!Metadata:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "KL6QV8B5uyjXFGCEcgWzMQgFiDQgi4NBZS0GXQSIT1U"
+        },
+        "rsocket-frames-ts!Metadata#mimeType:member": {
+          "kind": "Property",
+          "name": "mimeType",
+          "parent": "rsocket-frames-ts!Metadata:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "x45ix8lTdIwjYmb2mdPP8LuzySEtPBgSoGppowMKDQk"
+        },
+        "rsocket-frames-ts!Metadata#payload:member": {
+          "kind": "Property",
+          "name": "payload",
+          "parent": "rsocket-frames-ts!Metadata:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "o9NRmVt0VmHjKzUxu7Ic5XpVaf4O38YBpUTgUK__5Iw"
+        },
+        "rsocket-frames-ts!Metadata#toUint8Array:member(1)": {
+          "kind": "Method",
+          "name": "toUint8Array",
+          "parent": "rsocket-frames-ts!Metadata:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "B8zPgZjBPeLuLHC0x0Jb6q0Ppe1j8ydLNlvB1_RY5uk"
+        },
+        "rsocket-frames-ts!Metadata#write:member(1)": {
+          "kind": "Method",
+          "name": "write",
+          "parent": "rsocket-frames-ts!Metadata:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "EJQTqR2yPnZb2Qo9aa38nbhzK7MSJjVwGmzhjCpL3k8"
+        },
+        "rsocket-frames-ts!MetadataPushFrame:class": {
+          "kind": "Class",
+          "name": "MetadataPushFrame",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "3FsCTgXlBZPceRjHZw1iCfxkiclhfNAZOu1OM5hkTEc"
+        },
+        "rsocket-frames-ts!MetadataPushFrame:constructor(1)": {
+          "kind": "Constructor",
+          "name": "",
+          "parent": "rsocket-frames-ts!MetadataPushFrame:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "Fwlyrm6CED3nhcq5gDEOJZeqqV7QhaZBWNsBHy1YUR0"
+        },
+        "rsocket-frames-ts!MetadataPushFrame.from:member(1)": {
+          "kind": "Method",
+          "name": "from",
+          "parent": "rsocket-frames-ts!MetadataPushFrame:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "0sKiEyXo9PpAaS3FNGstOw6Rmlatof2VBCs4K_Zi88M"
+        },
+        "rsocket-frames-ts!MetadataPushFrame#canBeIgnored:member(1)": {
+          "kind": "Method",
+          "name": "canBeIgnored",
+          "parent": "rsocket-frames-ts!MetadataPushFrame:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "jXXOeGpb4oLytCK5tv90jeMh8z3XkoaoLKIF-Q52CWg"
+        },
+        "rsocket-frames-ts!MetadataPushFrame#hasMetadata:member(1)": {
+          "kind": "Method",
+          "name": "hasMetadata",
+          "parent": "rsocket-frames-ts!MetadataPushFrame:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "-CCSlCwWjUKfKBucbqV8GZtGGNiKCs_ZpHzNJL2Ei3Y"
+        },
+        "rsocket-frames-ts!MetadataPushFrame#write:member(1)": {
+          "kind": "Method",
+          "name": "write",
+          "parent": "rsocket-frames-ts!MetadataPushFrame:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "qdXm4KBho3owaR3Huxu1YobrhaotErBg-V-56zmo348"
+        },
+        "rsocket-frames-ts!MimeType_2:class": {
+          "kind": "Class",
+          "name": "MimeType_2",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "R1ClVKSSTYUlsMIbUl0zDj5A_NiVDPspohHiwMVHFew"
+        },
+        "rsocket-frames-ts!MimeType_2:constructor(1)": {
+          "kind": "Constructor",
+          "name": "",
+          "parent": "rsocket-frames-ts!MimeType_2:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "t3i34tU2DPQD-BmSStHxyDpKyMYK-3pG5bLuozZatng"
+        },
+        "rsocket-frames-ts!MimeType_2.valueOf:member(1)": {
+          "kind": "Method",
+          "name": "valueOf",
+          "parent": "rsocket-frames-ts!MimeType_2:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "M1hg5rmvaMpsnAvtFCyjMKsCBU88FAz2Iuz2kcm-ypA"
+        },
+        "rsocket-frames-ts!MimeType_2#deserializeMetadata:member(1)": {
+          "kind": "Method",
+          "name": "deserializeMetadata",
+          "parent": "rsocket-frames-ts!MimeType_2:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "5e4YmpOPobKCidrmuvruFiXNF87hXnWRadFP97B2Usk"
+        },
+        "rsocket-frames-ts!MimeType_2#deserializePayload:member(1)": {
+          "kind": "Method",
+          "name": "deserializePayload",
+          "parent": "rsocket-frames-ts!MimeType_2:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "xk5r2T7FJTsqG8UDJ6psEPrxuvDwaaTWGfk8FXLkx3Y"
+        },
+        "rsocket-frames-ts!MimeType_2#identifier:member": {
+          "kind": "Property",
+          "name": "identifier",
+          "parent": "rsocket-frames-ts!MimeType_2:class",
+          "optional": true,
+          "abstract": false,
+          "hash": "GuF5Az9MDkKq7Njm9FSwZ5d_YFWLlMdJE-4Qm0Ylo3M"
+        },
+        "rsocket-frames-ts!MimeType_2#isWellKnown:member": {
+          "kind": "Property",
+          "name": "isWellKnown",
+          "parent": "rsocket-frames-ts!MimeType_2:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "FncJlPQLfY_5ceyHmxe15ZBoxFe5niQZkOIqZRPiqII"
+        },
+        "rsocket-frames-ts!MimeType_2#mimeType:member": {
+          "kind": "Property",
+          "name": "mimeType",
+          "parent": "rsocket-frames-ts!MimeType_2:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "3gS32aeuF8AtxUtiJ4YU2Qrjkl_IEC1TPjQZZcqk5-8"
+        },
+        "rsocket-frames-ts!MimeType_2#serializeMetadata:member(1)": {
+          "kind": "Method",
+          "name": "serializeMetadata",
+          "parent": "rsocket-frames-ts!MimeType_2:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "FZCN9wcwlyteh8bH3mpTgkVR1sEKjPUc23CNnThuuMA"
+        },
+        "rsocket-frames-ts!MimeType_2#serializePayload:member(1)": {
+          "kind": "Method",
+          "name": "serializePayload",
+          "parent": "rsocket-frames-ts!MimeType_2:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "sRdhJniv4mETHvP0LqYRGYdrQ0xZweOUVNtmfI0x4us"
+        },
+        "rsocket-frames-ts!MimeType_2#toMetadata:member(1)": {
+          "kind": "Method",
+          "name": "toMetadata",
+          "parent": "rsocket-frames-ts!MimeType_2:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "QhMh3btr5bJ6Er_y9Ss1NUDYSjXI-M5lWQ8lKx43Sl4"
+        },
+        "rsocket-frames-ts!MimeType_2#toPayload:member(1)": {
+          "kind": "Method",
+          "name": "toPayload",
+          "parent": "rsocket-frames-ts!MimeType_2:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "aGN5fisXdG3Fem2FGLsByCzugZxFlOf_SZ-_ghPOfr0"
+        },
+        "rsocket-frames-ts!Payload:class": {
+          "kind": "Class",
+          "name": "Payload",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "SlaEoD7W6wy4Avbth-pTu0ejnC_o3KrHHdD08NMDrRU"
+        },
+        "rsocket-frames-ts!Payload:constructor(1)": {
+          "kind": "Constructor",
+          "name": "",
+          "parent": "rsocket-frames-ts!Payload:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "KL6QV8B5uyjXFGCEcgWzMQgFiDQgi4NBZS0GXQSIT1U"
+        },
+        "rsocket-frames-ts!Payload#mimeType:member": {
+          "kind": "Property",
+          "name": "mimeType",
+          "parent": "rsocket-frames-ts!Payload:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "x45ix8lTdIwjYmb2mdPP8LuzySEtPBgSoGppowMKDQk"
+        },
+        "rsocket-frames-ts!Payload#payload:member": {
+          "kind": "Property",
+          "name": "payload",
+          "parent": "rsocket-frames-ts!Payload:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "o9NRmVt0VmHjKzUxu7Ic5XpVaf4O38YBpUTgUK__5Iw"
+        },
+        "rsocket-frames-ts!Payload#toUint8Array:member(1)": {
+          "kind": "Method",
+          "name": "toUint8Array",
+          "parent": "rsocket-frames-ts!Payload:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "B8zPgZjBPeLuLHC0x0Jb6q0Ppe1j8ydLNlvB1_RY5uk"
+        },
+        "rsocket-frames-ts!Payload#write:member(1)": {
+          "kind": "Method",
+          "name": "write",
+          "parent": "rsocket-frames-ts!Payload:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "jBnYRPRIDdFE8nHUYuMyqw-hhy3Ei_AWIryx3cBe63Q"
+        },
+        "rsocket-frames-ts!PayloadFlag:type": {
+          "kind": "TypeAlias",
+          "name": "PayloadFlag",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "fs08Ug1CTicBZu4lamg0ojC8L1gPsZEt4A7Sf_sF6ow"
+        },
+        "rsocket-frames-ts!PayloadFlag:var": {
+          "kind": "Variable",
+          "name": "PayloadFlag",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "0SHpT5lCmbCNTs5QRjPot7kUCI8-ZcB06A9NvVrMNpo"
+        },
+        "rsocket-frames-ts!PayloadFrame:class": {
+          "kind": "Class",
+          "name": "PayloadFrame",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "D-yWZ_bxnxkii4SyiDMosuEMuXNEaYgl650y98S1AOA"
+        },
+        "rsocket-frames-ts!PayloadFrame:constructor(1)": {
+          "kind": "Constructor",
+          "name": "",
+          "parent": "rsocket-frames-ts!PayloadFrame:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "HrH-TVqKOLGLaY-Ee8yO3c3JENMkoAunf1SuajcBNL4"
+        },
+        "rsocket-frames-ts!PayloadFrame.from:member(1)": {
+          "kind": "Method",
+          "name": "from",
+          "parent": "rsocket-frames-ts!PayloadFrame:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "F45ueV5pJstUvR5elXIt72DR9hyxx-XDQ2BFSNHShx4"
+        },
+        "rsocket-frames-ts!PayloadFrame#canBeIgnored:member(1)": {
+          "kind": "Method",
+          "name": "canBeIgnored",
+          "parent": "rsocket-frames-ts!PayloadFrame:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "jXXOeGpb4oLytCK5tv90jeMh8z3XkoaoLKIF-Q52CWg"
+        },
+        "rsocket-frames-ts!PayloadFrame#hasFollows:member(1)": {
+          "kind": "Method",
+          "name": "hasFollows",
+          "parent": "rsocket-frames-ts!PayloadFrame:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "ercU9Zv9_W4MfIC1UqejsvoZrHtqQvLhYkZBPdv6muA"
+        },
+        "rsocket-frames-ts!PayloadFrame#isComplete:member(1)": {
+          "kind": "Method",
+          "name": "isComplete",
+          "parent": "rsocket-frames-ts!PayloadFrame:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "Qo4s290Ig10rcCyusmQl0ag6QyfNCIoBTSZRXOR0604"
+        },
+        "rsocket-frames-ts!PayloadFrame#isFlagSet:member(1)": {
+          "kind": "Method",
+          "name": "isFlagSet",
+          "parent": "rsocket-frames-ts!PayloadFrame:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "TAhMDDmkxG7Hsb7si0cUYTPKS8gTw5zxJQx7Lczw6ag"
+        },
+        "rsocket-frames-ts!PayloadFrame#isNext:member(1)": {
+          "kind": "Method",
+          "name": "isNext",
+          "parent": "rsocket-frames-ts!PayloadFrame:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "K3QfSHeyAAZKkVpSPE-x8wTuxMKbNu6-Zu04QDF4894"
+        },
+        "rsocket-frames-ts!PayloadFrame#write:member(1)": {
+          "kind": "Method",
+          "name": "write",
+          "parent": "rsocket-frames-ts!PayloadFrame:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "qdXm4KBho3owaR3Huxu1YobrhaotErBg-V-56zmo348"
+        },
+        "rsocket-frames-ts!RequestChannelFlag:type": {
+          "kind": "TypeAlias",
+          "name": "RequestChannelFlag",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "qx_trMwStnY7a2Moa4R-mD1URAjf-qjAQEN9_QuR8qM"
+        },
+        "rsocket-frames-ts!RequestChannelFlag:var": {
+          "kind": "Variable",
+          "name": "RequestChannelFlag",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "_v_wg7mah9-2BW-vz5YWc9Jou12FwgPIThO52lqIV8I"
+        },
+        "rsocket-frames-ts!RequestChannelFrame:class": {
+          "kind": "Class",
+          "name": "RequestChannelFrame",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "pIXV0D74jeRwkUk7YdB5EmKlKMj8dj17Ffk1EUBrUrc"
+        },
+        "rsocket-frames-ts!RequestChannelFrame:constructor(1)": {
+          "kind": "Constructor",
+          "name": "",
+          "parent": "rsocket-frames-ts!RequestChannelFrame:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "Tt7JojfkcktGrqNz5D_uWrwNihZuo7fsrBmTv3g30Dk"
+        },
+        "rsocket-frames-ts!RequestChannelFrame.from:member(1)": {
+          "kind": "Method",
+          "name": "from",
+          "parent": "rsocket-frames-ts!RequestChannelFrame:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "vVYHKWfoHp9YQYm2UNv-Pb5fXpXivIurO6k3JdyNi5w"
+        },
+        "rsocket-frames-ts!RequestChannelFrame#canBeIgnored:member(1)": {
+          "kind": "Method",
+          "name": "canBeIgnored",
+          "parent": "rsocket-frames-ts!RequestChannelFrame:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "jXXOeGpb4oLytCK5tv90jeMh8z3XkoaoLKIF-Q52CWg"
+        },
+        "rsocket-frames-ts!RequestChannelFrame#hasFollows:member(1)": {
+          "kind": "Method",
+          "name": "hasFollows",
+          "parent": "rsocket-frames-ts!RequestChannelFrame:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "ercU9Zv9_W4MfIC1UqejsvoZrHtqQvLhYkZBPdv6muA"
+        },
+        "rsocket-frames-ts!RequestChannelFrame#isComplete:member(1)": {
+          "kind": "Method",
+          "name": "isComplete",
+          "parent": "rsocket-frames-ts!RequestChannelFrame:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "Qo4s290Ig10rcCyusmQl0ag6QyfNCIoBTSZRXOR0604"
+        },
+        "rsocket-frames-ts!RequestChannelFrame#isFlagSet:member(1)": {
+          "kind": "Method",
+          "name": "isFlagSet",
+          "parent": "rsocket-frames-ts!RequestChannelFrame:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "YpbCjK9hPAFlbMKlqUhPxOWcdjJ4REG0MpdyzHMkiIg"
+        },
+        "rsocket-frames-ts!RequestChannelFrame#request:member": {
+          "kind": "Property",
+          "name": "request",
+          "parent": "rsocket-frames-ts!RequestChannelFrame:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "ecJpBnG1Ou45gT9YzUNnsiw8pRKraV1QH-i3L95XNQc"
+        },
+        "rsocket-frames-ts!RequestChannelFrame#write:member(1)": {
+          "kind": "Method",
+          "name": "write",
+          "parent": "rsocket-frames-ts!RequestChannelFrame:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "01E29G40g958bV8wOgQT2teX0jgVkIoMuOjyjPAOFxw"
+        },
+        "rsocket-frames-ts!RequestFireAndForgetFrame:class": {
+          "kind": "Class",
+          "name": "RequestFireAndForgetFrame",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "5u-jrpd2-JfQL4yeQozsXfXgYrlsz88AV3t0lqDywHo"
+        },
+        "rsocket-frames-ts!RequestFireAndForgetFrame:constructor(1)": {
+          "kind": "Constructor",
+          "name": "",
+          "parent": "rsocket-frames-ts!RequestFireAndForgetFrame:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "_UfaMqVsArJt1FKRmke2UG4jYIrfnaRGQwF43faLNDg"
+        },
+        "rsocket-frames-ts!RequestFireAndForgetFrame.from:member(1)": {
+          "kind": "Method",
+          "name": "from",
+          "parent": "rsocket-frames-ts!RequestFireAndForgetFrame:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "bopf-U5TZ3Fv0jj8dvA5PvgYRNLs57cyGIJ96pNkzok"
+        },
+        "rsocket-frames-ts!RequestFireAndForgetFrame#canBeIgnored:member(1)": {
+          "kind": "Method",
+          "name": "canBeIgnored",
+          "parent": "rsocket-frames-ts!RequestFireAndForgetFrame:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "jXXOeGpb4oLytCK5tv90jeMh8z3XkoaoLKIF-Q52CWg"
+        },
+        "rsocket-frames-ts!RequestFireAndForgetFrame#hasFollows:member(1)": {
+          "kind": "Method",
+          "name": "hasFollows",
+          "parent": "rsocket-frames-ts!RequestFireAndForgetFrame:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "ercU9Zv9_W4MfIC1UqejsvoZrHtqQvLhYkZBPdv6muA"
+        },
+        "rsocket-frames-ts!RequestFireAndForgetFrame#isFlagSet:member(1)": {
+          "kind": "Method",
+          "name": "isFlagSet",
+          "parent": "rsocket-frames-ts!RequestFireAndForgetFrame:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "O6j29DnNO4ZaJ_r9WZCb2KmmJJyqOAubDNX21mKdjPM"
+        },
+        "rsocket-frames-ts!RequestFireAndForgetFrame#write:member(1)": {
+          "kind": "Method",
+          "name": "write",
+          "parent": "rsocket-frames-ts!RequestFireAndForgetFrame:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "qdXm4KBho3owaR3Huxu1YobrhaotErBg-V-56zmo348"
+        },
+        "rsocket-frames-ts!RequestNFrame:class": {
+          "kind": "Class",
+          "name": "RequestNFrame",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "hXxQcQZL6C624hLJUcbiYZq4uwD75p2-B3TuA6lzI3U"
+        },
+        "rsocket-frames-ts!RequestNFrame:constructor(1)": {
+          "kind": "Constructor",
+          "name": "",
+          "parent": "rsocket-frames-ts!RequestNFrame:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "H84pZxS26LTdXxjeU7RjB9xb4bL1mgzJPicL9SBT9vU"
+        },
+        "rsocket-frames-ts!RequestNFrame.from:member(1)": {
+          "kind": "Method",
+          "name": "from",
+          "parent": "rsocket-frames-ts!RequestNFrame:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "32xoRPaEXQaYpTpsNdlGU6Wvfmb9JZZCwsqrwD1961U"
+        },
+        "rsocket-frames-ts!RequestNFrame#canBeIgnored:member(1)": {
+          "kind": "Method",
+          "name": "canBeIgnored",
+          "parent": "rsocket-frames-ts!RequestNFrame:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "jXXOeGpb4oLytCK5tv90jeMh8z3XkoaoLKIF-Q52CWg"
+        },
+        "rsocket-frames-ts!RequestNFrame#hasMetadata:member(1)": {
+          "kind": "Method",
+          "name": "hasMetadata",
+          "parent": "rsocket-frames-ts!RequestNFrame:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "-CCSlCwWjUKfKBucbqV8GZtGGNiKCs_ZpHzNJL2Ei3Y"
+        },
+        "rsocket-frames-ts!RequestNFrame#request:member": {
+          "kind": "Property",
+          "name": "request",
+          "parent": "rsocket-frames-ts!RequestNFrame:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "ecJpBnG1Ou45gT9YzUNnsiw8pRKraV1QH-i3L95XNQc"
+        },
+        "rsocket-frames-ts!RequestNFrame#write:member(1)": {
+          "kind": "Method",
+          "name": "write",
+          "parent": "rsocket-frames-ts!RequestNFrame:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "01E29G40g958bV8wOgQT2teX0jgVkIoMuOjyjPAOFxw"
+        },
+        "rsocket-frames-ts!RequestResponseFlag:type": {
+          "kind": "TypeAlias",
+          "name": "RequestResponseFlag",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "B7gBk-QRJH_7-NWsmdw2xox7M5pBQTtKAWDkQdkR7t4"
+        },
+        "rsocket-frames-ts!RequestResponseFlag:var": {
+          "kind": "Variable",
+          "name": "RequestResponseFlag",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "eVo5jh82hGBrl_Vn_dJeluGjq02Ic5gPHk54789LIqA"
+        },
+        "rsocket-frames-ts!RequestResponseFrame:class": {
+          "kind": "Class",
+          "name": "RequestResponseFrame",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "ecp8yl1nAevX9qLYpUYkpQofp9-TGzYRMPPVPVkYBUY"
+        },
+        "rsocket-frames-ts!RequestResponseFrame:constructor(1)": {
+          "kind": "Constructor",
+          "name": "",
+          "parent": "rsocket-frames-ts!RequestResponseFrame:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "eshE5y1uLCh8N6k21Fa-Jldp3o-Oo-NjiQ2zgETpdPw"
+        },
+        "rsocket-frames-ts!RequestResponseFrame.from:member(1)": {
+          "kind": "Method",
+          "name": "from",
+          "parent": "rsocket-frames-ts!RequestResponseFrame:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "HNGlF0Vo3hLrJSf-OwNbkCkSybAfIqktAch_9bSMr44"
+        },
+        "rsocket-frames-ts!RequestResponseFrame#canBeIgnored:member(1)": {
+          "kind": "Method",
+          "name": "canBeIgnored",
+          "parent": "rsocket-frames-ts!RequestResponseFrame:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "jXXOeGpb4oLytCK5tv90jeMh8z3XkoaoLKIF-Q52CWg"
+        },
+        "rsocket-frames-ts!RequestResponseFrame#hasFollows:member(1)": {
+          "kind": "Method",
+          "name": "hasFollows",
+          "parent": "rsocket-frames-ts!RequestResponseFrame:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "ercU9Zv9_W4MfIC1UqejsvoZrHtqQvLhYkZBPdv6muA"
+        },
+        "rsocket-frames-ts!RequestResponseFrame#isFlagSet:member(1)": {
+          "kind": "Method",
+          "name": "isFlagSet",
+          "parent": "rsocket-frames-ts!RequestResponseFrame:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "MXu1nOF3V5p8F8vYRJU9jyTZArSz0U1yAQdCQZNeT-Y"
+        },
+        "rsocket-frames-ts!RequestResponseFrame#write:member(1)": {
+          "kind": "Method",
+          "name": "write",
+          "parent": "rsocket-frames-ts!RequestResponseFrame:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "qdXm4KBho3owaR3Huxu1YobrhaotErBg-V-56zmo348"
+        },
+        "rsocket-frames-ts!RequestStreamFlag:type": {
+          "kind": "TypeAlias",
+          "name": "RequestStreamFlag",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "uPaOpJa4XVW_LXbSPAkwvOlajk90jVCdgHDfiVzqyqQ"
+        },
+        "rsocket-frames-ts!RequestStreamFlag:var": {
+          "kind": "Variable",
+          "name": "RequestStreamFlag",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "sXxCYzRpTd8hNH-DSNTPpuLBYPoK6Hf1tUkxMCvhYnw"
+        },
+        "rsocket-frames-ts!RequestStreamFrame:class": {
+          "kind": "Class",
+          "name": "RequestStreamFrame",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "f1YZlvaBOnpIn2l10iDfpmf_qmdbYxS-SozLOAwTx8g"
+        },
+        "rsocket-frames-ts!RequestStreamFrame:constructor(1)": {
+          "kind": "Constructor",
+          "name": "",
+          "parent": "rsocket-frames-ts!RequestStreamFrame:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "vbbZ8ss2B0msvgl4WEddQI5_-ndwFc7N-YvU9p-aZ80"
+        },
+        "rsocket-frames-ts!RequestStreamFrame.from:member(1)": {
+          "kind": "Method",
+          "name": "from",
+          "parent": "rsocket-frames-ts!RequestStreamFrame:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "feLp0rKV_OwzuJIM4SWLjEbrygkqYbD29sR09gIGWEI"
+        },
+        "rsocket-frames-ts!RequestStreamFrame#canBeIgnored:member(1)": {
+          "kind": "Method",
+          "name": "canBeIgnored",
+          "parent": "rsocket-frames-ts!RequestStreamFrame:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "jXXOeGpb4oLytCK5tv90jeMh8z3XkoaoLKIF-Q52CWg"
+        },
+        "rsocket-frames-ts!RequestStreamFrame#hasFollows:member(1)": {
+          "kind": "Method",
+          "name": "hasFollows",
+          "parent": "rsocket-frames-ts!RequestStreamFrame:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "ercU9Zv9_W4MfIC1UqejsvoZrHtqQvLhYkZBPdv6muA"
+        },
+        "rsocket-frames-ts!RequestStreamFrame#isFlagSet:member(1)": {
+          "kind": "Method",
+          "name": "isFlagSet",
+          "parent": "rsocket-frames-ts!RequestStreamFrame:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "lS4jcBnOH8_-m55wdSxWHkV__f7rNhaAZinLjPATrks"
+        },
+        "rsocket-frames-ts!RequestStreamFrame#request:member": {
+          "kind": "Property",
+          "name": "request",
+          "parent": "rsocket-frames-ts!RequestStreamFrame:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "ecJpBnG1Ou45gT9YzUNnsiw8pRKraV1QH-i3L95XNQc"
+        },
+        "rsocket-frames-ts!RequestStreamFrame#write:member(1)": {
+          "kind": "Method",
+          "name": "write",
+          "parent": "rsocket-frames-ts!RequestStreamFrame:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "01E29G40g958bV8wOgQT2teX0jgVkIoMuOjyjPAOFxw"
+        },
+        "rsocket-frames-ts!ResumeFrame:class": {
+          "kind": "Class",
+          "name": "ResumeFrame",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "fw7yFc48QJiiLCuji1kXF1To1TIgEX7WuxtyxU1TKx8"
+        },
+        "rsocket-frames-ts!ResumeFrame:constructor(1)": {
+          "kind": "Constructor",
+          "name": "",
+          "parent": "rsocket-frames-ts!ResumeFrame:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "ObK_SKO9C9hpuYqVbnljrQAM4f-fVvjjo4TRftg4KcU"
+        },
+        "rsocket-frames-ts!ResumeFrame.from:member(1)": {
+          "kind": "Method",
+          "name": "from",
+          "parent": "rsocket-frames-ts!ResumeFrame:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "qu-iuC8V0gO9G0OC7JMKikThPMZFPv5KCh1o2IkjbH4"
+        },
+        "rsocket-frames-ts!ResumeFrame#canBeIgnored:member(1)": {
+          "kind": "Method",
+          "name": "canBeIgnored",
+          "parent": "rsocket-frames-ts!ResumeFrame:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "jXXOeGpb4oLytCK5tv90jeMh8z3XkoaoLKIF-Q52CWg"
+        },
+        "rsocket-frames-ts!ResumeFrame#firstAvailableClientPosition:member": {
+          "kind": "Property",
+          "name": "firstAvailableClientPosition",
+          "parent": "rsocket-frames-ts!ResumeFrame:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "DDOKrId7Hg4P-ewyTGtu0IvHSuwTjiQ85RQuY40PuwI"
+        },
+        "rsocket-frames-ts!ResumeFrame#hasMetadata:member(1)": {
+          "kind": "Method",
+          "name": "hasMetadata",
+          "parent": "rsocket-frames-ts!ResumeFrame:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "-CCSlCwWjUKfKBucbqV8GZtGGNiKCs_ZpHzNJL2Ei3Y"
+        },
+        "rsocket-frames-ts!ResumeFrame#lastReceivedServerPosition:member": {
+          "kind": "Property",
+          "name": "lastReceivedServerPosition",
+          "parent": "rsocket-frames-ts!ResumeFrame:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "AHCtMGjssgfKB4vEfohA2vNZwDrQs-oh0EAEyfejw1c"
+        },
+        "rsocket-frames-ts!ResumeFrame#majorVersion:member": {
+          "kind": "Property",
+          "name": "majorVersion",
+          "parent": "rsocket-frames-ts!ResumeFrame:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "2xoLfI-mcWMz94eqQCbSW9pdhbMiWigcS0Bn7zohkAk"
+        },
+        "rsocket-frames-ts!ResumeFrame#minorVersion:member": {
+          "kind": "Property",
+          "name": "minorVersion",
+          "parent": "rsocket-frames-ts!ResumeFrame:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "nEIQE_eU0LpAbhydHm-7VrQHEY6Uvej7SpjvQ5OgL6c"
+        },
+        "rsocket-frames-ts!ResumeFrame#resumeToken:member": {
+          "kind": "Property",
+          "name": "resumeToken",
+          "parent": "rsocket-frames-ts!ResumeFrame:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "H1Oy_Klel7XsaLcSDaXOc9gK2U6fanja9MDnvs8N3D4"
+        },
+        "rsocket-frames-ts!ResumeFrame#write:member(1)": {
+          "kind": "Method",
+          "name": "write",
+          "parent": "rsocket-frames-ts!ResumeFrame:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "01E29G40g958bV8wOgQT2teX0jgVkIoMuOjyjPAOFxw"
+        },
+        "rsocket-frames-ts!ResumeOkFrame:class": {
+          "kind": "Class",
+          "name": "ResumeOkFrame",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "srHJW8H0TpjfQ_wNF18AYqmNVP34hAfXiyBpj5MKqlc"
+        },
+        "rsocket-frames-ts!ResumeOkFrame:constructor(1)": {
+          "kind": "Constructor",
+          "name": "",
+          "parent": "rsocket-frames-ts!ResumeOkFrame:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "Yo-YwJfXJCH3p9WlQSK9P3wiqbaeOJ9iFix_8qZs5_o"
+        },
+        "rsocket-frames-ts!ResumeOkFrame.from:member(1)": {
+          "kind": "Method",
+          "name": "from",
+          "parent": "rsocket-frames-ts!ResumeOkFrame:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "bUCT8Ue0EmC0Lq_fb0k5VKaUwOPa0Uj_TG5Pjt1crkc"
+        },
+        "rsocket-frames-ts!ResumeOkFrame#canBeIgnored:member(1)": {
+          "kind": "Method",
+          "name": "canBeIgnored",
+          "parent": "rsocket-frames-ts!ResumeOkFrame:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "jXXOeGpb4oLytCK5tv90jeMh8z3XkoaoLKIF-Q52CWg"
+        },
+        "rsocket-frames-ts!ResumeOkFrame#hasMetadata:member(1)": {
+          "kind": "Method",
+          "name": "hasMetadata",
+          "parent": "rsocket-frames-ts!ResumeOkFrame:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "-CCSlCwWjUKfKBucbqV8GZtGGNiKCs_ZpHzNJL2Ei3Y"
+        },
+        "rsocket-frames-ts!ResumeOkFrame#lastReceivedClientPosition:member": {
+          "kind": "Property",
+          "name": "lastReceivedClientPosition",
+          "parent": "rsocket-frames-ts!ResumeOkFrame:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "TQ7T-2vJCo1viy_kfg6tMwZnAh-brXGRydOFNHd26w4"
+        },
+        "rsocket-frames-ts!ResumeOkFrame#write:member(1)": {
+          "kind": "Method",
+          "name": "write",
+          "parent": "rsocket-frames-ts!ResumeOkFrame:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "01E29G40g958bV8wOgQT2teX0jgVkIoMuOjyjPAOFxw"
+        },
+        "rsocket-frames-ts!RSocketResumeToken:type": {
+          "kind": "TypeAlias",
+          "name": "RSocketResumeToken",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "50eeK02i5jBPeWnvISnQaIZ0L7ThsnQ_AsZ9ZcNNs_U"
+        },
+        "rsocket-frames-ts!SetupFlag:type": {
+          "kind": "TypeAlias",
+          "name": "SetupFlag",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "ezoimMA8sxijgmZG21J8T2__ltwkPKu-P3LsZ-gYk4o"
+        },
+        "rsocket-frames-ts!SetupFlag:var": {
+          "kind": "Variable",
+          "name": "SetupFlag",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "kDiCWEhmskaCTqKtvtMfsYTrTfauOJZ8S7H8ZzQmsjg"
+        },
+        "rsocket-frames-ts!SetupFrame:class": {
+          "kind": "Class",
+          "name": "SetupFrame",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "ppfj297ktJ62tCFDzDcaFKMBQ-K9unx4WAhXRhqyjbw"
+        },
+        "rsocket-frames-ts!SetupFrame:constructor(1)": {
+          "kind": "Constructor",
+          "name": "",
+          "parent": "rsocket-frames-ts!SetupFrame:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "g97vPlNkPGRqT8Qy9fZLqtYKVOE5hb1ml-INJA4cXe4"
+        },
+        "rsocket-frames-ts!SetupFrame.from:member(1)": {
+          "kind": "Method",
+          "name": "from",
+          "parent": "rsocket-frames-ts!SetupFrame:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "gXfUh1y2UrfSCCnLLhgEkB-9xQQhBxcvoVN7CgKSxVg"
+        },
+        "rsocket-frames-ts!SetupFrame#canBeIgnored:member(1)": {
+          "kind": "Method",
+          "name": "canBeIgnored",
+          "parent": "rsocket-frames-ts!SetupFrame:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "jXXOeGpb4oLytCK5tv90jeMh8z3XkoaoLKIF-Q52CWg"
+        },
+        "rsocket-frames-ts!SetupFrame#dataType:member": {
+          "kind": "Property",
+          "name": "dataType",
+          "parent": "rsocket-frames-ts!SetupFrame:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "kFnYV61g3NcYPrkLiNe_Zh2fnh6FGts0cX4G1_8xSfo"
+        },
+        "rsocket-frames-ts!SetupFrame#hasResume:member(1)": {
+          "kind": "Method",
+          "name": "hasResume",
+          "parent": "rsocket-frames-ts!SetupFrame:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "PuvijsPIlY_MOSmsaFSSLIYQTZ66LuYuGv-INHkt15o"
+        },
+        "rsocket-frames-ts!SetupFrame#isRespectLease:member(1)": {
+          "kind": "Method",
+          "name": "isRespectLease",
+          "parent": "rsocket-frames-ts!SetupFrame:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "JQc-bs7CKoEke3hMg8HPIix2UlQbOFrfdmG2Re32qx0"
+        },
+        "rsocket-frames-ts!SetupFrame#keepalive:member": {
+          "kind": "Property",
+          "name": "keepalive",
+          "parent": "rsocket-frames-ts!SetupFrame:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "J4T3jV4UWsJDYe2xNFgQkjkyWGJz6Nhqi1xb4CoQt9I"
+        },
+        "rsocket-frames-ts!SetupFrame#lifetime:member": {
+          "kind": "Property",
+          "name": "lifetime",
+          "parent": "rsocket-frames-ts!SetupFrame:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "NAvADBfQ2WBeAExpPc3RMKQ0YYsqwo7nIZXN7Y56rlc"
+        },
+        "rsocket-frames-ts!SetupFrame#majorVersion:member": {
+          "kind": "Property",
+          "name": "majorVersion",
+          "parent": "rsocket-frames-ts!SetupFrame:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "2xoLfI-mcWMz94eqQCbSW9pdhbMiWigcS0Bn7zohkAk"
+        },
+        "rsocket-frames-ts!SetupFrame#metadataType:member": {
+          "kind": "Property",
+          "name": "metadataType",
+          "parent": "rsocket-frames-ts!SetupFrame:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "R0icrUOa3U-Qgd6ZS13RPRJB-mBFTpbkQUk_OxDzwco"
+        },
+        "rsocket-frames-ts!SetupFrame#minorVersion:member": {
+          "kind": "Property",
+          "name": "minorVersion",
+          "parent": "rsocket-frames-ts!SetupFrame:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "nEIQE_eU0LpAbhydHm-7VrQHEY6Uvej7SpjvQ5OgL6c"
+        },
+        "rsocket-frames-ts!SetupFrame#resumeToken:member": {
+          "kind": "Property",
+          "name": "resumeToken",
+          "parent": "rsocket-frames-ts!SetupFrame:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "cbMlGwoCUNMp2pV5YffZZ-Mr3nq3IFbzVU5ooZGRmpE"
+        },
+        "rsocket-frames-ts!SetupFrame#write:member(1)": {
+          "kind": "Method",
+          "name": "write",
+          "parent": "rsocket-frames-ts!SetupFrame:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "01E29G40g958bV8wOgQT2teX0jgVkIoMuOjyjPAOFxw"
+        },
+        "rsocket-frames-ts!UnknownFrame:class": {
+          "kind": "Class",
+          "name": "UnknownFrame",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "BCnaHG5Dv-U2aEpCZfo-xUbY4sQ0T7uxVRR4wqPrPCQ"
+        },
+        "rsocket-frames-ts!UnknownFrame.from:member(1)": {
+          "kind": "Method",
+          "name": "from",
+          "parent": "rsocket-frames-ts!UnknownFrame:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "I7TluH8I2ZiVHFQADM0U1wqTtO4eICA2u37ZqnoHer4"
+        },
+        "rsocket-frames-ts!UnknownFrame#body:member": {
+          "kind": "Property",
+          "name": "body",
+          "parent": "rsocket-frames-ts!UnknownFrame:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "Wnvnh3ChIML0zWmCTnwq76hu5f1OYt-Alg0zOES4jnI"
+        },
+        "rsocket-frames-ts!UnknownFrame#write:member(1)": {
+          "kind": "Method",
+          "name": "write",
+          "parent": "rsocket-frames-ts!UnknownFrame:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "01E29G40g958bV8wOgQT2teX0jgVkIoMuOjyjPAOFxw"
+        },
+        "rsocket-frames-ts!WellKnownAuthType:namespace": {
+          "kind": "Namespace",
+          "name": "WellKnownAuthType",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "0DtEBjfVfFr6bqFFfceIOatZPaQZ2iXn8qK_1Nyphp8"
+        },
+        "rsocket-frames-ts!WellKnownAuthType.BEARER:var": {
+          "kind": "Variable",
+          "name": "BEARER",
+          "parent": "rsocket-frames-ts!WellKnownAuthType:namespace",
+          "optional": false,
+          "abstract": false,
+          "hash": "-yvUZ8fJI8IblkZC0zIjSx8vKByA8cQ0qrHirBKHYyA"
+        },
+        "rsocket-frames-ts!WellKnownAuthType.SIMPLE:var": {
+          "kind": "Variable",
+          "name": "SIMPLE",
+          "parent": "rsocket-frames-ts!WellKnownAuthType:namespace",
+          "optional": false,
+          "abstract": false,
+          "hash": "F7_LRJNRBvzdcQv-vqOuuvN_WSFzaXhdl8HDrNt16Q8"
+        },
+        "rsocket-frames-ts!WellKnownAuthType.valueOf:var": {
+          "kind": "Variable",
+          "name": "valueOf",
+          "parent": "rsocket-frames-ts!WellKnownAuthType:namespace",
+          "optional": false,
+          "abstract": false,
+          "hash": "BleTZ5J8EikFbre2C1-c0763hfcy4R_FAPy1p-pbFoA"
+        },
+        "rsocket-frames-ts!WellKnownMimeType:namespace": {
+          "kind": "Namespace",
+          "name": "WellKnownMimeType",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "_DeDHVa8Oz_iyHDXUzNnnS-HRJSJ2xL0lXcDqL5EMgM"
+        },
+        "rsocket-frames-ts!WellKnownMimeType.APPLICATION_AVRO:var": {
+          "kind": "Variable",
+          "name": "APPLICATION_AVRO",
+          "parent": "rsocket-frames-ts!WellKnownMimeType:namespace",
+          "optional": false,
+          "abstract": false,
+          "hash": "Ga8vrqDpUkaHs4CYFikttbk2stu5ltHiDhh_NlZcXmw"
+        },
+        "rsocket-frames-ts!WellKnownMimeType.APPLICATION_CBOR:var": {
+          "kind": "Variable",
+          "name": "APPLICATION_CBOR",
+          "parent": "rsocket-frames-ts!WellKnownMimeType:namespace",
+          "optional": false,
+          "abstract": false,
+          "hash": "ySMr7JQl7jhytCjCZJdxEJz3AvvEnnMoxCTn_iXkrtA"
+        },
+        "rsocket-frames-ts!WellKnownMimeType.APPLICATION_CLOUDEVENTS_JSON:var": {
+          "kind": "Variable",
+          "name": "APPLICATION_CLOUDEVENTS_JSON",
+          "parent": "rsocket-frames-ts!WellKnownMimeType:namespace",
+          "optional": false,
+          "abstract": false,
+          "hash": "re_B_4TIh4hY_RCWnOJS_7oUq_FjwRe6xgM-SxGNsSA"
+        },
+        "rsocket-frames-ts!WellKnownMimeType.APPLICATION_GRAPHQL:var": {
+          "kind": "Variable",
+          "name": "APPLICATION_GRAPHQL",
+          "parent": "rsocket-frames-ts!WellKnownMimeType:namespace",
+          "optional": false,
+          "abstract": false,
+          "hash": "zmEUmHmWBZRsPtSZRhMmb0X63KNvJcOirt4gcdbY5b0"
+        },
+        "rsocket-frames-ts!WellKnownMimeType.APPLICATION_GZIP:var": {
+          "kind": "Variable",
+          "name": "APPLICATION_GZIP",
+          "parent": "rsocket-frames-ts!WellKnownMimeType:namespace",
+          "optional": false,
+          "abstract": false,
+          "hash": "7Vx4jxk2EtJj9EJmQGrHYPpkAagSBUahoPXHYB6scCU"
+        },
+        "rsocket-frames-ts!WellKnownMimeType.APPLICATION_HESSIAN:var": {
+          "kind": "Variable",
+          "name": "APPLICATION_HESSIAN",
+          "parent": "rsocket-frames-ts!WellKnownMimeType:namespace",
+          "optional": false,
+          "abstract": false,
+          "hash": "IQKqG_-17c6qujQIGtGXuhfkIDTwU1YH5W7hL47ly_0"
+        },
+        "rsocket-frames-ts!WellKnownMimeType.APPLICATION_JAVA_OBJECT:var": {
+          "kind": "Variable",
+          "name": "APPLICATION_JAVA_OBJECT",
+          "parent": "rsocket-frames-ts!WellKnownMimeType:namespace",
+          "optional": false,
+          "abstract": false,
+          "hash": "indpG_VLyFp-dGWtHxHXdfYD7vgk_sCth3R2TXmbj6U"
+        },
+        "rsocket-frames-ts!WellKnownMimeType.APPLICATION_JAVASCRIPT:var": {
+          "kind": "Variable",
+          "name": "APPLICATION_JAVASCRIPT",
+          "parent": "rsocket-frames-ts!WellKnownMimeType:namespace",
+          "optional": false,
+          "abstract": false,
+          "hash": "yEohNnsOl0Ksv1DXrBu8BEQA_xUeRbzyP6BU05W4578"
+        },
+        "rsocket-frames-ts!WellKnownMimeType.APPLICATION_JSON:var": {
+          "kind": "Variable",
+          "name": "APPLICATION_JSON",
+          "parent": "rsocket-frames-ts!WellKnownMimeType:namespace",
+          "optional": false,
+          "abstract": false,
+          "hash": "dDdc0QjAAGNXctBRXkFP1KOkEM_4QkQ8NiHt4ScjiGc"
+        },
+        "rsocket-frames-ts!WellKnownMimeType.APPLICATION_OCTET_STREAM:var": {
+          "kind": "Variable",
+          "name": "APPLICATION_OCTET_STREAM",
+          "parent": "rsocket-frames-ts!WellKnownMimeType:namespace",
+          "optional": false,
+          "abstract": false,
+          "hash": "fKR8ta0xgKXisLHD-f8yleq4rkPpH0s3-0rNcebPZdw"
+        },
+        "rsocket-frames-ts!WellKnownMimeType.APPLICATION_PDF:var": {
+          "kind": "Variable",
+          "name": "APPLICATION_PDF",
+          "parent": "rsocket-frames-ts!WellKnownMimeType:namespace",
+          "optional": false,
+          "abstract": false,
+          "hash": "gZAq7VgrUiNSMhHak1g4tSo8CmTNDkJkNvvRP4-oZuw"
+        },
+        "rsocket-frames-ts!WellKnownMimeType.APPLICATION_PROTOBUF:var": {
+          "kind": "Variable",
+          "name": "APPLICATION_PROTOBUF",
+          "parent": "rsocket-frames-ts!WellKnownMimeType:namespace",
+          "optional": false,
+          "abstract": false,
+          "hash": "-xyKapnucV-isXdP3H1IkGUSyzV3WwUOSf9dw7eooZE"
+        },
+        "rsocket-frames-ts!WellKnownMimeType.APPLICATION_THRIFT:var": {
+          "kind": "Variable",
+          "name": "APPLICATION_THRIFT",
+          "parent": "rsocket-frames-ts!WellKnownMimeType:namespace",
+          "optional": false,
+          "abstract": false,
+          "hash": "zzkPdK7QQhFWontPRuE1rDcYWStoZ7mC9fUYBn3984I"
+        },
+        "rsocket-frames-ts!WellKnownMimeType.APPLICATION_X_CAPNP:var": {
+          "kind": "Variable",
+          "name": "APPLICATION_X_CAPNP",
+          "parent": "rsocket-frames-ts!WellKnownMimeType:namespace",
+          "optional": false,
+          "abstract": false,
+          "hash": "atvHZvjMFDpEHAP_gLEkglIYMINPompvaP8BANPsUko"
+        },
+        "rsocket-frames-ts!WellKnownMimeType.APPLICATION_X_FLATBUFFERS:var": {
+          "kind": "Variable",
+          "name": "APPLICATION_X_FLATBUFFERS",
+          "parent": "rsocket-frames-ts!WellKnownMimeType:namespace",
+          "optional": false,
+          "abstract": false,
+          "hash": "jl8nOnBNhaf_WpmIEQ-BKE8o7H3Oyl86ESnwUXknoP0"
+        },
+        "rsocket-frames-ts!WellKnownMimeType.APPLICATION_XML:var": {
+          "kind": "Variable",
+          "name": "APPLICATION_XML",
+          "parent": "rsocket-frames-ts!WellKnownMimeType:namespace",
+          "optional": false,
+          "abstract": false,
+          "hash": "nnLOpRRGvHmiTqMXbZUfQv1lO8PnBQEXH6i-k-1aU6M"
+        },
+        "rsocket-frames-ts!WellKnownMimeType.APPLICATION_ZIP:var": {
+          "kind": "Variable",
+          "name": "APPLICATION_ZIP",
+          "parent": "rsocket-frames-ts!WellKnownMimeType:namespace",
+          "optional": false,
+          "abstract": false,
+          "hash": "k4ip7JBcUhlxiMmM4IdIN1LiiKIpESSqKSoc8dCpZMs"
+        },
+        "rsocket-frames-ts!WellKnownMimeType.AUDIO_AAC:var": {
+          "kind": "Variable",
+          "name": "AUDIO_AAC",
+          "parent": "rsocket-frames-ts!WellKnownMimeType:namespace",
+          "optional": false,
+          "abstract": false,
+          "hash": "H-9uR_sAMIKVjHjEoOdfukHjK8NLLp_eQ-eJEWbFctQ"
+        },
+        "rsocket-frames-ts!WellKnownMimeType.AUDIO_MP3:var": {
+          "kind": "Variable",
+          "name": "AUDIO_MP3",
+          "parent": "rsocket-frames-ts!WellKnownMimeType:namespace",
+          "optional": false,
+          "abstract": false,
+          "hash": "GWYE4aGgqshJvZDRcpvcTEvppjFXp-KjOuF-o9-TyQM"
+        },
+        "rsocket-frames-ts!WellKnownMimeType.AUDIO_MP4:var": {
+          "kind": "Variable",
+          "name": "AUDIO_MP4",
+          "parent": "rsocket-frames-ts!WellKnownMimeType:namespace",
+          "optional": false,
+          "abstract": false,
+          "hash": "7nUvzIH7fWdTxyodNlk1NhtYuhxBPH9Hh3A9UJITyto"
+        },
+        "rsocket-frames-ts!WellKnownMimeType.AUDIO_MPEG:var": {
+          "kind": "Variable",
+          "name": "AUDIO_MPEG",
+          "parent": "rsocket-frames-ts!WellKnownMimeType:namespace",
+          "optional": false,
+          "abstract": false,
+          "hash": "oyIt0nmYN3foQI7DCvMAQltZMGtO8J45tFp3-nAUWmw"
+        },
+        "rsocket-frames-ts!WellKnownMimeType.AUDIO_MPEG3:var": {
+          "kind": "Variable",
+          "name": "AUDIO_MPEG3",
+          "parent": "rsocket-frames-ts!WellKnownMimeType:namespace",
+          "optional": false,
+          "abstract": false,
+          "hash": "Z9R1J_3foDyAXqTM0Ng3sVbDZy52d7eek6_dkXt8cXk"
+        },
+        "rsocket-frames-ts!WellKnownMimeType.AUDIO_OGG:var": {
+          "kind": "Variable",
+          "name": "AUDIO_OGG",
+          "parent": "rsocket-frames-ts!WellKnownMimeType:namespace",
+          "optional": false,
+          "abstract": false,
+          "hash": "VbgIsl80-odWz_rpfpeJJ81QSB0-FvgHOYpNpeIdtVI"
+        },
+        "rsocket-frames-ts!WellKnownMimeType.AUDIO_OPUS:var": {
+          "kind": "Variable",
+          "name": "AUDIO_OPUS",
+          "parent": "rsocket-frames-ts!WellKnownMimeType:namespace",
+          "optional": false,
+          "abstract": false,
+          "hash": "nKEK9kHProb1ykl7k47484PdD9w_0ytw_M5h6M8R7G0"
+        },
+        "rsocket-frames-ts!WellKnownMimeType.AUDIO_VORBIS:var": {
+          "kind": "Variable",
+          "name": "AUDIO_VORBIS",
+          "parent": "rsocket-frames-ts!WellKnownMimeType:namespace",
+          "optional": false,
+          "abstract": false,
+          "hash": "pv6oakK4pYEJ4racvTRRB3MVdopK7qg9gWJ2xwcIaJA"
+        },
+        "rsocket-frames-ts!WellKnownMimeType.IMAGE_BMP:var": {
+          "kind": "Variable",
+          "name": "IMAGE_BMP",
+          "parent": "rsocket-frames-ts!WellKnownMimeType:namespace",
+          "optional": false,
+          "abstract": false,
+          "hash": "-LkDbJC7XTxFuSeSUmbN0TDwdK6J0ZgjFpXRP6HHw3s"
+        },
+        "rsocket-frames-ts!WellKnownMimeType.IMAGE_GIF:var": {
+          "kind": "Variable",
+          "name": "IMAGE_GIF",
+          "parent": "rsocket-frames-ts!WellKnownMimeType:namespace",
+          "optional": false,
+          "abstract": false,
+          "hash": "JMee7yX0O09YbF4p8j-oADq9B2OurskalsxT_e77NbE"
+        },
+        "rsocket-frames-ts!WellKnownMimeType.IMAGE_HEIC_SEQUENCE:var": {
+          "kind": "Variable",
+          "name": "IMAGE_HEIC_SEQUENCE",
+          "parent": "rsocket-frames-ts!WellKnownMimeType:namespace",
+          "optional": false,
+          "abstract": false,
+          "hash": "04W7puIEI6bZJZ9NHeBw5xxO28ctrp5cIYfvXJ4F-zg"
+        },
+        "rsocket-frames-ts!WellKnownMimeType.IMAGE_HEIC:var": {
+          "kind": "Variable",
+          "name": "IMAGE_HEIC",
+          "parent": "rsocket-frames-ts!WellKnownMimeType:namespace",
+          "optional": false,
+          "abstract": false,
+          "hash": "Wtf1wqPO--0ADA7dVrJx3eOeoeYIys46eWqsg3VdmUw"
+        },
+        "rsocket-frames-ts!WellKnownMimeType.IMAGE_HEIF_SEQUENCE:var": {
+          "kind": "Variable",
+          "name": "IMAGE_HEIF_SEQUENCE",
+          "parent": "rsocket-frames-ts!WellKnownMimeType:namespace",
+          "optional": false,
+          "abstract": false,
+          "hash": "o0SvFLJDwrWj9CHY5T0rHUa7gJhPEmZz3_Q8rQYnzsk"
+        },
+        "rsocket-frames-ts!WellKnownMimeType.IMAGE_HEIF:var": {
+          "kind": "Variable",
+          "name": "IMAGE_HEIF",
+          "parent": "rsocket-frames-ts!WellKnownMimeType:namespace",
+          "optional": false,
+          "abstract": false,
+          "hash": "_NgYXRBB980Ayg0Ud5AXI_fPoxGKq1SP6f0IR3xOkEE"
+        },
+        "rsocket-frames-ts!WellKnownMimeType.IMAGE_JPEG:var": {
+          "kind": "Variable",
+          "name": "IMAGE_JPEG",
+          "parent": "rsocket-frames-ts!WellKnownMimeType:namespace",
+          "optional": false,
+          "abstract": false,
+          "hash": "hh0TBwIk0Q7Aib0BF8PjOjlACXUm2l6a3E2z0AwdC5E"
+        },
+        "rsocket-frames-ts!WellKnownMimeType.IMAGE_PNG:var": {
+          "kind": "Variable",
+          "name": "IMAGE_PNG",
+          "parent": "rsocket-frames-ts!WellKnownMimeType:namespace",
+          "optional": false,
+          "abstract": false,
+          "hash": "JbATbb6E0zuk0I0J_nR3XNxUUPttwTeVmYVJeYRtZsg"
+        },
+        "rsocket-frames-ts!WellKnownMimeType.IMAGE_TIFF:var": {
+          "kind": "Variable",
+          "name": "IMAGE_TIFF",
+          "parent": "rsocket-frames-ts!WellKnownMimeType:namespace",
+          "optional": false,
+          "abstract": false,
+          "hash": "Pqm6UKe_bor_lmX4iIaVD-CNBN43h-GJA9JbHv2Oe9M"
+        },
+        "rsocket-frames-ts!WellKnownMimeType.MESSAGE_RSOCKET_ACCEPT_MIMETYPES:var": {
+          "kind": "Variable",
+          "name": "MESSAGE_RSOCKET_ACCEPT_MIMETYPES",
+          "parent": "rsocket-frames-ts!WellKnownMimeType:namespace",
+          "optional": false,
+          "abstract": false,
+          "hash": "ykBhWyMtP9ZGJtaFLAHxNVPq5kpdHNNKzL2Kte3jA2M"
+        },
+        "rsocket-frames-ts!WellKnownMimeType.MESSAGE_RSOCKET_AUTHENTICATION:var": {
+          "kind": "Variable",
+          "name": "MESSAGE_RSOCKET_AUTHENTICATION",
+          "parent": "rsocket-frames-ts!WellKnownMimeType:namespace",
+          "optional": false,
+          "abstract": false,
+          "hash": "RlAXUFlnrMC1tU0GebxwpssRQT_1BIB6PFsez4v3Q4Q"
+        },
+        "rsocket-frames-ts!WellKnownMimeType.MESSAGE_RSOCKET_COMPOSITE_METADATA:var": {
+          "kind": "Variable",
+          "name": "MESSAGE_RSOCKET_COMPOSITE_METADATA",
+          "parent": "rsocket-frames-ts!WellKnownMimeType:namespace",
+          "optional": false,
+          "abstract": false,
+          "hash": "0pxyaSLHsLbPOW_oVFHj7l8j8VJsNek3MJNIfS3LV5o"
+        },
+        "rsocket-frames-ts!WellKnownMimeType.MESSAGE_RSOCKET_MIMETYPE:var": {
+          "kind": "Variable",
+          "name": "MESSAGE_RSOCKET_MIMETYPE",
+          "parent": "rsocket-frames-ts!WellKnownMimeType:namespace",
+          "optional": false,
+          "abstract": false,
+          "hash": "CDwfeZ9dNSjm_MsVvntDhKjNOi7ywO6XESYA1Cut9qA"
+        },
+        "rsocket-frames-ts!WellKnownMimeType.MESSAGE_RSOCKET_ROUTING:var": {
+          "kind": "Variable",
+          "name": "MESSAGE_RSOCKET_ROUTING",
+          "parent": "rsocket-frames-ts!WellKnownMimeType:namespace",
+          "optional": false,
+          "abstract": false,
+          "hash": "P1NdXfB7-Xf4BvxDuL15pNF57rU9ttqTSIAfnAlD1ho"
+        },
+        "rsocket-frames-ts!WellKnownMimeType.MESSAGE_RSOCKET_TRACING_ZIPKIN:var": {
+          "kind": "Variable",
+          "name": "MESSAGE_RSOCKET_TRACING_ZIPKIN",
+          "parent": "rsocket-frames-ts!WellKnownMimeType:namespace",
+          "optional": false,
+          "abstract": false,
+          "hash": "nwWaCQa9tTXqMWBQqI4a71B2cTVMVxNNYxhGynuvr1s"
+        },
+        "rsocket-frames-ts!WellKnownMimeType.MULTIPART_MIXED:var": {
+          "kind": "Variable",
+          "name": "MULTIPART_MIXED",
+          "parent": "rsocket-frames-ts!WellKnownMimeType:namespace",
+          "optional": false,
+          "abstract": false,
+          "hash": "onoJImIt-naYHmV9paBzaXriXvGtCU_cBsnpsezpbwA"
+        },
+        "rsocket-frames-ts!WellKnownMimeType.TEXT_CSS:var": {
+          "kind": "Variable",
+          "name": "TEXT_CSS",
+          "parent": "rsocket-frames-ts!WellKnownMimeType:namespace",
+          "optional": false,
+          "abstract": false,
+          "hash": "c0SHli_xxWZ1IWezkQNIPvBKxewSYBPi1EelwUkGvj0"
+        },
+        "rsocket-frames-ts!WellKnownMimeType.TEXT_CSV:var": {
+          "kind": "Variable",
+          "name": "TEXT_CSV",
+          "parent": "rsocket-frames-ts!WellKnownMimeType:namespace",
+          "optional": false,
+          "abstract": false,
+          "hash": "JqGbNzEWIZbM9HcLXISn01_F4NvXxY2AdNqQebwHIz0"
+        },
+        "rsocket-frames-ts!WellKnownMimeType.TEXT_HTML:var": {
+          "kind": "Variable",
+          "name": "TEXT_HTML",
+          "parent": "rsocket-frames-ts!WellKnownMimeType:namespace",
+          "optional": false,
+          "abstract": false,
+          "hash": "fvisJJk8mntyBjfNraeBQ2Nmgcp8OSD0ywdVBy_cIZ8"
+        },
+        "rsocket-frames-ts!WellKnownMimeType.TEXT_PLAIN:var": {
+          "kind": "Variable",
+          "name": "TEXT_PLAIN",
+          "parent": "rsocket-frames-ts!WellKnownMimeType:namespace",
+          "optional": false,
+          "abstract": false,
+          "hash": "6eVwj2mJrnYBC1YLAYwMNR9RKBwi1lAbu0E7nmY4duk"
+        },
+        "rsocket-frames-ts!WellKnownMimeType.TEXT_XML:var": {
+          "kind": "Variable",
+          "name": "TEXT_XML",
+          "parent": "rsocket-frames-ts!WellKnownMimeType:namespace",
+          "optional": false,
+          "abstract": false,
+          "hash": "1db0kS0Y3aBX5SWcjC6t2foaCi9NIUNcPphybB7dYDc"
+        },
+        "rsocket-frames-ts!WellKnownMimeType.VIDEO_H264:var": {
+          "kind": "Variable",
+          "name": "VIDEO_H264",
+          "parent": "rsocket-frames-ts!WellKnownMimeType:namespace",
+          "optional": false,
+          "abstract": false,
+          "hash": "Xvi4Tkdh6Ahd00YtWmgoj4Gdqk_mzXHBD_FVSg-oQMI"
+        },
+        "rsocket-frames-ts!WellKnownMimeType.VIDEO_H265:var": {
+          "kind": "Variable",
+          "name": "VIDEO_H265",
+          "parent": "rsocket-frames-ts!WellKnownMimeType:namespace",
+          "optional": false,
+          "abstract": false,
+          "hash": "zXUGdr0KsHDEYn-i14NNeH_K-dU3WZjr9Rev-xQ35tw"
+        },
+        "rsocket-frames-ts!WellKnownMimeType.VIDEO_VP8:var": {
+          "kind": "Variable",
+          "name": "VIDEO_VP8",
+          "parent": "rsocket-frames-ts!WellKnownMimeType:namespace",
+          "optional": false,
+          "abstract": false,
+          "hash": "Ff-PrkCHJI7mPgulcQ0J0uuHGh5UxM2OEYPj9LxYg2w"
+        }
+      }
+    }
+  }
+}

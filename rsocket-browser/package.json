@@ -1,6 +1,6 @@
 {
   "name": "rsocket-browser",
-  "version": "3.3.11",
+  "version": "4.0.1",
   "description": "Browser-first RSocket client over WebSocket or WebTransport with reconnect and Resume.",
   "license": "MIT",
   "author": "CKATEPTb",

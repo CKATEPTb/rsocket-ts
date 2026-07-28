@@ -1,0 +1,207 @@
+{
+  "formatVersion": 1,
+  "packageName": "rsocket-browser",
+  "entries": {
+    ".": {
+      "conditions": [
+        "types",
+        "browser",
+        "import",
+        "default"
+      ],
+      "exports": {
+        "FireAndForgetController": "Class|reexport:rsocket-client-ts:value",
+        "RSocket": "Class",
+        "RequestChannelController": "Class|reexport:rsocket-client-ts:value",
+        "RequestResponseController": "Class|reexport:rsocket-client-ts:value",
+        "RequestStreamController": "Class|reexport:rsocket-client-ts:value"
+      },
+      "items": {
+        "rsocket-browser!~BrowserSetup:type": {
+          "kind": "TypeAlias",
+          "name": "BrowserSetup",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "W9AQv0L8TC_CUUHnrb3uv4f2nNtN1bcE9IqGdq0Veug"
+        },
+        "rsocket-browser!~ClientOptions:type": {
+          "kind": "TypeAlias",
+          "name": "ClientOptions",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "-EHjf1xahMHo93jbu2aCQoHIOjHlY1m8Lj2UqGv0oio"
+        },
+        "rsocket-browser!~ClientSetup:type": {
+          "kind": "TypeAlias",
+          "name": "ClientSetup",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "tnof4ViF-W39UwbUSs4lFTZmSuIxSy2pcaKVfPtkhB8"
+        },
+        "rsocket-browser!~RSocketConstructorOptions:type": {
+          "kind": "TypeAlias",
+          "name": "RSocketConstructorOptions",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "GhrgfSnSS7l_1ygX5JwNAsGEQD3a8jSnCRFNn4TPNdk"
+        },
+        "rsocket-browser!~RSocketOptions_2:type": {
+          "kind": "TypeAlias",
+          "name": "RSocketOptions_2",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "vH3QXN9RLb23bWgjvWHiSTgAib9mwina03bXJjpJ0RU"
+        },
+        "rsocket-browser!~WebSocketOptions:type": {
+          "kind": "TypeAlias",
+          "name": "WebSocketOptions",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "r7Wjxq9GBPqZIMOOH-gqHAC3fw2Hs__u8SjAIbh0E3Q"
+        },
+        "rsocket-browser!FireAndForgetController:class": {
+          "kind": "Class",
+          "name": "FireAndForgetController",
+          "parent": "",
+          "optional": false,
+          "abstract": true,
+          "hash": "rWymdiS10nJYxidHurc-32LndXIHZv4nPpWQFYhbbvg"
+        },
+        "rsocket-browser!FireAndForgetController:constructor(1)": {
+          "kind": "Constructor",
+          "name": "",
+          "parent": "rsocket-browser!FireAndForgetController:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "yVK9JF-y1fjCNjjcU3cJ7KEaRs1j8mBxEb8DOI-cRIs"
+        },
+        "rsocket-browser!FireAndForgetController#data:member(1)": {
+          "kind": "Method",
+          "name": "data",
+          "parent": "rsocket-browser!FireAndForgetController:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "8FkPXk4eGquJpkGljICfg87fxPQGdyXRFoRcAeBejX0"
+        },
+        "rsocket-browser!RequestChannelController:class": {
+          "kind": "Class",
+          "name": "RequestChannelController",
+          "parent": "",
+          "optional": false,
+          "abstract": true,
+          "hash": "tpgm47gopB1WV60Dhakng7dXAoiqe2MC7i7WDbcxMh0"
+        },
+        "rsocket-browser!RequestChannelController:constructor(1)": {
+          "kind": "Constructor",
+          "name": "",
+          "parent": "rsocket-browser!RequestChannelController:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "9zHIEWveei75ud4ztOoMEDdKfjJGYQRr6GFGerejqFY"
+        },
+        "rsocket-browser!RequestChannelController#response:member(1)": {
+          "kind": "Method",
+          "name": "response",
+          "parent": "rsocket-browser!RequestChannelController:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "rOGpheShiB84xYSAL3jHBuI2eWiNlrldUdtPgGFW7vM"
+        },
+        "rsocket-browser!RequestResponseController:class": {
+          "kind": "Class",
+          "name": "RequestResponseController",
+          "parent": "",
+          "optional": false,
+          "abstract": true,
+          "hash": "PD4mt4KHnkKih12gTh0aFDavbAQrRmJEPBeHOKqcRTc"
+        },
+        "rsocket-browser!RequestResponseController:constructor(1)": {
+          "kind": "Constructor",
+          "name": "",
+          "parent": "rsocket-browser!RequestResponseController:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "yVK9JF-y1fjCNjjcU3cJ7KEaRs1j8mBxEb8DOI-cRIs"
+        },
+        "rsocket-browser!RequestResponseController#data:member(1)": {
+          "kind": "Method",
+          "name": "data",
+          "parent": "rsocket-browser!RequestResponseController:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "8FkPXk4eGquJpkGljICfg87fxPQGdyXRFoRcAeBejX0"
+        },
+        "rsocket-browser!RequestResponseController#response:member(1)": {
+          "kind": "Method",
+          "name": "response",
+          "parent": "rsocket-browser!RequestResponseController:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "rOGpheShiB84xYSAL3jHBuI2eWiNlrldUdtPgGFW7vM"
+        },
+        "rsocket-browser!RequestStreamController:class": {
+          "kind": "Class",
+          "name": "RequestStreamController",
+          "parent": "",
+          "optional": false,
+          "abstract": true,
+          "hash": "YZMp09LdpFq9Uki3ALngXNIFhZOIXr9B0iqVS38i3QQ"
+        },
+        "rsocket-browser!RequestStreamController:constructor(1)": {
+          "kind": "Constructor",
+          "name": "",
+          "parent": "rsocket-browser!RequestStreamController:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "9zHIEWveei75ud4ztOoMEDdKfjJGYQRr6GFGerejqFY"
+        },
+        "rsocket-browser!RequestStreamController#data:member(1)": {
+          "kind": "Method",
+          "name": "data",
+          "parent": "rsocket-browser!RequestStreamController:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "8FkPXk4eGquJpkGljICfg87fxPQGdyXRFoRcAeBejX0"
+        },
+        "rsocket-browser!RequestStreamController#response:member(1)": {
+          "kind": "Method",
+          "name": "response",
+          "parent": "rsocket-browser!RequestStreamController:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "rOGpheShiB84xYSAL3jHBuI2eWiNlrldUdtPgGFW7vM"
+        },
+        "rsocket-browser!RSocket:class": {
+          "kind": "Class",
+          "name": "RSocket",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "cXV_VBMkl3oGeJa2yQ3jlpN5qGswC4iJdvofbzC9zII"
+        },
+        "rsocket-browser!RSocket:constructor(1)": {
+          "kind": "Constructor",
+          "name": "",
+          "parent": "rsocket-browser!RSocket:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "oMKH9DAC8sTESxdaIPFWSbwQRHbkI7k4RjanqO8YAKg"
+        },
+        "rsocket-browser!RSocket:constructor(2)": {
+          "kind": "Constructor",
+          "name": "",
+          "parent": "rsocket-browser!RSocket:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "uSHRlIpezhgnJifro3cwNqnypa2c5ZpWgSnWVD7gf_g"
+        }
+      }
+    }
+  }
+}
