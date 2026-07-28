@@ -11,6 +11,7 @@ import {
 import {
     DEFAULT_DATA_MIME_TYPE,
     DEFAULT_METADATA_MIME_TYPE,
+    createWebTransportConnection,
     deserializeFrame,
     errorMessage,
     errorPayload,
@@ -23,7 +24,8 @@ import {
     ReactiveTransportBinding,
     type RSocketTransportHandler,
     type RSocketTransportConnection,
-    unrefTimer
+    unrefTimer,
+    type RSocketWebTransportSession
 } from "rsocket-core-ts";
 import {ControllerRegistry} from "@/controllers/registry.js";
 import {ResumeRegistry} from "@/resume/registry.js";
@@ -32,7 +34,8 @@ import {normalizeServerOptions} from "@/server/options.js";
 import type {
     RSocketServerOptions,
     RSocketTcpListenOptions,
-    RSocketTcpServerListener
+    RSocketTcpServerListener,
+    RSocketWebTransportAcceptOptions
 } from "@/server/types.js";
 import {RSocketServerSession} from "@/session/session.js";
 import type {NormalizedServerOptions} from "@/session/types.js";
@@ -123,6 +126,10 @@ export class RSocketServer<D = unknown, M = unknown> {
                 },
                 frameError: fail,
                 error: fail,
+                media: () => undefined,
+                skippedFireAndForget: (streamId) => fail(new RSocketProtocolError(
+                    `WebTransport skipped FNF stream ${streamId} before SETUP`
+                )),
                 close: fail
             };
             binding = new ReactiveTransportBinding(transport, handler);
@@ -170,6 +177,40 @@ export class RSocketServer<D = unknown, M = unknown> {
                 return Mono.error(error instanceof RSocketConnectionError
                     ? error
                     : new RSocketConnectionError("WebSocket connection initialization failed", error));
+            }
+        });
+    }
+
+    /** Accepts one already-created WebTransport session through the shared mapping. */
+    acceptWebTransport(
+        session: RSocketWebTransportSession,
+        options: RSocketWebTransportAcceptOptions = {}
+    ): Mono<RSocketServerConnection<D, M>> {
+        let claimed = false;
+        return Mono.defer(() => {
+            if (claimed) return Mono.error(new RSocketConnectionError("WebTransport session is already being accepted"));
+            claimed = true;
+            try {
+                if (this.options.resume !== undefined && options.unreliableFireAndForget === true) {
+                    throw new RSocketConnectionError(
+                        "WebTransport unreliableFireAndForget is incompatible with RSocket Resume"
+                    );
+                }
+                return this.accept(createWebTransportConnection(session, {
+                    role: "responder",
+                    maxFrameLength: this.options.maxFrameLength,
+                    ...(options.maxReorderBufferBytes === undefined
+                        ? {}
+                        : {maxReorderBufferBytes: options.maxReorderBufferBytes}),
+                    ...(options.unreliableFireAndForget === undefined
+                        ? {}
+                        : {unreliableFireAndForget: options.unreliableFireAndForget})
+                }));
+            } catch (error) {
+                closeRejectedWebTransport(session);
+                return Mono.error(error instanceof RSocketConnectionError
+                    ? error
+                    : new RSocketConnectionError("WebTransport session initialization failed", error));
             }
         });
     }
@@ -405,6 +446,15 @@ function closeRejectedWebSocket(socket: RSocketAcceptedWebSocket): void {
     }
     try {
         socket.close(1011, "RSocket WebSocket initialization failed");
+    } catch {
+        // The initialization failure remains authoritative.
+    }
+}
+
+/** Closes a WebTransport session whose mapping wrapper could not be created. */
+function closeRejectedWebTransport(session: RSocketWebTransportSession): void {
+    try {
+        session.close({closeCode: 1, reason: "RSocket WebTransport initialization failed"});
     } catch {
         // The initialization failure remains authoritative.
     }

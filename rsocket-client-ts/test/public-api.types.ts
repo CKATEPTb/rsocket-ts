@@ -47,6 +47,18 @@ const tcp = new RSocket({
     reconnect: false
 });
 
+const webtransport = new RSocket({
+    transport: {
+        type: "webtransport",
+        url: "https://example.com/rsocket",
+        media: (payload) => {
+            const bytes: Uint8Array = payload;
+            void bytes;
+        }
+    },
+    setup: {mimetype: {data: dataMimeType, metadata: metadataMimeType}}
+});
+
 /** Typed controller proving that root exports retain generic inference. */
 class FindController extends RequestResponseController<Data, string> {
     protected readonly route = "find";
@@ -152,6 +164,7 @@ const controllerFire: Mono<void> = websocket.process(FireController, {id: 1});
 const controllerStream: Flux<string> = websocket.process(StreamController, {id: 1});
 const controllerChannel: Flux<string> = websocket.process(ChannelController, [{id: 1}]);
 tcp.connect();
+webtransport.media(Uint8Array.of(1));
 
 // @ts-expect-error SETUP data MIME accepts Data, not string.
 websocket.fireAndForget("invalid");
@@ -170,6 +183,7 @@ type SocketMethods = keyof typeof websocket;
 type ExpectedSocketMethods =
     | "connect"
     | "metadataPush"
+    | "media"
     | "metadataUpdate"
     | "fireAndForget"
     | "requestResponse"

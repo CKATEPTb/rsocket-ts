@@ -11,6 +11,10 @@ export interface RSocketTransportHandler {
     frameError(error: unknown): void;
     /** Handles a native transport error signal. */
     error(error: unknown): void;
+    /** Handles one transport-specific best-effort media payload. */
+    media?(payload: Uint8Array): void;
+    /** Advances protocol stream sequencing past one lost best-effort FNF. */
+    skippedFireAndForget?(streamId: number): void;
     /** Handles physical transport termination. */
     close(error: unknown): void;
 }
@@ -43,6 +47,22 @@ export class ReactiveTransportBinding {
                 (error) => this.handler.error(error),
                 (error) => this.handler.error(error)
             ));
+            if (this.disposed) return;
+            const media = this.connection.media;
+            if (media !== undefined) {
+                this.track(media.subscribe(
+                    (payload) => this.handler.media?.(payload),
+                    (error) => this.handler.error(error)
+                ));
+            }
+            if (this.disposed) return;
+            const skippedFireAndForget = this.connection.skippedFireAndForget;
+            if (skippedFireAndForget !== undefined) {
+                this.track(skippedFireAndForget.subscribe(
+                    (streamId) => this.handler.skippedFireAndForget?.(streamId),
+                    (error) => this.handler.error(error)
+                ));
+            }
             if (this.disposed) return;
             this.track(this.connection.closes.subscribe(
                 (close) => this.transportClosed(

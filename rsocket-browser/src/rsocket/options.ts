@@ -7,6 +7,11 @@ type ClientOptions<D, M> = ConstructorParameters<typeof ClientRSocket<D, M>>[0];
 type ClientSetup<D, M> = NonNullable<ClientOptions<D, M>["setup"]>;
 /** WebSocket branch of the canonical requester transport union. */
 type WebSocketOptions<D, M> = Extract<ClientOptions<D, M>["transport"], {readonly type: "websocket"}>;
+/** WebTransport branch of the canonical requester transport union. */
+type WebTransportOptions<D, M> = Extract<
+    ClientOptions<D, M>["transport"],
+    {readonly type: "webtransport"}
+>;
 
 /** Browser-specific SETUP options add a convenient WebSocket factory. */
 type BrowserSetup<D, M> = ClientSetup<D, M> & {
@@ -22,13 +27,15 @@ export type RSocketTransportFactory = NonNullable<BrowserSetup<unknown, unknown>
 /** User-facing options for `new RSocket(url, options)`. */
 export type RSocketOptions<D = unknown, M = unknown> =
     Omit<ClientOptions<D, M>, "transport" | "setup"> & {
-        /** SETUP frame and browser WebSocket parameters. */
+        /** SETUP frame parameters plus WebSocket-only constructor options. */
         readonly setup?: BrowserSetup<D, M>;
+        /** Optional mapping controls used only when the URL selects WebTransport. */
+        readonly webTransport?: Omit<WebTransportOptions<D, M>, "type" | "url">;
     };
 
 /** Single-object browser constructor form. */
 export type RSocketConstructorOptions<D = unknown, M = unknown> = RSocketOptions<D, M> & {
-    /** WebSocket endpoint URL. */
+    /** WebSocket or WebTransport endpoint URL. */
     readonly url: string | URL;
 };
 
@@ -38,8 +45,28 @@ export function browserClientOptions<D, M>(
     fallback: RSocketOptions<D, M>
 ): ClientOptions<D, M> {
     const {url, options} = resolveConstructor(urlOrOptions, fallback);
-    const {setup: browserSetup, reconnect = true, ...rest} = options;
+    const {setup: browserSetup, webTransport, reconnect = true, ...rest} = options;
     const {transport, protocols, ...setup} = browserSetup ?? {};
+    if (isWebTransportEndpoint(url)) {
+        if (protocols !== undefined || transport !== undefined) {
+            throw new TypeError(
+                "WebTransport URLs use options.webTransport; setup.protocols and setup.transport are WebSocket-only"
+            );
+        }
+        return {
+            ...rest,
+            reconnect,
+            transport: {
+                type: "webtransport",
+                url,
+                ...webTransport
+            },
+            ...(browserSetup === undefined ? {} : {setup})
+        };
+    }
+    if (webTransport !== undefined) {
+        throw new TypeError("options.webTransport requires an https: WebTransport URL");
+    }
     return {
         ...rest,
         reconnect,
@@ -51,6 +78,17 @@ export function browserClientOptions<D, M>(
         },
         ...(browserSetup === undefined ? {} : {setup})
     };
+}
+
+/** Selects WebTransport only for an unambiguous HTTPS endpoint. */
+function isWebTransportEndpoint(input: string | URL): boolean {
+    try {
+        const href = isUrl(input) ? input.href : String(input);
+        return new URL(href).protocol === "https:";
+    } catch {
+        // The WebSocket adapter retains established lazy URL validation on connect().
+        return false;
+    }
 }
 
 /** Separates the URL from either supported constructor form. */

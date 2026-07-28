@@ -22,10 +22,11 @@ export interface RSocketTransportCloseOptions {
 }
 
 /**
- * One ordered, reliable, bidirectional connection carrying raw RSocket frames.
+ * One logical connection carrying raw RSocket frames.
  *
  * TCP implementations add/remove the 24-bit frame-length field. WebSocket
  * implementations map one binary message to one raw RSocket frame.
+ * Multiplexed transports restore sender order before emitting {@link frames}.
  */
 export interface RSocketTransportConnection {
     /** Completes after the physical transport is ready for writes. */
@@ -36,11 +37,18 @@ export interface RSocketTransportConnection {
     readonly errors: Flux<unknown>;
     /** Physical transport close notifications. */
     readonly closes: Flux<RSocketTransportClose>;
+    /** Optional unreliable media datagrams supplied by capable transports. */
+    readonly media?: Flux<Uint8Array>;
+    /** Optional stream IDs skipped after best-effort FNF datagram loss. */
+    readonly skippedFireAndForget?: Flux<number>;
     /** Whether bytes can currently be written to the transport. */
     readonly isOpen: boolean;
 
     /** Writes one complete raw RSocket frame immediately. */
     write(frame: Uint8Array): void;
+
+    /** Sends one best-effort media datagram when the transport supports it. */
+    writeMedia?(payload: Uint8Array): void;
 
     /** Closes the physical transport. */
     close(options?: RSocketTransportCloseOptions): void;

@@ -26,6 +26,7 @@ export function normalizeServerOptions<D, M>(options: RSocketServerOptions<D, M>
         ),
         accept: options.accept,
         metadataPush: options.metadataPush,
+        media: options.media,
         activityListener: options.activityListener,
         resume: resume === undefined
             ? undefined

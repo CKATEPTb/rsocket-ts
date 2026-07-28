@@ -1,9 +1,10 @@
 # rsocket-browser
 
-`rsocket-browser` is a browser-first TypeScript RSocket requester for any backend
-that exposes RSocket over WebSocket. It provides all four RSocket interaction
-models, Reactive Streams backpressure, typed metadata codecs, reconnect, Resume,
-fragmentation, and class-based route controllers.
+`rsocket-browser` is a browser-first TypeScript RSocket requester for backends
+that expose RSocket over WebSocket or the project's WebTransport mapping. It
+provides all four RSocket interaction models, Reactive Streams backpressure,
+typed metadata codecs, reconnect, Resume, fragmentation, and class-based route
+controllers.
 
 ```bash
 npm install rsocket-browser
@@ -14,11 +15,11 @@ npm install rsocket-browser
 and controllers from `rsocket-browser`; import MIME codecs and protocol metadata
 helpers from `rsocket-frames-ts`.
 
-The client uses WebSocket and is not tied to Spring Boot or any other server
-framework.
+The client is not tied to Spring Boot or any other server framework.
 
-The package selects the WebSocket transport, enables reconnect by default, and
-reacts to browser online, focus, page restore, and sleep/wake signals.
+The URL selects the transport: `ws:` and `wss:` use WebSocket, while `https:`
+uses WebTransport. Reconnect is enabled by default, with browser online, focus,
+page restore, and sleep/wake signals helping restart interrupted connections.
 
 ## Quick Start
 
@@ -95,7 +96,7 @@ await connection
   .block();
 ```
 
-Completion means the frame was written to the active WebSocket. It does not
+Completion means the frame was written to the active transport. It does not
 mean the server processed the message.
 
 ### Request Response
@@ -212,7 +213,8 @@ The public options are intentionally small:
 | `setup.mimetype.metadata` | Codec used for metadata payloads. |
 | `setup.payload` | Optional payload included in the SETUP frame. |
 | `setup.protocols` | Optional WebSocket subprotocol or ordered preference list. |
-| `setup.transport` | Optional `(url) => WebSocketLike` factory. |
+| `setup.transport` | Optional `(url) => WebSocketLike` factory for WebSocket URLs. |
+| `webTransport` | Optional WebTransport factory, mapping limits, datagram mode, and media receiver. |
 | `reconnect` | Enables/disables reconnect and optionally configures Resume. |
 | `events` | Constructor-time connection lifecycle handlers. |
 | `log` | Frame and connection lifecycle logging. |
@@ -227,6 +229,50 @@ const socket = new RSocket("wss://api.example.com/rsocket", {
   }
 });
 ```
+
+## WebTransport
+
+Use an HTTPS endpoint to select the browser's global `WebTransport`
+constructor:
+
+```ts
+const socket = new RSocket("https://api.example.com/rsocket", {
+  webTransport: {
+    media(payload) {
+      playMediaChunk(payload);
+    }
+  }
+});
+
+const connection = await socket.connect().block();
+await connection?.media(encodedMediaChunk).block();
+```
+
+The versioned `RSWT/1` mapping uses one bidirectional stream for connection
+control, one bidirectional stream per request-response, request-stream, or
+request-channel interaction, and a reliable unidirectional stream for
+fire-and-forget and metadata-push frames. Frame ordering, fragmentation,
+backpressure, and Resume remain automatic.
+
+This mapping is supplied by the project; RSocket 1.0 does not define a standard
+WebTransport binding. The responder must use the same mapping, for example
+`rsocket-server-ts.acceptWebTransport(session)`.
+
+Complete fire-and-forget requests may opt into best-effort datagrams:
+
+```ts
+const socket = new RSocket("https://api.example.com/rsocket", {
+  webTransport: {
+    unreliableFireAndForget: true
+  }
+});
+```
+
+Oversized or fragmented fire-and-forget requests automatically stay on the
+reliable stream. A reliable marker preserves the RSocket stream sequence when a
+datagram is lost. Best-effort fire-and-forget cannot be combined with Resume;
+media datagrams are always outside RSocket Resume positions. The native
+constructor requests unreliable capability automatically in this mode.
 
 Set `setup.lease: true` only when the responder sends `LEASE` frames. New
 interactions wait for valid credit and consume one request from the current
@@ -494,9 +540,10 @@ such as authentication.
 
 ## Reconnect And Resume
 
-Automatic WebSocket reconnect is enabled by default. Unexpected disconnects,
-browser offline/online transitions, tab wakeups, and mobile sleep/wake cycles
-trigger a new connection attempt. Calling `disconnect()` stops that process.
+Automatic reconnect is enabled by default for both browser transports.
+Unexpected disconnects, browser offline/online transitions, tab wakeups, and
+mobile sleep/wake cycles trigger a new connection attempt. Calling
+`disconnect()` stops that process.
 
 Without Resume, reconnect opens a fresh RSocket session with `SETUP`. Enable
 protocol Resume by specifying how long the backend retains resumable state:
@@ -576,8 +623,8 @@ if (connected) {
 }
 ```
 
-- A disconnected socket exposes interactions, `metadataPush`, `metadataUpdate`,
-  `process`, and `connect`.
+- A disconnected socket exposes interactions, `metadataPush`, `media`,
+  `metadataUpdate`, `process`, and `connect`.
 - A connected socket exposes the same request API plus `disconnect`, but no
   second `connect` method.
 - Requests subscribed before a connection is available wait for the current
@@ -633,10 +680,11 @@ try {
 
 ## Server Compatibility
 
-The responder must expose an RSocket WebSocket endpoint and agree on the SETUP
-data and metadata MIME types. For Spring applications, composite metadata plus
-`message/x.rsocket.routing.v0` is the usual choice for `@MessageMapping`
-routes. The controller `route` field creates that standard routing metadata.
+The responder must expose either an RSocket WebSocket endpoint or the matching
+`RSWT/1` WebTransport endpoint and agree on the SETUP data and metadata MIME
+types. For Spring applications, composite metadata plus
+`message/x.rsocket.routing.v0` is the usual choice for `@MessageMapping` routes.
+The controller `route` field creates that standard routing metadata.
 
 Resume and `METADATA_PUSH` require server-side support. If Resume is rejected,
 the client reports `resumeRejected` and opens a fresh session. The package is a
@@ -674,5 +722,6 @@ npm run build
 ```
 
 `npm test` type-checks the public API and runs unit, protocol, transport, and
-full WebSocket integration tests against `rsocket-server-ts`. `npm run build`
-creates the ESM bundle and declarations, then rewrites internal aliases.
+full WebSocket and WebTransport integration tests against `rsocket-server-ts`.
+`npm run build` creates the ESM bundle and declarations, then rewrites internal
+aliases.

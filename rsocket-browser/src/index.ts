@@ -1,7 +1,7 @@
 /**
  * Public package entry point.
  *
- * `RSocket` is the browser WebSocket client constructor. Declarative controller
+ * `RSocket` is the browser WebSocket/WebTransport client constructor. Declarative controller
  * base classes are exported as separate named symbols instead of static
  * properties on `RSocket`.
  */

@@ -7,17 +7,17 @@ and browser recovery.
 
 | Package | Install | Use it for |
 | --- | --- | --- |
-| [`rsocket-browser`](./rsocket-browser/README.md) | `npm install rsocket-browser` | Browser-first WebSocket applications with reconnect, Resume, lifecycle events, logging, and typed controllers |
-| [`rsocket-client-ts`](./rsocket-client-ts/README.md) | `npm install rsocket-client-ts` | One requester API for WebSocket or Node TCP, with reconnect, Resume, logging, events, metadata, and controllers |
-| [`rsocket-server-ts`](./rsocket-server-ts/README.md) | `npm install rsocket-server-ts` | RSocket responders over WebSocket or Node TCP, with declarative controllers |
+| [`rsocket-browser`](./rsocket-browser/README.md) | `npm install rsocket-browser` | Browser-first WebSocket or WebTransport applications with reconnect, Resume, lifecycle events, logging, and typed controllers |
+| [`rsocket-client-ts`](./rsocket-client-ts/README.md) | `npm install rsocket-client-ts` | One requester API for WebSocket, WebTransport, or Node TCP, with reconnect, Resume, logging, events, metadata, and controllers |
+| [`rsocket-server-ts`](./rsocket-server-ts/README.md) | `npm install rsocket-server-ts` | RSocket responders over WebSocket, accepted WebTransport sessions, or Node TCP |
 | [`rsocket-core-ts`](./rsocket-core-ts/README.md) | `npm install rsocket-core-ts` | Building requester, responder, or transport implementations |
 | [`rsocket-frames-ts`](./rsocket-frames-ts/README.md) | `npm install rsocket-frames-ts` | Encoding and decoding frames, MIME types, metadata, and TCP frame prefixes |
 
 Start with `rsocket-browser` for a browser application. Use `rsocket-client-ts`
-when the application must select WebSocket or Node TCP directly. The browser
-package uses the same client facade and adds browser-specific availability and
-wake signals. Use `rsocket-server-ts` to accept those clients in a TypeScript
-backend.
+when the application must select WebSocket, WebTransport, or Node TCP directly.
+The browser package uses the same client facade and adds browser-specific
+availability and wake signals. Use `rsocket-server-ts` to accept those clients
+in a TypeScript backend.
 
 ## Browser example
 
@@ -67,12 +67,12 @@ code.
 
 `rsocket-core-ts` owns every role-independent algorithm: payload encoding,
 fragmentation/reassembly, demand arithmetic, routing, Resume replay storage,
-lifetime timers, transport subscriptions, TCP packet boundaries, and ordered
-WebSocket message decoding. `rsocket-client-ts` owns requester state, both
-connecting transports, reconnect, Resume coordination, metadata, logging, and
-client controllers. `rsocket-server-ts` owns responder state, listeners, and
-server controllers. Neither endpoint package has a runtime dependency on the
-other.
+lifetime timers, transport subscriptions, TCP packet boundaries, ordered
+WebSocket message decoding, and the multiplexed WebTransport mapping.
+`rsocket-client-ts` owns requester state, all connecting transports, reconnect,
+Resume coordination, metadata, logging, and client controllers.
+`rsocket-server-ts` owns responder state, listeners, and server controllers.
+Neither endpoint package has a runtime dependency on the other.
 
 ## Development
 

@@ -1,6 +1,10 @@
 /** Public configuration and context types for `RSocketServer`. */
 import type {Frame, Metadata, MimeType, RSocketResumeToken} from "rsocket-frames-ts";
-import type {RSocketFrameDirection, RSocketPayloadFrame} from "rsocket-core-ts";
+import type {
+    RSocketFrameDirection,
+    RSocketPayloadFrame,
+    RSocketWebTransportSession
+} from "rsocket-core-ts";
 import type {Flux, Mono} from "reactor-core-ts";
 import type {RSocketControllerRegistration, RSocketHandlerResult} from "@/controllers/types.js";
 import type {RSocketServerConnection} from "@/server/connection.js";
@@ -85,9 +89,25 @@ export interface RSocketServerOptions<D = unknown, M = unknown> {
         metadata: Metadata<M>,
         connection: RSocketServerConnection<D, M>
     ) => RSocketHandlerResult<void> | void;
+    /** Handles best-effort media extension datagrams on WebTransport sessions. */
+    readonly media?: (
+        payload: Uint8Array,
+        connection: RSocketServerConnection<D, M>
+    ) => RSocketHandlerResult<void> | void;
     /** Receives optional frame-level diagnostics without changing protocol behavior. */
     readonly activityListener?: RSocketServerFrameActivityListener<D, M>;
 }
+
+/** Mapping options applied while accepting one WebTransport session. */
+export interface RSocketWebTransportAcceptOptions {
+    /** Defensive cap for frames waiting behind another QUIC stream. */
+    readonly maxReorderBufferBytes?: number;
+    /** Accepts complete REQUEST_FNF frames through best-effort datagrams. */
+    readonly unreliableFireAndForget?: boolean;
+}
+
+/** Session shape accepted by `RSocketServer.acceptWebTransport`. */
+export type RSocketAcceptedWebTransport = RSocketWebTransportSession;
 
 /** Address and socket settings used by the built-in Node TCP listener. */
 export interface RSocketTcpListenOptions {

@@ -684,6 +684,25 @@ export class RSocketClient<D = unknown, M = unknown> {
         });
     }
 
+    /** Sends one best-effort media payload when the selected transport supports it. */
+    media(payload: Uint8Array): Mono<void> {
+        return Mono.create<void>((sink) => {
+            try {
+                if (this.suspended || this.closed || this.terminated) {
+                    throw connectionClosedError(this.closeError);
+                }
+                const write = this.connection.writeMedia;
+                if (write === undefined) {
+                    throw new RSocketConnectionError("Selected RSocket transport does not support media datagrams");
+                }
+                write.call(this.connection, payload);
+                sink.success();
+            } catch (error) {
+                sink.error(error);
+            }
+        });
+    }
+
     /** Assigns and registers an ID immediately before an initial streaming request is sent. */
     private startResponseStream(
         subscription: RSocketStreamSubscription<D, M>,
@@ -974,6 +993,15 @@ export class RSocketClient<D = unknown, M = unknown> {
                 if (this.resumeHandshake !== undefined) this.failResumeAttempt(connection, error, true);
                 else this.loseTransport(error, true);
             },
+            media: (payload) => {
+                if (this.connection !== connection) return;
+                try {
+                    this.options.mediaListener?.(payload);
+                } catch {
+                    // Best-effort application observers cannot terminate the RSocket session.
+                }
+            },
+            skippedFireAndForget: () => undefined,
             close: (error) => {
                 if (this.connection !== connection) return;
                 if (this.resumeHandshake !== undefined) this.failResumeAttempt(connection, error, false);

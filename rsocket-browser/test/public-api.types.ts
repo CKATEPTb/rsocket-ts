@@ -39,6 +39,14 @@ const socket = new RSocket("ws://localhost/rsocket", {
     }
   }
 });
+const webTransportSocket = new RSocket("https://example.com/rsocket", {
+  webTransport: {
+    media: (payload) => {
+      const bytes: Uint8Array = payload;
+      void bytes;
+    }
+  }
+});
 
 new RSocket("ws://localhost/rsocket", {
   log: {
@@ -73,6 +81,7 @@ socket.requestChannel([{ id: 1 }], { tenant: "acme" });
 socket.requestChannel().next({ id: 1 });
 socket.process(TypedController, { id: 1 });
 socket.process(new TypedController({ timeout: 1_000 }), { id: 1 });
+webTransportSocket.media(Uint8Array.of(1));
 
 socket.fireAndForget("text", { tenant: "acme" }, { data: textMimeType });
 const overriddenResponse: Mono<RSocketPayloadFrame<TypedData, TypedMetadata>> = socket.requestResponse(
@@ -113,6 +122,7 @@ type SocketMethods = keyof typeof socket;
 type ExpectedSocketMethods =
   | "connect"
   | "metadataPush"
+  | "media"
   | "metadataUpdate"
   | "fireAndForget"
   | "requestResponse"

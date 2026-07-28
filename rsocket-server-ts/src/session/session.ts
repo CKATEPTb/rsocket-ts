@@ -297,6 +297,18 @@ export class RSocketServerSession<D = unknown, M = unknown>
         this.send(new KeepaliveFrame(KeepaliveFlag.RESPOND, this.clientPosition, payload));
     }
 
+    /** Sends one best-effort media extension datagram on a WebTransport binding. */
+    media(payload: Uint8Array): void {
+        if (this.terminated || this.suspended) {
+            throw new RSocketConnectionError("RSocket server connection is not active");
+        }
+        const write = this.binding?.connection.writeMedia;
+        if (write === undefined) {
+            throw new RSocketConnectionError("Accepted RSocket transport does not support media datagrams");
+        }
+        write.call(this.binding?.connection, payload);
+    }
+
     /** Sends a connection error and terminates the logical session. */
     disconnect(reason = "RSocket server disconnected"): void {
         if (this.terminated) return;
@@ -338,6 +350,8 @@ export class RSocketServerSession<D = unknown, M = unknown>
             error: (error) => {
                 if (this.binding === binding) this.transportLost(binding, error);
             },
+            media: () => undefined,
+            skippedFireAndForget: () => undefined,
             close: (error) => {
                 if (this.binding === binding) this.transportLost(binding, error);
             }
@@ -403,6 +417,12 @@ export class RSocketServerSession<D = unknown, M = unknown>
             error: (error) => {
                 if (this.binding === binding) this.transportLost(binding, error);
             },
+            media: (payload) => {
+                if (this.binding === binding) this.handleMedia(payload);
+            },
+            skippedFireAndForget: (streamId) => {
+                if (this.binding === binding) this.handleSkippedFireAndForget(streamId);
+            },
             close: (error) => {
                 if (this.binding === binding) this.transportLost(binding, error);
             }
@@ -418,6 +438,8 @@ export class RSocketServerSession<D = unknown, M = unknown>
             },
             frameError: (error) => this.failPendingActivation(binding, error, false),
             error: (error) => this.failPendingActivation(binding, error, true),
+            media: () => undefined,
+            skippedFireAndForget: () => undefined,
             close: (error) => this.failPendingActivation(binding, error, false)
         });
     }
@@ -574,6 +596,26 @@ export class RSocketServerSession<D = unknown, M = unknown>
             this.background.consume(handler(metadata, this.connection));
         } catch {
             // Metadata decoding and callbacks are application concerns without a response stream.
+        }
+    }
+
+    /** Delivers a best-effort media datagram without changing protocol state. */
+    private handleMedia(payload: Uint8Array): void {
+        const handler = this.options.media;
+        if (handler === undefined) return;
+        try {
+            this.background.consume(handler(payload, this.connection));
+        } catch {
+            // Datagram decoding and callbacks are best-effort application concerns.
+        }
+    }
+
+    /** Advances stream sequencing for a lost best-effort FNF or closes on invalid ordering. */
+    private handleSkippedFireAndForget(streamId: number): void {
+        try {
+            this.interactions.skipFireAndForget(streamId);
+        } catch (error) {
+            this.protocolError(error);
         }
     }
 

@@ -33,6 +33,7 @@ Both requester and responder implementations use the same core behavior:
 | `RSocketInactivityTimer` | Low-churn lifetime tracking |
 | `TcpFrameDecoder`, `encodeTcpFrame` | RSocket's 24-bit TCP packet boundary |
 | `webSocketFrameFlux` | Ordered binary WebSocket messages, including `Blob` |
+| `createWebTransportConnection` | Versioned RSocket mapping over WebTransport streams and datagrams |
 
 These are endpoint-building primitives, not a client or server API. Resume
 retry timing and the requester/responder stream state machines remain in their
@@ -196,8 +197,8 @@ a KEEPALIVE frame.
 ## Fragmentation
 
 RSocket fragmentation applies to raw RSocket frames. A TCP length prefix is
-added after fragmentation; a WebSocket transport sends every fragment as its
-own binary message.
+added after fragmentation; WebSocket sends every fragment as its own binary
+message; WebTransport puts every fragment in its own ordered mapping record.
 
 ```ts
 import {
@@ -307,13 +308,17 @@ transport:
 | `frames: Flux<Uint8Array>` | Emits complete raw RSocket frames in order |
 | `errors: Flux<unknown>` | Emits native transport errors |
 | `closes: Flux<RSocketTransportClose>` | Emits physical close information |
+| `media?: Flux<Uint8Array>` | Emits optional best-effort media payloads outside RSocket positions |
+| `skippedFireAndForget?: Flux<number>` | Reports stream IDs reserved by lost best-effort FNF datagrams |
 | `isOpen` | Reports whether `write` can be used |
 | `write(frame)` | Writes one complete raw RSocket frame |
+| `writeMedia?(payload)` | Writes optional best-effort media outside RSocket positions |
 | `close(options?)` | Closes the physical transport |
 
 WebSocket adapters normally map one binary message to one `frames` item. TCP
 adapters must remove the 24-bit frame-length prefix and handle partial or
-combined reads before emitting an item.
+combined reads before emitting an item. Multiplexed adapters must restore the
+sender's frame order before emitting across independently scheduled streams.
 
 For an already-created stream socket, `ReactiveTcpTransportConnection` provides
 the shared framing, write, close, and event behavior. Supply a role-specific
@@ -321,6 +326,55 @@ the shared framing, write, close, and event behavior. Supply a role-specific
 server can immediately accept an open socket. `webSocketFrameFlux(socket)`
 provides the equivalent ordered receive side for WHATWG and Node-compatible
 WebSockets.
+
+## WebTransport mapping
+
+`createWebTransportConnection` wraps an already-created browser or server
+WebTransport session. Its structural types follow the
+[W3C WebTransport API](https://www.w3.org/TR/webtransport/) and depend only on
+WHATWG-style stream methods, so core does not install an HTTP/3 server or a
+browser runtime.
+The adapter uses the current `datagrams.createWritable()` API and also accepts
+the earlier `datagrams.writable` shape. Reliable stream creation waits for QUIC
+stream credit instead of failing transiently at the peer's concurrency limit.
+
+```ts
+import {createWebTransportConnection} from "rsocket-core-ts";
+
+const requesterTransport = createWebTransportConnection(session, {
+  role: "requester",
+  maxFrameLength: 64 * 1024,
+  maxReorderBufferBytes: 16 * 1024 * 1024
+});
+
+await requesterTransport.opened.block();
+```
+
+Use `role: "responder"` around the peer session. Applications normally let
+`rsocket-client-ts` or `rsocket-server-ts` create this transport instead.
+
+The versioned `RSWT/1` mapping is:
+
+| WebTransport lane | RSocket traffic |
+| --- | --- |
+| Connection-control bidirectional stream | `SETUP`, `KEEPALIVE`, `LEASE`, `RESUME`, `RESUME_OK`, connection `ERROR`, and stream-zero `EXT` |
+| One bidirectional stream per interaction | `REQUEST_RESPONSE`, `REQUEST_STREAM`, `REQUEST_CHANNEL`, and their follow-up frames |
+| Reliable unidirectional stream | `REQUEST_FNF`, `METADATA_PUSH`, and fragmented FNF continuations |
+| Datagram extension | Optional complete best-effort FNF and media payloads |
+
+Every reliable record carries a global ordinal. The receiver bounds and
+reorders records by that ordinal before exposing `frames`, preserving the
+synchronous RSocket write order even when QUIC schedules streams differently.
+
+Complete fire-and-forget frames may use datagrams when
+`unreliableFireAndForget` is enabled and the packet fits. A reliable skip marker
+reserves the same stream ID if the datagram is lost. Fragmented FNF always uses
+the reliable stream. Best-effort FNF cannot be combined with protocol Resume;
+media payloads are never counted in RSocket Resume positions.
+
+RSocket 1.0 does not specify a WebTransport binding, so both peers must use this
+project's mapping version. Stream prefaces reject incompatible versions before
+their records enter the protocol engine.
 
 ## Errors
 

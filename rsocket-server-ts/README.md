@@ -1,6 +1,7 @@
 # rsocket-server-ts
 
-RSocket 1.0 responder for TypeScript servers over WebSocket or Node TCP.
+RSocket 1.0 responder for TypeScript servers over WebTransport, WebSocket, or
+Node TCP.
 
 ## Install
 
@@ -138,6 +139,55 @@ webSockets.on("connection", socket => {
 The `ws` package is only an example. `rsocket-server-ts` does not force an HTTP
 or WebSocket framework on the application.
 
+## WebTransport server
+
+Pass each session accepted by your HTTP/3 or WebTransport framework to
+`acceptWebTransport`. The package handles RSocket streams and datagrams, but it
+does not create the HTTPS/HTTP/3 listener or terminate TLS.
+
+```ts
+import {
+  RSocketServer,
+  type RSocketAcceptedWebTransport
+} from "rsocket-server-ts";
+
+async function onWebTransport(session: RSocketAcceptedWebTransport) {
+  const connection = await server.acceptWebTransport(session).block();
+  console.log(connection?.setup.data);
+}
+```
+
+The versioned `RSWT/1` mapping assigns one bidirectional stream to connection
+control, one bidirectional stream to each request-response, request-stream, or
+request-channel interaction, and a reliable unidirectional stream to
+fire-and-forget and metadata-push frames. A global record ordinal preserves
+RSocket frame order across independently scheduled QUIC streams.
+Because RSocket 1.0 does not define a WebTransport binding, peers must use the
+same `RSWT/1` mapping.
+
+Datagrams are optional extensions for media payloads and complete
+fire-and-forget requests that may be lost:
+
+```ts
+const server = new RSocketServer({
+  media(payload, connection) {
+    console.log("media bytes", payload.byteLength, connection.setup);
+  }
+});
+
+const connection = await server.acceptWebTransport(session, {
+  unreliableFireAndForget: true
+}).block();
+
+await connection?.media(new Uint8Array([1, 2, 3])).block();
+```
+
+Fragmented fire-and-forget requests automatically use the reliable stream.
+When a complete request is sent as a datagram, a reliable marker advances the
+RSocket stream sequence even if that datagram is lost. The best-effort mode is
+incompatible with Resume because datagrams are intentionally outside Resume
+positions and replay buffers.
+
 ## Request context
 
 Every controller receives the decoded data and a context containing metadata,
@@ -250,8 +300,8 @@ restarts or the retained state is gone, the server sends
 
 Resume is protocol state recovery, not a server-side reconnect scheduler. The
 `RSocket` facade from `rsocket-client-ts` performs reconnect and Resume for
-WebSocket or TCP. `rsocket-browser` uses that same facade with additional
-browser availability and wake signals.
+WebTransport, WebSocket, or TCP. `rsocket-browser` uses that same facade with
+additional browser availability and wake signals.
 
 ## Fragmentation and backpressure
 
@@ -314,15 +364,16 @@ throw new RSocketRequestError("Request rejected", FrameErrorCode.REJECTED);
 | `handshakeTimeoutMs` | Maximum delay before an accepted transport sends SETUP or RESUME | `10_000` |
 | `accept` | Synchronous SETUP policy | Accept |
 | `metadataPush` | Client metadata callback | Ignore |
+| `media` | Best-effort WebTransport media-datagram callback | Ignore |
 | `activityListener` | Observes decoded incoming and outgoing frames | Disabled |
 
 `RSocketServer.accept(transport)` accepts any ordered
 `RSocketTransportConnection` from `rsocket-core-ts`. Most applications only
-need `listenTcp` or `acceptWebSocket`.
+need `listenTcp`, `acceptWebSocket`, or `acceptWebTransport`.
 
-An accepted connection also exposes `metadataPush(...)`, `lease(...)`,
-`keepAlive(...)`, and `disconnect(...)`. Every command is a cold `Mono`: it is
-sent only after `subscribe()` or `block()`.
+An accepted connection also exposes `metadataPush(...)`, `media(...)`,
+`lease(...)`, `keepAlive(...)`, and `disconnect(...)`. Every command is a cold
+`Mono`: it is sent only after `subscribe()` or `block()`.
 
 The wire behavior follows the
 [RSocket protocol specification](https://github.com/rsocket/rsocket/blob/master/Protocol.md).
@@ -342,12 +393,13 @@ import {
 } from "rsocket-server-ts";
 ```
 
-`RSocketServer` exposes only `accept`, `acceptWebSocket`, `listenTcp`, and
-`close`. An accepted connection exposes only its immutable `setup` information
-and `metadataPush`, `lease`, `keepAlive`, and `disconnect` commands. Named TypeScript
-types for options, contexts, transports, listeners, and connections are also
-available from the root without adding runtime exports. There is no default
-export or technical package subpath.
+`RSocketServer` exposes only `accept`, `acceptWebSocket`,
+`acceptWebTransport`, `listenTcp`, and `close`. An accepted connection exposes
+only its immutable `setup` information and `metadataPush`, `media`, `lease`,
+`keepAlive`, and `disconnect` commands. Named TypeScript types for options,
+contexts, transports, listeners, and connections are also available from the
+root without adding runtime exports. There is no default export or technical
+package subpath.
 
 ## Development
 
@@ -358,4 +410,4 @@ npm run build
 
 `npm test` runs the responder protocol contract and the same interaction,
 backpressure, fragmentation, error, and Resume conformance suite independently
-over TCP and WebSocket.
+over TCP, WebSocket, and WebTransport.

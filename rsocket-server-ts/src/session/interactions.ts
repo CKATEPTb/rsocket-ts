@@ -165,6 +165,13 @@ export class ServerInteractionDispatcher {
         return this.ignoredPayloadFragments.consume(streamId, typeAndFlags);
     }
 
+    /** Advances request sequencing when a best-effort FNF datagram was lost. */
+    skipFireAndForget(streamId: number): void {
+        if (!this.validateNewStreamId(streamId)) return;
+        this.nextStreamId = nextRSocketStreamId(streamId, 1);
+        this.session.acquireRequest();
+    }
+
     /** Validates a new odd stream ID and buffers a fragmented initial request. */
     private handleInitialRequest(frame: InitialRequestFrame): void {
         const streamId = frame.header.streamId;
