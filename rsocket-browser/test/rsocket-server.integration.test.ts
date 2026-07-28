@@ -265,14 +265,15 @@ describe("RSocket browser integration with rsocket-server-ts", () => {
     }
   });
 
-  it("fragments routed request-response payloads in both directions", async () => {
+  it("fragments a 35,536-element routed request-response in both directions", async () => {
     const fixture = await fragmentedFixture();
-    const value = patternedText(8_000, "request-response");
+    const dataArr = new Array<number>(35_536).fill(0);
 
     try {
-      await expect(fixture.connection
-        .requestResponse({value}, route("echo"))
-        .block()).resolves.toMatchObject({data: {value}});
+      const response = await fixture.connection
+        .requestResponse(dataArr, route("hello"))
+        .block();
+      expect(response?.data).toEqual(dataArr);
 
       const pair = fixture.pairs[0];
       if (pair === undefined) throw new Error("Missing WebSocket pair");
