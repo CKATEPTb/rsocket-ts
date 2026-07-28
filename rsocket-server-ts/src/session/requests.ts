@@ -10,7 +10,7 @@ import type {RSocketRequestContext} from "@/controllers/types.js";
 import {RSocketRequestError} from "@/errors/index.js";
 import type {RSocketServerConnection} from "@/server/connection.js";
 
-/** Builds an immutable request context from a fully decoded initial frame. */
+/** Builds a readonly-typed request context from a fully decoded initial frame. */
 export function requestContext(
     frame: InitialRequestFrame,
     connection: RSocketServerConnection,
@@ -24,7 +24,7 @@ export function requestContext(
     context.connection = connection;
     context.streamId = frame.header.streamId;
     context.route = route;
-    return Object.freeze(context) as RSocketRequestContext;
+    return context as RSocketRequestContext;
 }
 
 /** Maps initial request frame types to independent controller namespaces. */

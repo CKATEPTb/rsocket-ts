@@ -15,13 +15,13 @@ import type {ResponderSession} from "@/session/types.js";
 const EMPTY_SUBSCRIPTION: Subscription = Object.freeze({request() {}, cancel() {}});
 
 /** Owner callbacks for channel half-close and local cancellation. */
-interface ChannelInputLifecycle {
+export interface ChannelInputLifecycle {
     /** Reports requester half-close. */
-    complete(): void;
+    inputComplete(): void;
     /** Reports invalid input or subscriber failure. */
-    error(error: unknown): void;
+    inputError(error: unknown): void;
     /** Reports local subscriber cancellation. */
-    cancel(): void;
+    inputCancel(): void;
 }
 
 /** Flux facade preserving network demand for both subscribers and operators. */
@@ -80,7 +80,7 @@ export class ChannelInput {
         if (this.terminated || this.requesterComplete) return false;
         if (continuation || (!frame.isNext() && !payloadHasMoreFragments(frame.header.flags)) ||
             this.remoteCredits > 0) return true;
-        this.lifecycle.error(new RSocketProtocolError(
+        this.lifecycle.inputError(new RSocketProtocolError(
             "RSocket requester sent channel PAYLOAD without responder demand",
             {streamId: this.streamId}
         ));
@@ -117,7 +117,7 @@ export class ChannelInput {
             });
         } catch (error) {
             this.subscriber = undefined;
-            this.lifecycle.error(error);
+            this.lifecycle.inputError(error);
             return;
         }
         this.drain();
@@ -127,7 +127,7 @@ export class ChannelInput {
     next(payload: RSocketPayloadFrame): void {
         if (this.terminated || this.requesterComplete) return;
         if (this.remoteCredits <= 0) {
-            this.lifecycle.error(new RSocketProtocolError(
+            this.lifecycle.inputError(new RSocketProtocolError(
                 "RSocket requester sent channel PAYLOAD without responder demand",
                 {streamId: this.streamId}
             ));
@@ -177,7 +177,7 @@ export class ChannelInput {
         try {
             request = normalizeReactiveDemand(value);
         } catch (error) {
-            this.lifecycle.error(error);
+            this.lifecycle.inputError(error);
             return;
         }
         this.downstreamDemand = addReactiveDemand(this.downstreamDemand, request);
@@ -187,7 +187,7 @@ export class ChannelInput {
     /** Cancels the entire channel when controller code cancels its request input. */
     private cancel(): void {
         if (this.terminated) return;
-        this.lifecycle.cancel();
+        this.lifecycle.inputCancel();
     }
 
     /** Delivers queued values while demand exists and handles requester half-close. */
@@ -217,7 +217,7 @@ export class ChannelInput {
             try {
                 subscriber.onNext(value);
             } catch (error) {
-                this.lifecycle.error(error);
+                this.lifecycle.inputError(error);
                 return;
             }
         }
@@ -232,7 +232,7 @@ export class ChannelInput {
             } catch {
                 // Completion callback failures cannot alter a completed protocol half-stream.
             } finally {
-                this.lifecycle.complete();
+                this.lifecycle.inputComplete();
             }
             return;
         }
@@ -264,7 +264,7 @@ export class ChannelInput {
             try {
                 this.session.send(new RequestNFrame(this.streamId, request));
             } catch (error) {
-                this.lifecycle.error(error);
+                this.lifecycle.inputError(error);
                 return;
             }
         }

@@ -62,6 +62,16 @@ class CountingChannelController extends RequestChannelController<void, never> {
     }
 }
 
+/** Returns one immediate value without creating a reactive source. */
+class DirectResponseController extends RequestResponseController<void, number> {
+    protected readonly route = [] as const;
+
+    /** Produces the direct response used by the synchronous dispatch fast path. */
+    override handle(): number {
+        return 1;
+    }
+}
+
 /** Cancels its request synchronously before returning a response publisher. */
 class CancellingResponseController extends RequestResponseController<void, number> {
     protected readonly route = [] as const;
@@ -125,6 +135,46 @@ const CANCELLING_CONTROLLER_CASES: readonly CancellingControllerCase[] = [
 ];
 
 describe("server resource cleanup", () => {
+    it("completes direct request-response without allocating a publisher responder", () => {
+        const sent: Frame[] = [];
+        let dispatcher!: ServerInteractionDispatcher;
+        const start = vi.spyOn(RequestResponseResponder.prototype, "start");
+        const session = {
+            connection: {},
+            isTerminated: false,
+            acquireRequest: () => undefined,
+            encode: (value: unknown) => ({
+                payload: WellKnownMimeType.APPLICATION_JSON.toPayload(value)
+            }),
+            send: (frame: Frame) => sent.push(frame),
+            unregister: (streamId: number) => dispatcher.unregister(streamId)
+        } as unknown as ResponderSession;
+        dispatcher = new ServerInteractionDispatcher(
+            session,
+            new SetupFrame(
+                60_000,
+                60_000,
+                WellKnownMimeType.MESSAGE_RSOCKET_COMPOSITE_METADATA,
+                WellKnownMimeType.APPLICATION_JSON
+            ),
+            new ControllerRegistry([new DirectResponseController()]),
+            new ServerBackgroundWork()
+        );
+
+        try {
+            dispatcher.handle(new RequestResponseFrame(1, 0));
+
+            expect(start).not.toHaveBeenCalled();
+            expect(sent).toHaveLength(1);
+            expect(sent[0]).toBeInstanceOf(PayloadFrame);
+            expect((sent[0] as PayloadFrame).header.flags)
+                .toBe(PayloadFlag.NEXT | PayloadFlag.COMPLETE);
+            expect(dispatcher.isIdle).toBe(true);
+        } finally {
+            start.mockRestore();
+        }
+    });
+
     it("does not invoke a channel controller after reentrant cancellation of its first credit", () => {
         let calls = 0;
         let dispatcher!: ServerInteractionDispatcher;
@@ -203,8 +253,8 @@ describe("server resource cleanup", () => {
             encode: () => ({}),
             send: (frame: Frame) => sent.push(frame)
         } as unknown as ResponderSession, 1, 1, {
-            complete: () => undefined,
-            error: (error) => {
+            outputComplete: () => undefined,
+            outputError: (error) => {
                 lifecycleError = error;
             }
         });
@@ -242,10 +292,10 @@ describe("server resource cleanup", () => {
             }
         } as unknown as ResponderSession;
         output = new DemandControlledOutput(session, 1, 1, {
-            complete: () => {
+            outputComplete: () => {
                 completed += 1;
             },
-            error: (error) => {
+            outputError: (error) => {
                 throw error;
             }
         });
@@ -314,8 +364,8 @@ describe("server resource cleanup", () => {
                 encode: () => ({}),
                 send: () => undefined
             } as unknown as ResponderSession, 1, 1, {
-                complete: () => undefined,
-                error: (error) => {
+                outputComplete: () => undefined,
+                outputError: (error) => {
                     lifecycleError = error;
                 }
             });
@@ -376,9 +426,9 @@ describe("server resource cleanup", () => {
 
     it("does not register an abort listener for terminal channel input", async () => {
         const input = new ChannelInput({} as ResponderSession, 1, undefined, false, {
-            complete: () => undefined,
-            error: () => undefined,
-            cancel: () => undefined
+            inputComplete: () => undefined,
+            inputError: () => undefined,
+            inputCancel: () => undefined
         });
         input.terminate();
         const addEventListener = vi.fn();
@@ -461,13 +511,13 @@ describe("server resource cleanup", () => {
             send: (frame: Frame) => sent.push(frame)
         } as unknown as ResponderSession;
         const input = new ChannelInput(session, 1, undefined, true, {
-            complete: () => {
+            inputComplete: () => {
                 completed += 1;
             },
-            error: (error) => {
+            inputError: (error) => {
                 lifecycleError = error;
             },
-            cancel: () => undefined
+            inputCancel: () => undefined
         });
 
         input.start();
@@ -494,11 +544,11 @@ describe("server resource cleanup", () => {
         let lifecycleError: unknown;
         const session = {send: (frame: Frame) => sent.push(frame)} as unknown as ResponderSession;
         const input = new ChannelInput(session, 1, undefined, false, {
-            complete: () => undefined,
-            error: (error) => {
+            inputComplete: () => undefined,
+            inputError: (error) => {
                 lifecycleError = error;
             },
-            cancel: () => undefined
+            inputCancel: () => undefined
         });
         input.start();
         const first = new PayloadFrame(1, PayloadFlag.NEXT);
@@ -521,11 +571,11 @@ describe("server resource cleanup", () => {
             undefined,
             false,
             {
-                complete: () => undefined,
-                error: (error) => {
+                inputComplete: () => undefined,
+                inputError: (error) => {
                     lifecycleError = error;
                 },
-                cancel: () => undefined
+                inputCancel: () => undefined
             }
         );
         input.start();
@@ -559,11 +609,11 @@ describe("server resource cleanup", () => {
             undefined,
             true,
             {
-                complete: () => undefined,
-                error: (error) => {
+                inputComplete: () => undefined,
+                inputError: (error) => {
                     lifecycleError = error;
                 },
-                cancel: () => undefined
+                inputCancel: () => undefined
             }
         );
         input.start();
@@ -641,11 +691,11 @@ describe("server resource cleanup", () => {
             send: (frame: Frame) => sent.push(frame)
         } as unknown as ResponderSession;
         const input = new ChannelInput(session, 1, undefined, false, {
-            complete: () => undefined,
-            error: (error) => {
+            inputComplete: () => undefined,
+            inputError: (error) => {
                 lifecycleError = error;
             },
-            cancel: () => undefined
+            inputCancel: () => undefined
         });
 
         input.start();
@@ -690,11 +740,11 @@ describe("server resource cleanup", () => {
             }
         } as unknown as ResponderSession;
         input = new ChannelInput(session, 1, undefined, false, {
-            complete: () => undefined,
-            error: (error) => {
+            inputComplete: () => undefined,
+            inputError: (error) => {
                 lifecycleError = error;
             },
-            cancel: () => undefined
+            inputCancel: () => undefined
         });
 
         input.start();
@@ -724,11 +774,11 @@ describe("server resource cleanup", () => {
             incoming(1),
             false,
             {
-                complete: () => undefined,
-                error: (error) => {
+                inputComplete: () => undefined,
+                inputError: (error) => {
                     throw error;
                 },
-                cancel: () => undefined
+                inputCancel: () => undefined
             }
         );
         input.start();

@@ -2,10 +2,10 @@
 import type {PayloadFrame} from "rsocket-frames-ts";
 import type {PublisherInput, RSocketPayloadInput} from "rsocket-core-ts";
 import type {ResponderSession, ResponderStream} from "@/session/types.js";
-import {DemandControlledOutput} from "@/stream/output.js";
+import {DemandControlledOutput, type OutputLifecycle} from "@/stream/output.js";
 
 /** One active request-stream response publisher. */
-export class RequestStreamResponder implements ResponderStream {
+export class RequestStreamResponder implements ResponderStream, OutputLifecycle {
     private readonly output: DemandControlledOutput;
     private ended = false;
 
@@ -16,10 +16,7 @@ export class RequestStreamResponder implements ResponderStream {
         initialRequest: number,
         private readonly source: PublisherInput<RSocketPayloadInput<any, any>>
     ) {
-        this.output = new DemandControlledOutput(session, streamId, initialRequest, {
-            complete: () => this.complete(),
-            error: (error) => this.fail(error)
-        });
+        this.output = new DemandControlledOutput(session, streamId, initialRequest, this);
     }
 
     /** Ignores requester PAYLOAD outside the request-stream sequence. */
@@ -59,14 +56,14 @@ export class RequestStreamResponder implements ResponderStream {
     }
 
     /** Releases state after a successful COMPLETE frame. */
-    private complete(): void {
+    outputComplete(): void {
         if (this.ended) return;
         this.ended = true;
         this.session.unregister(this.streamId);
     }
 
     /** Converts local source failures into stream ERROR frames. */
-    private fail(error: unknown): void {
+    outputError(error: unknown): void {
         if (this.ended) return;
         this.ended = true;
         this.output.cancel();

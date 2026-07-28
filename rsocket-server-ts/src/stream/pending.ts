@@ -1,7 +1,18 @@
 /** Temporary stream ownership while a synchronous controller selects its output source. */
 import type {PayloadFrame} from "rsocket-frames-ts";
 import {addReactiveDemand} from "rsocket-core-ts";
-import type {ResponderStream} from "@/session/types.js";
+import type {ResponderSession, ResponderStream} from "@/session/types.js";
+
+/** Shared allocation-free reservation for request-response controller invocation. */
+export const PENDING_REQUEST_RESPONSE_STREAM: ResponderStream = Object.freeze({
+    streamId: 0,
+    acceptPayloadFragment: () => false,
+    handleRequestN: () => undefined,
+    handlePayload: () => undefined,
+    handleError: () => undefined,
+    handleCancel: () => undefined,
+    terminate: () => undefined
+});
 
 /** Reserves a request stream so reentrant peer frames cannot bypass its lifecycle. */
 export class PendingResponderStream implements ResponderStream {
@@ -10,8 +21,8 @@ export class PendingResponderStream implements ResponderStream {
 
     /** Retains the stream ID and terminal cleanup until the concrete responder is ready. */
     constructor(
-        readonly streamId: number,
-        private readonly onTerminate: () => void
+        private readonly session: ResponderSession,
+        readonly streamId: number
     ) {
     }
 
@@ -43,7 +54,7 @@ export class PendingResponderStream implements ResponderStream {
         if (this.ended) return;
         this.ended = true;
         this.demand = 0;
-        this.onTerminate();
+        this.session.unregister(this.streamId);
     }
 
     /** Transfers credits accumulated before the concrete stream was installed. */

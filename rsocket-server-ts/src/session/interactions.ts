@@ -41,6 +41,7 @@ import {hasInitialChannelItem} from "@/session/protocol.js";
 import {interactionKind, requestContext} from "@/session/requests.js";
 import type {ResponderSession, ResponderStream} from "@/session/types.js";
 import {
+    PENDING_REQUEST_RESPONSE_STREAM,
     PendingResponderStream,
     RequestChannelResponder,
     RequestResponseResponder,
@@ -134,7 +135,7 @@ export class ServerInteractionDispatcher {
 
     /** Terminates every interaction and releases all fragment storage. */
     close(error: unknown): void {
-        for (const stream of [...this.streams.values()]) stream.terminate(error);
+        for (const stream of this.streams.values()) stream.terminate(error);
         this.streams.clear();
         this.payloadFragments.clear();
         this.requestFragments.clear();
@@ -231,9 +232,11 @@ export class ServerInteractionDispatcher {
         }
         try {
             if (frame instanceof RequestResponseFrame) {
-                const pending = this.reserveControllerStream(streamId);
+                const pending = PENDING_REQUEST_RESPONSE_STREAM;
+                this.streams.set(streamId, pending);
                 const result = (controller as RequestResponseController<any, any, any, any>).handle(context.data, context);
                 if (this.session.isTerminated || this.streams.get(streamId) !== pending) return;
+                if (RequestResponseResponder.respondSynchronously(this.session, streamId, result)) return;
                 const responder = new RequestResponseResponder(this.session, streamId, result);
                 this.streams.set(streamId, responder);
                 responder.start();
@@ -274,7 +277,7 @@ export class ServerInteractionDispatcher {
 
     /** Makes a stream visible before invoking synchronous application controller code. */
     private reserveControllerStream(streamId: number): PendingResponderStream {
-        const pending = new PendingResponderStream(streamId, () => this.session.unregister(streamId));
+        const pending = new PendingResponderStream(this.session, streamId);
         this.streams.set(streamId, pending);
         return pending;
     }
@@ -285,7 +288,9 @@ export class ServerInteractionDispatcher {
             this.session.unregister(streamId);
             return;
         }
-        this.streams.get(streamId)?.handleCancel();
+        const stream = this.streams.get(streamId);
+        if (stream === PENDING_REQUEST_RESPONSE_STREAM) this.unregister(streamId);
+        else stream?.handleCancel();
     }
 
     /** Reassembles request continuations or active-stream payload fragments. */

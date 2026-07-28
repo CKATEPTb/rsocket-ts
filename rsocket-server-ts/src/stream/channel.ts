@@ -8,11 +8,15 @@ import {
 } from "rsocket-core-ts";
 import {RSocketRequestError} from "@/errors/index.js";
 import type {ResponderSession, ResponderStream} from "@/session/types.js";
-import {ChannelInput, type RSocketChannelRequests} from "@/stream/channel-input.js";
-import {DemandControlledOutput} from "@/stream/output.js";
+import {
+    ChannelInput,
+    type ChannelInputLifecycle,
+    type RSocketChannelRequests
+} from "@/stream/channel-input.js";
+import {DemandControlledOutput, type OutputLifecycle} from "@/stream/output.js";
 
 /** One bidirectional stream that remains registered until both halves complete. */
-export class RequestChannelResponder implements ResponderStream {
+export class RequestChannelResponder implements ResponderStream, ChannelInputLifecycle, OutputLifecycle {
     private readonly input: ChannelInput;
     private readonly output: DemandControlledOutput;
     private requesterComplete = false;
@@ -29,18 +33,8 @@ export class RequestChannelResponder implements ResponderStream {
         requesterComplete: boolean
     ) {
         this.requesterComplete = requesterComplete;
-        this.input = new ChannelInput(session, streamId, initial, requesterComplete, {
-            complete: () => this.completeRequester(),
-            error: (error) => this.fail(error),
-            cancel: () => this.fail(new RSocketRequestError(
-                "Request-channel input was cancelled by controller code",
-                FrameErrorCode.CANCELED
-            ))
-        });
-        this.output = new DemandControlledOutput(session, streamId, initialRequestN, {
-            complete: () => this.completeResponder(),
-            error: (error) => this.fail(error)
-        });
+        this.input = new ChannelInput(session, streamId, initial, requesterComplete, this);
+        this.output = new DemandControlledOutput(session, streamId, initialRequestN, this);
     }
 
     /** Flux supplied to the declarative controller. */
@@ -109,15 +103,33 @@ export class RequestChannelResponder implements ResponderStream {
     }
 
     /** Marks requester half-close and releases the stream when both halves ended. */
-    private completeRequester(): void {
+    inputComplete(): void {
         this.requesterComplete = true;
         this.completeIfDone();
     }
 
     /** Marks responder half-close and releases the stream when both halves ended. */
-    private completeResponder(): void {
+    outputComplete(): void {
         this.responderComplete = true;
         this.completeIfDone();
+    }
+
+    /** Converts request-input failures to one stream-scoped ERROR. */
+    inputError(error: unknown): void {
+        this.fail(error);
+    }
+
+    /** Converts response-output failures to one stream-scoped ERROR. */
+    outputError(error: unknown): void {
+        this.fail(error);
+    }
+
+    /** Cancels the channel when controller code abandons its request input. */
+    inputCancel(): void {
+        this.fail(new RSocketRequestError(
+            "Request-channel input was cancelled by controller code",
+            FrameErrorCode.CANCELED
+        ));
     }
 
     /** Finishes successful channels only after both COMPLETE signals. */

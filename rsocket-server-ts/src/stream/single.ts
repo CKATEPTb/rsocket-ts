@@ -20,6 +20,28 @@ export class RequestResponseResponder implements Subscriber<RSocketPayloadInput<
     ) {
     }
 
+    /** Completes direct controller values without allocating a publisher responder. */
+    static respondSynchronously(
+        session: ResponderSession,
+        streamId: number,
+        result: RSocketHandlerResult<RSocketPayloadInput<any, any> | undefined>
+    ): boolean {
+        if (isPublisher(result) || isPromiseLike(result)) return false;
+        if (result === undefined) {
+            session.send(new PayloadFrame(streamId, PayloadFlag.COMPLETE));
+        } else {
+            const encoded = session.encode(result);
+            session.send(new PayloadFrame(
+                streamId,
+                PayloadFlag.NEXT | PayloadFlag.COMPLETE,
+                encoded.metadata,
+                encoded.payload
+            ));
+        }
+        session.unregister(streamId);
+        return true;
+    }
+
     /** Ignores requester PAYLOAD without allocating fragment storage. */
     acceptPayloadFragment(): boolean {
         return false;

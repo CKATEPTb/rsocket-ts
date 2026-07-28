@@ -11,11 +11,11 @@ import {
 import type {ResponderSession} from "@/session/types.js";
 
 /** Lifecycle callbacks used by request-stream and request-channel owners. */
-interface OutputLifecycle {
+export interface OutputLifecycle {
     /** Reports responder half-close. */
-    complete(): void;
+    outputComplete(): void;
     /** Reports publisher or encoding failure. */
-    error(error: unknown): void;
+    outputError(error: unknown): void;
 }
 
 /** Subscriber that forwards only peer-authorized response elements. */
@@ -99,9 +99,9 @@ export class DemandControlledOutput implements Subscriber<RSocketPayloadInput<an
         this.subscription = undefined;
         try {
             this.session.send(new PayloadFrame(this.streamId, PayloadFlag.COMPLETE));
-            this.lifecycle.complete();
+            this.lifecycle.outputComplete();
         } catch (error) {
-            this.lifecycle.error(error);
+            this.lifecycle.outputError(error);
         }
     }
 
@@ -157,6 +157,6 @@ export class DemandControlledOutput implements Subscriber<RSocketPayloadInput<an
         const subscription = this.subscription;
         this.subscription = undefined;
         cancelSubscription(subscription);
-        this.lifecycle.error(error);
+        this.lifecycle.outputError(error);
     }
 }

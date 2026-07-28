@@ -343,7 +343,7 @@ export class RSocketServerSession<D = unknown, M = unknown>
             }
         });
         try {
-            this.emitActivity("receive", frame);
+            if (this.options.activityListener !== undefined) this.emitActivity("receive", frame);
             this.assertActiveBinding(binding, "RSocket Resume session terminated before acknowledgement");
             this.sendHandshake(new ResumeOkFrame(this.clientPosition), binding);
             this.assertActiveBinding(binding, "RSocket Resume transport closed after acknowledgement");
@@ -495,7 +495,7 @@ export class RSocketServerSession<D = unknown, M = unknown>
                 this.timers.received();
             }
             this.recordClientPosition(frameType, bytes.byteLength);
-            this.emitActivity("receive", frame);
+            if (this.options.activityListener !== undefined) this.emitActivity("receive", frame);
             if (this.terminated || this.suspended) return;
             this.dispatch(frame, streamId);
         } catch (error) {
@@ -609,7 +609,7 @@ export class RSocketServerSession<D = unknown, M = unknown>
         if (binding === undefined) throw new RSocketConnectionError("RSocket server transport is unavailable");
         try {
             binding.write(bytes);
-            this.emitActivity("send", frame);
+            if (this.options.activityListener !== undefined) this.emitActivity("send", frame);
         } catch (error) {
             this.transportLost(binding, error);
             if (!positional || !this.suspended) throw error;
