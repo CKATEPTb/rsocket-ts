@@ -1012,7 +1012,8 @@ export class RSocketClient<D = unknown, M = unknown> {
             const typeAndFlags = readFrameTypeAndFlags(bytes);
             const frameType = (typeAndFlags >>> 10) as FrameType;
             const replayBuffer = this.replayBuffer;
-            const activeStream = this.streams.has(streamId) || this.ignoredPayloadFragments.has(streamId);
+            const stream = this.streams.get(streamId);
+            const activeStream = stream !== undefined || this.ignoredPayloadFragments.has(streamId);
             if (isIgnorableEstablishedFrame(frameType, streamId, activeStream)) {
                 if (replayBuffer !== undefined && isResumePositionFrame(frameType)) {
                     this.serverPosition += BigInt(bytes.byteLength);
@@ -1042,7 +1043,6 @@ export class RSocketClient<D = unknown, M = unknown> {
                 }
                 return;
             }
-            const payloadStream = frameType === FrameType.PAYLOAD ? this.streams.get(streamId) : undefined;
             const decodePayloadAsRaw = requiresRawPayloadDecode(frameType);
             const frame = deserializeFrame(
                 bytes,
@@ -1062,9 +1062,9 @@ export class RSocketClient<D = unknown, M = unknown> {
             }
             if (this.activityListeners !== undefined) this.emitActivity("receive", frame);
             if (this.closed || this.suspended || this.terminated) return;
-            const dispatchStream = payloadStream !== undefined && this.streams.get(streamId) === payloadStream
-                ? payloadStream
-                : undefined;
+            const dispatchStream = stream !== undefined && (
+                this.activityListeners === undefined || this.streams.get(streamId) === stream
+            ) ? stream : undefined;
             this.handleFrame(frame, dispatchStream, streamId);
         } catch (error) {
             this.protocolError(new RSocketProtocolError("Failed to decode incoming RSocket frame", {cause: error}));
@@ -1074,13 +1074,10 @@ export class RSocketClient<D = unknown, M = unknown> {
     /**
      * Dispatches one decoded frame to connection-level or stream-level handlers.
      */
-    private handleFrame(frame: Frame, payloadStream: StreamController | undefined, streamId: number): void {
+    private handleFrame(frame: Frame, stream: StreamController | undefined, streamId: number): void {
         const frameType = frame.type;
         if (!this.validateFrameStreamId(frame, streamId)) return;
-        const activeStream = frameType === FrameType.PAYLOAD
-            ? payloadStream !== undefined
-            : this.streams.has(streamId);
-        if (!this.setupAccepted && confirmsSetup(frame, activeStream)) {
+        if (!this.setupAccepted && confirmsSetup(frame, stream !== undefined)) {
             this.setupAccepted = true;
         }
         switch (frameType) {
@@ -1091,22 +1088,19 @@ export class RSocketClient<D = unknown, M = unknown> {
                 this.handleLease(frame as LeaseFrame);
                 return;
             case FrameType.PAYLOAD:
-                this.handlePayloadFrame(frame as PayloadFrame, payloadStream);
+                this.handlePayloadFrame(frame as PayloadFrame, stream);
                 return;
             case FrameType.ERROR:
-                this.handleErrorFrame(frame as ErrorFrame);
+                this.handleErrorFrame(frame as ErrorFrame, stream);
                 return;
-            case FrameType.REQUEST_N: {
-                const stream = this.streams.get(streamId);
-                if (stream !== undefined) stream.handleRequestN(frame as RequestNFrame);
+            case FrameType.REQUEST_N:
+                stream?.handleRequestN(frame as RequestNFrame);
                 return;
-            }
             case FrameType.CANCEL: {
                 // A sender may cancel an unfinished fragmented PAYLOAD sequence
                 // even when CANCEL is otherwise unexpected for this direction.
                 this.fragments.delete(streamId);
-                const stream = this.streams.get(streamId);
-                if (stream !== undefined) stream.handleCancel();
+                stream?.handleCancel();
                 return;
             }
             case FrameType.METADATA_PUSH:
@@ -1208,9 +1202,8 @@ export class RSocketClient<D = unknown, M = unknown> {
     /**
      * Applies connection-level or stream-level ERROR frames.
      */
-    private handleErrorFrame(frame: ErrorFrame): void {
+    private handleErrorFrame(frame: ErrorFrame, stream: StreamController | undefined): void {
         const streamId = frame.header.streamId;
-        const stream = streamId === 0 ? undefined : this.streams.get(streamId);
         if (streamId !== 0 && stream === undefined) return;
         if (!isErrorCodeValidForStream(frame.code, streamId)) {
             this.protocolError(invalidErrorStreamId(frame));
