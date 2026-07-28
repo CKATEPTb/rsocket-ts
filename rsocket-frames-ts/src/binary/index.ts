@@ -26,6 +26,7 @@ export function createWriter(initialCapacity = 0): ByteWriter {
 /** Returns a local byte view for a Uint8Array created in any JavaScript realm. */
 export function byteView(value: unknown): Uint8Array | undefined {
     if (value instanceof Uint8Array) return value;
+    if (typeof value !== "object" || value === null || !ArrayBuffer.isView(value)) return undefined;
     if (Object.prototype.toString.call(value) !== UINT8_ARRAY_TAG) return undefined;
     const bytes = value as Uint8Array;
     return new Uint8Array(bytes.buffer, bytes.byteOffset, bytes.byteLength);

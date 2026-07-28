@@ -9,6 +9,7 @@ import {
 
 const ROUND_TRIPS = 25_000;
 const SERIALIZATIONS = 10_000;
+const COMPOSITE_SERIALIZATIONS = 25_000;
 const MAX_TEST_DURATION_MS = 10_000;
 
 /** Creates the WebSocket codec used by deterministic frame benchmarks. */
@@ -59,6 +60,29 @@ describe("frame codec performance", () => {
         }
 
         expect(bytes).toBeGreaterThan(SERIALIZATIONS * 4_096);
+        expect(performance.now() - started).toBeLessThan(MAX_TEST_DURATION_MS);
+    });
+
+    it("serializes common composite metadata without repeated writer growth", () => {
+        const entries = [
+            WellKnownMimeType.MESSAGE_RSOCKET_ROUTING.toMetadata(["account.sign-in"]),
+            WellKnownMimeType.TEXT_PLAIN.toMetadata("trace-id")
+        ];
+        const expectedLength = WellKnownMimeType.MESSAGE_RSOCKET_COMPOSITE_METADATA
+            .toMetadata(entries)
+            .toUint8Array()
+            .byteLength;
+        const started = performance.now();
+        let bytes = 0;
+
+        for (let index = 0; index < COMPOSITE_SERIALIZATIONS; index += 1) {
+            bytes += WellKnownMimeType.MESSAGE_RSOCKET_COMPOSITE_METADATA
+                .toMetadata(entries)
+                .toUint8Array()
+                .byteLength;
+        }
+
+        expect(bytes).toBe(COMPOSITE_SERIALIZATIONS * expectedLength);
         expect(performance.now() - started).toBeLessThan(MAX_TEST_DURATION_MS);
     });
 });

@@ -53,15 +53,34 @@ export class RSocketComposite extends MimeType<Array<Metadata<any>>> {
      * @returns {Metadata<Array<Metadata<any>>>} Composite metadata wrapper.
      */
     protected override serializeMetadata(payloads: Array<Metadata<any>>): Metadata<Array<Metadata<any>>> {
-        const writer = createWriter()
-        for (const payload of payloads) {
+        let capacity = 0;
+        const encodedPayloads = new Array<Uint8Array>(payloads.length);
+        for (let index = 0; index < payloads.length; index += 1) {
+            const payload = payloads[index] as Metadata<any>;
+            const bytes = payload.toUint8Array();
+            encodedPayloads[index] = bytes;
+            capacity += 1 + 3 + bytes.byteLength;
+            if (!payload.mimeType.isWellKnown) {
+                const length = payload.mimeType.mimeType.length;
+                if (length < 1 || length > 128) {
+                    throw new RangeError("Composite metadata MIME type must contain between 1 and 128 ASCII bytes");
+                }
+                capacity += length;
+            }
+        }
+
+        const writer = createWriter(capacity)
+        for (let index = 0; index < payloads.length; index += 1) {
+            const payload = payloads[index] as Metadata<any>;
             if (payload.mimeType.isWellKnown) writer.i8(128 | payload.mimeType.identifier!)
             else {
                 const type = encodeCustomType(payload.mimeType.mimeType, "Composite metadata MIME type")
                 writer.i7(type.length - 1)
                 writer.write(type)
             }
-            payload.write(writer, true)
+            const bytes = encodedPayloads[index] as Uint8Array;
+            writer.i24(bytes.byteLength);
+            writer.write(bytes)
         }
         return new Metadata(this, payloads, writer.toUint8Array())
     }
