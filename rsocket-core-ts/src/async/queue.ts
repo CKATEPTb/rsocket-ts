@@ -135,6 +135,6 @@ interface QueueWaiter<T> {
 /** Removes an array's consumed prefix without allocating a splice result. */
 function compactArray<T>(values: T[], consumed: number): void {
     const remaining = values.length - consumed;
-    for (let index = 0; index < remaining; index += 1) values[index] = values[index + consumed] as T;
+    values.copyWithin(0, consumed);
     values.length = remaining;
 }

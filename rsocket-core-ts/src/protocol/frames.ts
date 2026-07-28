@@ -191,7 +191,10 @@ export function isErrorCodeValidForStream(code: FrameErrorCode, streamId: number
 
 /** Rejects buffers too short to contain the fixed RSocket frame header. */
 function assertHeader(buffer: Uint8Array): void {
-    if (Object.prototype.toString.call(buffer) !== "[object Uint8Array]" || buffer.byteLength < 6) {
+    const bytes = buffer instanceof Uint8Array ||
+        (typeof buffer === "object" && buffer !== null &&
+            ArrayBuffer.isView(buffer) && Object.prototype.toString.call(buffer) === "[object Uint8Array]");
+    if (!bytes || buffer.byteLength < 6) {
         throw new RSocketProtocolError("RSocket frame header is incomplete");
     }
 }

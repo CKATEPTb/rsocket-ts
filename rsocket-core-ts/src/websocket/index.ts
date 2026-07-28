@@ -52,11 +52,11 @@ export function webSocketFrameFlux(socket: unknown, copy = false): Flux<Uint8Arr
             synchronous.clear();
             if (!sink.isCancelled()) sink.error(error);
         };
-        const message = (...args: unknown[]): void => {
+        const message = (first?: unknown, second?: unknown): void => {
             if (terminated || sink.isCancelled()) return;
             let decoded: Uint8Array | Promise<Uint8Array>;
             try {
-                decoded = decodeWebSocketMessage(args, copy);
+                decoded = decodeWebSocketArguments(first, second, copy);
             } catch (error) {
                 fail(error);
                 return;
@@ -140,10 +140,18 @@ export function decodeWebSocketMessage(
     args: readonly unknown[],
     copy = false
 ): Uint8Array | Promise<Uint8Array> {
-    if (typeof args[1] === "boolean" && !args[1]) {
+    return decodeWebSocketArguments(args[0], args[1], copy);
+}
+
+/** Decodes fixed WebSocket callback arguments without allocating a rest array. */
+function decodeWebSocketArguments(
+    first: unknown,
+    second: unknown,
+    copy: boolean
+): Uint8Array | Promise<Uint8Array> {
+    if (typeof second === "boolean" && !second) {
         throw new RSocketProtocolError("RSocket WebSocket transport expects binary messages");
     }
-    const first = args[0];
     const data = typeof first === "object" && first !== null && "data" in first
         ? (first as {readonly data: unknown}).data
         : first;
@@ -156,14 +164,14 @@ export function webSocketBinaryData(
     copy = false
 ): Uint8Array | Promise<Uint8Array> {
     if (data instanceof Uint8Array) return standaloneBytes(data, copy);
-    if (objectTag(data) === "[object ArrayBuffer]") {
+    if (data instanceof ArrayBuffer || objectTag(data) === "[object ArrayBuffer]") {
         const buffer = data as ArrayBuffer;
         return copy ? new Uint8Array(buffer.slice(0)) : new Uint8Array(buffer);
     }
     if (ArrayBuffer.isView(data)) {
         return standaloneBytes(new Uint8Array(data.buffer, data.byteOffset, data.byteLength), copy);
     }
-    if (Array.isArray(data) && data.every((part) => ArrayBuffer.isView(part))) {
+    if (Array.isArray(data) && areArrayBufferViews(data)) {
         return concatenateViews(data as ArrayBufferView[]);
     }
     if (objectTag(data) === "[object Blob]" && typeof (data as BlobLike).arrayBuffer === "function") {
@@ -175,7 +183,7 @@ export function webSocketBinaryData(
 /** Returns an ArrayBuffer-backed view accepted by WHATWG WebSocket `send`. */
 export function webSocketSendData(frame: Uint8Array): Uint8Array<ArrayBuffer> {
     return frame.buffer instanceof ArrayBuffer
-        ? new Uint8Array(frame.buffer, frame.byteOffset, frame.byteLength)
+        ? frame as Uint8Array<ArrayBuffer>
         : Uint8Array.from(frame);
 }
 
@@ -275,6 +283,14 @@ interface BlobLike {
 /** Reads an intrinsic object tag without relying on realm-local constructors. */
 function objectTag(value: unknown): string {
     return Object.prototype.toString.call(value);
+}
+
+/** Checks Node `ws` fragment arrays without allocating an `every(...)` callback. */
+function areArrayBufferViews(values: readonly unknown[]): boolean {
+    for (let index = 0; index < values.length; index += 1) {
+        if (!ArrayBuffer.isView(values[index])) return false;
+    }
+    return true;
 }
 
 /** Detaches views from oversized buffers and optionally copies standalone bytes. */

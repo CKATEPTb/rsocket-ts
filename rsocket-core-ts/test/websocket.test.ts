@@ -46,6 +46,7 @@ describe("Core WebSocket adapters", () => {
     it("normalizes outgoing shared-buffer views to WHATWG-compatible ArrayBuffer bytes", () => {
         const regular = Uint8Array.of(1, 2);
         const regularResult = webSocketSendData(regular);
+        expect(regularResult).toBe(regular);
         expect(regularResult).toEqual(regular);
         expect(regularResult.buffer).toBe(regular.buffer);
 

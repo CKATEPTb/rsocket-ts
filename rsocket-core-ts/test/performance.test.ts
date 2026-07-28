@@ -34,14 +34,24 @@ describe("Core performance primitives", () => {
         for (let index = 0; index < FRAME_COUNT; index += 1) {
             position = replay.record(position, frame, bytes);
         }
-        replay.acknowledge(position, position);
 
         const state = replay as unknown as {
-            entries: unknown[];
+            entries: number[];
+            bytes: Array<Uint8Array | undefined>;
+            frames?: Array<CancelFrame | undefined>;
             retainedBytes: number;
             head: number;
         };
+        expect(state.entries).toHaveLength(FRAME_COUNT);
+        expect(state.entries[0]).toBe(bytes.byteLength);
+        expect(state.entries.at(-1)).toBe(bytes.byteLength * FRAME_COUNT);
+        expect(state.bytes).toHaveLength(FRAME_COUNT);
+        expect(state.frames).toBeUndefined();
+
+        replay.acknowledge(position, position);
+
         expect(state.entries).toHaveLength(0);
+        expect(state.bytes).toHaveLength(0);
         expect(state.retainedBytes).toBe(0);
         expect(state.head).toBe(0);
         expect(performance.now() - started).toBeLessThan(MAX_TEST_DURATION_MS);
