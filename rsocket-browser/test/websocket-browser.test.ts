@@ -417,6 +417,65 @@ describe("RSocket", () => {
     }
   });
 
+  it("shares one native wake-listener set across logical sockets", () => {
+    const browser = installBrowserSignals(true);
+    const registeredAdd = globalThis.addEventListener;
+    const registeredRemove = globalThis.removeEventListener;
+    const first = vi.fn();
+    const second = vi.fn();
+    let registrations = 0;
+    let removals = 0;
+    let releaseFirst: (() => void) | undefined;
+    let releaseSecond: (() => void) | undefined;
+
+    try {
+      (globalThis as any).addEventListener = (type: string, callback: EventListener): void => {
+        registrations += 1;
+        registeredAdd(type, callback);
+      };
+      (globalThis as any).removeEventListener = (type: string, callback: EventListener): void => {
+        removals += 1;
+        registeredRemove(type, callback);
+      };
+
+      releaseFirst = browserReconnectSignals.onWake(first);
+      releaseSecond = browserReconnectSignals.onWake(second);
+      expect(registrations).toBe(3);
+
+      browser.dispatch("focus");
+      expect(first).toHaveBeenCalledTimes(1);
+      expect(second).toHaveBeenCalledTimes(1);
+
+      releaseFirst();
+      expect(removals).toBe(0);
+      browser.dispatch("pageshow");
+      expect(first).toHaveBeenCalledTimes(1);
+      expect(second).toHaveBeenCalledTimes(2);
+
+      releaseSecond();
+      releaseSecond();
+      expect(removals).toBe(3);
+
+      registrations = 0;
+      removals = 0;
+      const duplicate = vi.fn();
+      releaseFirst = browserReconnectSignals.onWake(duplicate);
+      releaseSecond = browserReconnectSignals.onWake(duplicate);
+      browser.dispatch("online");
+      expect(duplicate).toHaveBeenCalledTimes(2);
+      releaseFirst();
+      browser.dispatch("online");
+      expect(duplicate).toHaveBeenCalledTimes(3);
+      releaseSecond();
+      expect(registrations).toBe(3);
+      expect(removals).toBe(3);
+    } finally {
+      releaseFirst?.();
+      releaseSecond?.();
+      browser.restore();
+    }
+  });
+
   it("parses each inbound frame header only once", async () => {
     const { client, socket } = await connect();
     const response = client.requestResponse({ singleHeaderParse: true }).block();
