@@ -59,6 +59,7 @@ export function testServerControllers(
   return [
     new RecordController(observations),
     EchoController,
+    HelloController,
     DelayedController,
     NumbersController,
     FailingStreamController,
@@ -87,6 +88,16 @@ class EchoController extends RequestResponseController<EchoValue, EchoValue> {
 
   /** Returns the decoded request unchanged. */
   override handle(data: EchoValue): EchoValue {
+    return data;
+  }
+}
+
+/** Echoes the large JSON array used to verify transparent fragmentation. */
+class HelloController extends RequestResponseController<number[], number[]> {
+  protected readonly route = "hello";
+
+  /** Returns the decoded array unchanged. */
+  override handle(data: number[]): number[] {
     return data;
   }
 }
