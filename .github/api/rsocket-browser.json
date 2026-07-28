@@ -55,7 +55,7 @@
           "parent": "",
           "optional": false,
           "abstract": false,
-          "hash": "vH3QXN9RLb23bWgjvWHiSTgAib9mwina03bXJjpJ0RU"
+          "hash": "q6dtIhg3yUWKr9XPJVztOlphgUu0iYXytzasvMs8NOk"
         },
         "rsocket-browser!~WebSocketOptions:type": {
           "kind": "TypeAlias",
@@ -64,6 +64,14 @@
           "optional": false,
           "abstract": false,
           "hash": "r7Wjxq9GBPqZIMOOH-gqHAC3fw2Hs__u8SjAIbh0E3Q"
+        },
+        "rsocket-browser!~WebTransportOptions_2:type": {
+          "kind": "TypeAlias",
+          "name": "WebTransportOptions_2",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "Nu2S1EtHGnfDt2QmdHeaylSOwsFvsHW25FChUijF9S8"
         },
         "rsocket-browser!FireAndForgetController:class": {
           "kind": "Class",

@@ -1,6 +1,6 @@
 {
   "name": "rsocket-server-ts",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Complete RSocket 1.0 responder for WebSocket, WebTransport, and TCP TypeScript servers.",
   "type": "module",
   "main": "./dist/index.js",
@@ -28,12 +28,12 @@
   },
   "dependencies": {
     "reactor-core-ts": "^3.2.4",
-    "rsocket-core-ts": "^1.0.0",
+    "rsocket-core-ts": "^1.1.0",
     "rsocket-frames-ts": "^3.0.0"
   },
   "devDependencies": {
     "@types/node": "^26.1.1",
-    "rsocket-client-ts": "^1.0.0",
+    "rsocket-client-ts": "^2.0.0",
     "typescript": "^7.0.2",
     "vite": "^8.1.5",
     "vitest": "^4.1.10"

@@ -42,9 +42,21 @@
         "RSocketTransportCloseOptions": "Interface",
         "RSocketTransportConnection": "Interface",
         "RSocketTransportHandler": "Interface",
+        "RSocketWebTransportBidirectionalStream": "Interface",
+        "RSocketWebTransportCloseInfo": "Interface",
+        "RSocketWebTransportConnection": "Interface",
+        "RSocketWebTransportConnectionOptions": "Interface",
+        "RSocketWebTransportDatagrams": "Interface",
+        "RSocketWebTransportReadable": "Interface",
+        "RSocketWebTransportReader": "Interface",
+        "RSocketWebTransportRole": "TypeAlias",
+        "RSocketWebTransportSession": "Interface",
+        "RSocketWebTransportWritable": "Interface",
+        "RSocketWebTransportWriter": "Interface",
         "ReactiveTcpTransportConnection": "Class",
         "ReactiveTransportBinding": "Class",
         "ReactiveWebSocketTransportConnection": "Class",
+        "ReactiveWebTransportConnection": "Class",
         "RequestFragmentAssembler": "Class",
         "SERVER_STREAM_ID": "Variable",
         "TcpFrameConsumer": "TypeAlias",
@@ -56,6 +68,7 @@
         "compositeMetadataEntries": "Function",
         "connectionClosedError": "Function",
         "createPullAsyncIterable": "Function",
+        "createWebTransportConnection": "Function",
         "data": "Function",
         "decodeFramePayload": "Function",
         "decodeInitialRequestFrame": "Function",
@@ -437,6 +450,14 @@
           "optional": false,
           "abstract": false,
           "hash": "Ul2Ls_apcTvcDiqLDAExHoxY8PMkShfUuIypPo2dcCY"
+        },
+        "rsocket-core-ts!createWebTransportConnection:function(1)": {
+          "kind": "Function",
+          "name": "createWebTransportConnection",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "EGGVWE5n5ldmbT0ETA5BSQkSU-N1tPBJ8urTgc_NmbA"
         },
         "rsocket-core-ts!data:function(1)": {
           "kind": "Function",
@@ -1085,6 +1106,110 @@
           "optional": false,
           "abstract": false,
           "hash": "SAG9Jfb8RA864pNb_zPKSEcqbNoR-_DowlUBE1TrdeE"
+        },
+        "rsocket-core-ts!ReactiveWebTransportConnection:class": {
+          "kind": "Class",
+          "name": "ReactiveWebTransportConnection",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "3p-pAjggPrwaHCqrhn4jMWk9LzmPGl9ufrY2Ui4FU2A"
+        },
+        "rsocket-core-ts!ReactiveWebTransportConnection:constructor(1)": {
+          "kind": "Constructor",
+          "name": "",
+          "parent": "rsocket-core-ts!ReactiveWebTransportConnection:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "_de0yvwq4s1AzIgwL_wPRKU3aIz7Xwvw7UnlhCHtqtQ"
+        },
+        "rsocket-core-ts!ReactiveWebTransportConnection#close:member(1)": {
+          "kind": "Method",
+          "name": "close",
+          "parent": "rsocket-core-ts!ReactiveWebTransportConnection:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "rBAakISd04z5WaWaJs9F3dTZ5qGnGupN4NaDhjxAQCE"
+        },
+        "rsocket-core-ts!ReactiveWebTransportConnection#closes:member": {
+          "kind": "Property",
+          "name": "closes",
+          "parent": "rsocket-core-ts!ReactiveWebTransportConnection:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "K6pYAFzwGFgilZVSIcQkh41-FZRd-a-xYNazmsTeUoo"
+        },
+        "rsocket-core-ts!ReactiveWebTransportConnection#errors:member": {
+          "kind": "Property",
+          "name": "errors",
+          "parent": "rsocket-core-ts!ReactiveWebTransportConnection:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "oGfLyBj_H5WHmsTzcswIf8ka0QfLr9uK8ISZhjg_wTk"
+        },
+        "rsocket-core-ts!ReactiveWebTransportConnection#frames:member": {
+          "kind": "Property",
+          "name": "frames",
+          "parent": "rsocket-core-ts!ReactiveWebTransportConnection:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "kOJsqndjOFxpEXNPVDVqd1XCGVsuRnL1i9Z1J564Kwo"
+        },
+        "rsocket-core-ts!ReactiveWebTransportConnection#isOpen:member": {
+          "kind": "Property",
+          "name": "isOpen",
+          "parent": "rsocket-core-ts!ReactiveWebTransportConnection:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "IjuuPq70-IVWQMVqVxRqqIygpNTsoYEXqYs_njkO2sc"
+        },
+        "rsocket-core-ts!ReactiveWebTransportConnection#media:member": {
+          "kind": "Property",
+          "name": "media",
+          "parent": "rsocket-core-ts!ReactiveWebTransportConnection:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "SzbmdRy05SxOqNXw2rY6r7Q67YBDnIFRwYsJ9_A0YI4"
+        },
+        "rsocket-core-ts!ReactiveWebTransportConnection#opened:member": {
+          "kind": "Property",
+          "name": "opened",
+          "parent": "rsocket-core-ts!ReactiveWebTransportConnection:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "JvhQ566o95FGc3I97by7Z37-PCCQJWj8zziJauRhwpU"
+        },
+        "rsocket-core-ts!ReactiveWebTransportConnection#session:member": {
+          "kind": "Property",
+          "name": "session",
+          "parent": "rsocket-core-ts!ReactiveWebTransportConnection:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "pcw3y9jTkkw9vks56cxqMGEeHke4SzFh-tyFn0X5KOc"
+        },
+        "rsocket-core-ts!ReactiveWebTransportConnection#skippedFireAndForget:member": {
+          "kind": "Property",
+          "name": "skippedFireAndForget",
+          "parent": "rsocket-core-ts!ReactiveWebTransportConnection:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "sQRXG3JVtC_tDNn4SOmqOAdesHxLUIgvEVHt1Xsmm0Q"
+        },
+        "rsocket-core-ts!ReactiveWebTransportConnection#write:member(1)": {
+          "kind": "Method",
+          "name": "write",
+          "parent": "rsocket-core-ts!ReactiveWebTransportConnection:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "SAG9Jfb8RA864pNb_zPKSEcqbNoR-_DowlUBE1TrdeE"
+        },
+        "rsocket-core-ts!ReactiveWebTransportConnection#writeMedia:member(1)": {
+          "kind": "Method",
+          "name": "writeMedia",
+          "parent": "rsocket-core-ts!ReactiveWebTransportConnection:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "FaNtDnuDVWFbOqjyE5T9ybZL3NYKxB8MB5Db1sySJ9A"
         },
         "rsocket-core-ts!readFrameStreamId:function(1)": {
           "kind": "Function",
@@ -1750,6 +1875,14 @@
           "abstract": false,
           "hash": "22GZ4yuG085_e72lZnsVJRL147V0DI5DMQRRz2GF2as"
         },
+        "rsocket-core-ts!RSocketTransportConnection#media:member": {
+          "kind": "PropertySignature",
+          "name": "media",
+          "parent": "rsocket-core-ts!RSocketTransportConnection:interface",
+          "optional": true,
+          "abstract": false,
+          "hash": "waRtM_hXLieZjMSGV2aAotEB5tYG5SYRtyhUWmSJC_E"
+        },
         "rsocket-core-ts!RSocketTransportConnection#opened:member": {
           "kind": "PropertySignature",
           "name": "opened",
@@ -1758,6 +1891,14 @@
           "abstract": false,
           "hash": "OAmLz9wPoVtzQf2ZLUjP8wdVmrzmafyLoz1qOtKcLV8"
         },
+        "rsocket-core-ts!RSocketTransportConnection#skippedFireAndForget:member": {
+          "kind": "PropertySignature",
+          "name": "skippedFireAndForget",
+          "parent": "rsocket-core-ts!RSocketTransportConnection:interface",
+          "optional": true,
+          "abstract": false,
+          "hash": "bhX5dmmExARHs4J_zfobz5I5bQkw-fxp95i1z02_r78"
+        },
         "rsocket-core-ts!RSocketTransportConnection#write:member(1)": {
           "kind": "MethodSignature",
           "name": "write",
@@ -1765,6 +1906,14 @@
           "optional": false,
           "abstract": false,
           "hash": "lUajgjRj8o5KPv7wQsqk15VwKZb_Hb5mu-IBTmbt3hQ"
+        },
+        "rsocket-core-ts!RSocketTransportConnection#writeMedia:member(1)": {
+          "kind": "MethodSignature",
+          "name": "writeMedia",
+          "parent": "rsocket-core-ts!RSocketTransportConnection:interface",
+          "optional": true,
+          "abstract": false,
+          "hash": "S3lvkwCMTbD1ColwwpoxqMaVrVpBjw4r1qeErCSjNp4"
         },
         "rsocket-core-ts!RSocketTransportHandler:interface": {
           "kind": "Interface",
@@ -1805,6 +1954,406 @@
           "optional": false,
           "abstract": false,
           "hash": "GLiRI9tLuO38JckuM3fMjhsJmSOn_BLIhu5RpSbOvd4"
+        },
+        "rsocket-core-ts!RSocketTransportHandler#media:member(1)": {
+          "kind": "MethodSignature",
+          "name": "media",
+          "parent": "rsocket-core-ts!RSocketTransportHandler:interface",
+          "optional": true,
+          "abstract": false,
+          "hash": "0IH5OXoAhyijqYV0FOfuUgbhZ0hh0j5R-GzCNkxXWOg"
+        },
+        "rsocket-core-ts!RSocketTransportHandler#skippedFireAndForget:member(1)": {
+          "kind": "MethodSignature",
+          "name": "skippedFireAndForget",
+          "parent": "rsocket-core-ts!RSocketTransportHandler:interface",
+          "optional": true,
+          "abstract": false,
+          "hash": "iUMphEDHZ3Y6mzBblHc26T89TAIwAEPjpS-5ZRlMYEs"
+        },
+        "rsocket-core-ts!RSocketWebTransportBidirectionalStream:interface": {
+          "kind": "Interface",
+          "name": "RSocketWebTransportBidirectionalStream",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "nwlI3TfPW78W5FUKMCuqri18evUKVa2lBqS9W6igyN0"
+        },
+        "rsocket-core-ts!RSocketWebTransportBidirectionalStream#readable:member": {
+          "kind": "PropertySignature",
+          "name": "readable",
+          "parent": "rsocket-core-ts!RSocketWebTransportBidirectionalStream:interface",
+          "optional": false,
+          "abstract": false,
+          "hash": "Mm3GyBH3DfDgMY9WcUizI86eKRn7I8ujNPMn1UjMIuM"
+        },
+        "rsocket-core-ts!RSocketWebTransportBidirectionalStream#writable:member": {
+          "kind": "PropertySignature",
+          "name": "writable",
+          "parent": "rsocket-core-ts!RSocketWebTransportBidirectionalStream:interface",
+          "optional": false,
+          "abstract": false,
+          "hash": "CvtvyXX6nL9B4g0cwftEjHKfTd15KeVhfe0hYxF5aSc"
+        },
+        "rsocket-core-ts!RSocketWebTransportCloseInfo:interface": {
+          "kind": "Interface",
+          "name": "RSocketWebTransportCloseInfo",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "1I83qrYdywh5expBkbD_xKDU9ZY_j0vmer22P3mHPIQ"
+        },
+        "rsocket-core-ts!RSocketWebTransportCloseInfo#closeCode:member": {
+          "kind": "PropertySignature",
+          "name": "closeCode",
+          "parent": "rsocket-core-ts!RSocketWebTransportCloseInfo:interface",
+          "optional": true,
+          "abstract": false,
+          "hash": "gbJ_xtfG5kSK3N93_jzUI-NXc4xEvx9xxSXjaRuY7tY"
+        },
+        "rsocket-core-ts!RSocketWebTransportCloseInfo#reason:member": {
+          "kind": "PropertySignature",
+          "name": "reason",
+          "parent": "rsocket-core-ts!RSocketWebTransportCloseInfo:interface",
+          "optional": true,
+          "abstract": false,
+          "hash": "22pF0sA50pgK-RtiB4aMt2PMlON1QKSAooXUU4Qk8-w"
+        },
+        "rsocket-core-ts!RSocketWebTransportConnection:interface": {
+          "kind": "Interface",
+          "name": "RSocketWebTransportConnection",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "lIwIVVYPp0StBabVTHWYv-L4S8QnguXIRUAOYj3Y0FE"
+        },
+        "rsocket-core-ts!RSocketWebTransportConnection#media:member": {
+          "kind": "PropertySignature",
+          "name": "media",
+          "parent": "rsocket-core-ts!RSocketWebTransportConnection:interface",
+          "optional": false,
+          "abstract": false,
+          "hash": "YOApsODTSoRQgc1DxrH0Z8oVUk-y_q-ch5KjIExYcjY"
+        },
+        "rsocket-core-ts!RSocketWebTransportConnection#skippedFireAndForget:member": {
+          "kind": "PropertySignature",
+          "name": "skippedFireAndForget",
+          "parent": "rsocket-core-ts!RSocketWebTransportConnection:interface",
+          "optional": false,
+          "abstract": false,
+          "hash": "t0hihGFYb_QDW4BaNA7CM9RRtTTXtE0XMgVY05tcqvs"
+        },
+        "rsocket-core-ts!RSocketWebTransportConnection#writeMedia:member(1)": {
+          "kind": "MethodSignature",
+          "name": "writeMedia",
+          "parent": "rsocket-core-ts!RSocketWebTransportConnection:interface",
+          "optional": false,
+          "abstract": false,
+          "hash": "BKPro0Rb6kbLzqn_8-lVTFtIEZzmLePPAMT1G5G8BZ4"
+        },
+        "rsocket-core-ts!RSocketWebTransportConnectionOptions:interface": {
+          "kind": "Interface",
+          "name": "RSocketWebTransportConnectionOptions",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "0F2YHQi67aHb9mvVwv27S_W3IdSQTGlYKKh5dY08A3s"
+        },
+        "rsocket-core-ts!RSocketWebTransportConnectionOptions#abortSignal:member": {
+          "kind": "PropertySignature",
+          "name": "abortSignal",
+          "parent": "rsocket-core-ts!RSocketWebTransportConnectionOptions:interface",
+          "optional": true,
+          "abstract": false,
+          "hash": "tAeUKrU_UJCXD8OaNIKihp6EZNpF6_4OYw583aZoUz0"
+        },
+        "rsocket-core-ts!RSocketWebTransportConnectionOptions#maxFrameLength:member": {
+          "kind": "PropertySignature",
+          "name": "maxFrameLength",
+          "parent": "rsocket-core-ts!RSocketWebTransportConnectionOptions:interface",
+          "optional": true,
+          "abstract": false,
+          "hash": "o9OwymwmAHeVlOszvgmrjNjUOKSsO6HxFKO1PuUSP3s"
+        },
+        "rsocket-core-ts!RSocketWebTransportConnectionOptions#maxReorderBufferBytes:member": {
+          "kind": "PropertySignature",
+          "name": "maxReorderBufferBytes",
+          "parent": "rsocket-core-ts!RSocketWebTransportConnectionOptions:interface",
+          "optional": true,
+          "abstract": false,
+          "hash": "_UDusRyQHkRZqHdhjn8StwEfoymPAdG_viaxXMK8cBg"
+        },
+        "rsocket-core-ts!RSocketWebTransportConnectionOptions#role:member": {
+          "kind": "PropertySignature",
+          "name": "role",
+          "parent": "rsocket-core-ts!RSocketWebTransportConnectionOptions:interface",
+          "optional": false,
+          "abstract": false,
+          "hash": "MJ7MSH7tCE56CuLq8Wlav3Xt39CTgz-_mEcAStiohFs"
+        },
+        "rsocket-core-ts!RSocketWebTransportConnectionOptions#timeoutMs:member": {
+          "kind": "PropertySignature",
+          "name": "timeoutMs",
+          "parent": "rsocket-core-ts!RSocketWebTransportConnectionOptions:interface",
+          "optional": true,
+          "abstract": false,
+          "hash": "Uo8cxw11gUhBsUXC7a7JgJv0bA6M8bPMM1HWoKCVdDI"
+        },
+        "rsocket-core-ts!RSocketWebTransportConnectionOptions#unreliableFireAndForget:member": {
+          "kind": "PropertySignature",
+          "name": "unreliableFireAndForget",
+          "parent": "rsocket-core-ts!RSocketWebTransportConnectionOptions:interface",
+          "optional": true,
+          "abstract": false,
+          "hash": "HzwO67ZW6InKTSuiYlFMQsNzfkbK76KtawgFwZDh0ao"
+        },
+        "rsocket-core-ts!RSocketWebTransportDatagrams:interface": {
+          "kind": "Interface",
+          "name": "RSocketWebTransportDatagrams",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "EPJ7_7xx2j_bvzT3hLnWPcFqxKmJRw18rJz5i9h4Bh4"
+        },
+        "rsocket-core-ts!RSocketWebTransportDatagrams#createWritable:member(1)": {
+          "kind": "MethodSignature",
+          "name": "createWritable",
+          "parent": "rsocket-core-ts!RSocketWebTransportDatagrams:interface",
+          "optional": true,
+          "abstract": false,
+          "hash": "eNoLem3x--uJlLHc6MDtp3qc8J0uR63C5pUkItk__oo"
+        },
+        "rsocket-core-ts!RSocketWebTransportDatagrams#maxDatagramSize:member": {
+          "kind": "PropertySignature",
+          "name": "maxDatagramSize",
+          "parent": "rsocket-core-ts!RSocketWebTransportDatagrams:interface",
+          "optional": true,
+          "abstract": false,
+          "hash": "NuE6e5h4zgzDHHc5UOv5lNK__mdvpuFJGqPfu7RkwXs"
+        },
+        "rsocket-core-ts!RSocketWebTransportDatagrams#outgoingMaxDatagramSize:member": {
+          "kind": "PropertySignature",
+          "name": "outgoingMaxDatagramSize",
+          "parent": "rsocket-core-ts!RSocketWebTransportDatagrams:interface",
+          "optional": true,
+          "abstract": false,
+          "hash": "ErsamTFfIabj0fKtqzyz_No9LvjIJdNp3EfAQGK887o"
+        },
+        "rsocket-core-ts!RSocketWebTransportDatagrams#readable:member": {
+          "kind": "PropertySignature",
+          "name": "readable",
+          "parent": "rsocket-core-ts!RSocketWebTransportDatagrams:interface",
+          "optional": false,
+          "abstract": false,
+          "hash": "jsME9lxZc4nSxdGxKzz9blzUnz2BQgTwILXRH2DcHEc"
+        },
+        "rsocket-core-ts!RSocketWebTransportDatagrams#writable:member": {
+          "kind": "PropertySignature",
+          "name": "writable",
+          "parent": "rsocket-core-ts!RSocketWebTransportDatagrams:interface",
+          "optional": true,
+          "abstract": false,
+          "hash": "ND-u8xDImK8TQNq7GitzupzdGsfl9okj7o3xC9sADXU"
+        },
+        "rsocket-core-ts!RSocketWebTransportReadable:interface": {
+          "kind": "Interface",
+          "name": "RSocketWebTransportReadable",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "Gj_j8eijum_NpxkNKsnKVUt6npHEBxqvYxsnaVYxL2s"
+        },
+        "rsocket-core-ts!RSocketWebTransportReadable#getReader:member(1)": {
+          "kind": "MethodSignature",
+          "name": "getReader",
+          "parent": "rsocket-core-ts!RSocketWebTransportReadable:interface",
+          "optional": false,
+          "abstract": false,
+          "hash": "qdWJAwofXbKOHuO4VUmqoV2GuHO54DlrAmU9KRAZC8U"
+        },
+        "rsocket-core-ts!RSocketWebTransportReader:interface": {
+          "kind": "Interface",
+          "name": "RSocketWebTransportReader",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "O1WspOffNVS4Bo1LUyS8Aul4UuOnhvhIBEsrCoalMG0"
+        },
+        "rsocket-core-ts!RSocketWebTransportReader#cancel:member(1)": {
+          "kind": "MethodSignature",
+          "name": "cancel",
+          "parent": "rsocket-core-ts!RSocketWebTransportReader:interface",
+          "optional": true,
+          "abstract": false,
+          "hash": "Nm2LRJJW6tEW7Lby-f94Yn62gnFnk1J1wpBEBhwoqGo"
+        },
+        "rsocket-core-ts!RSocketWebTransportReader#read:member(1)": {
+          "kind": "MethodSignature",
+          "name": "read",
+          "parent": "rsocket-core-ts!RSocketWebTransportReader:interface",
+          "optional": false,
+          "abstract": false,
+          "hash": "6Uk79LciUY5uEvTNzOBwuncZayBrzuPDt9DQRxRq9aQ"
+        },
+        "rsocket-core-ts!RSocketWebTransportReader#releaseLock:member(1)": {
+          "kind": "MethodSignature",
+          "name": "releaseLock",
+          "parent": "rsocket-core-ts!RSocketWebTransportReader:interface",
+          "optional": true,
+          "abstract": false,
+          "hash": "aTyh29hsJjabRDn9UhkqYD2IQYAfbtrwOVHO-sWqVCU"
+        },
+        "rsocket-core-ts!RSocketWebTransportRole:type": {
+          "kind": "TypeAlias",
+          "name": "RSocketWebTransportRole",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "wqS8Goc3SYiEgeSl84r5SidXxXYp2N0qw4hOui3XlQo"
+        },
+        "rsocket-core-ts!RSocketWebTransportSession:interface": {
+          "kind": "Interface",
+          "name": "RSocketWebTransportSession",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "ZA7Bn2892HGu6WS7BRL9nI3ltZUsN59LUgm7j1AL1YU"
+        },
+        "rsocket-core-ts!RSocketWebTransportSession#close:member(1)": {
+          "kind": "MethodSignature",
+          "name": "close",
+          "parent": "rsocket-core-ts!RSocketWebTransportSession:interface",
+          "optional": false,
+          "abstract": false,
+          "hash": "35_H6SilIccaXxJmoeMLATXGY2hY-OuGsMyAjnXWMrc"
+        },
+        "rsocket-core-ts!RSocketWebTransportSession#closed:member": {
+          "kind": "PropertySignature",
+          "name": "closed",
+          "parent": "rsocket-core-ts!RSocketWebTransportSession:interface",
+          "optional": false,
+          "abstract": false,
+          "hash": "RsN5ZOlJRd2xs92oEhYoexNWVd9av7vjTN8L_DiInk0"
+        },
+        "rsocket-core-ts!RSocketWebTransportSession#createBidirectionalStream:member(1)": {
+          "kind": "MethodSignature",
+          "name": "createBidirectionalStream",
+          "parent": "rsocket-core-ts!RSocketWebTransportSession:interface",
+          "optional": false,
+          "abstract": false,
+          "hash": "__7tGRoDihqttwPevFPmzaX40t9bo5JJo4AXqQnIFiY"
+        },
+        "rsocket-core-ts!RSocketWebTransportSession#createUnidirectionalStream:member(1)": {
+          "kind": "MethodSignature",
+          "name": "createUnidirectionalStream",
+          "parent": "rsocket-core-ts!RSocketWebTransportSession:interface",
+          "optional": false,
+          "abstract": false,
+          "hash": "d_cLf3lbmVgYOBDct9RZ_okONnG4oY_zGzd5LcQgPdM"
+        },
+        "rsocket-core-ts!RSocketWebTransportSession#datagrams:member": {
+          "kind": "PropertySignature",
+          "name": "datagrams",
+          "parent": "rsocket-core-ts!RSocketWebTransportSession:interface",
+          "optional": true,
+          "abstract": false,
+          "hash": "cpj5wlcf7FSz1oqR2UTjpHtjUcXkBY6TZoqpK-Fkym0"
+        },
+        "rsocket-core-ts!RSocketWebTransportSession#incomingBidirectionalStreams:member": {
+          "kind": "PropertySignature",
+          "name": "incomingBidirectionalStreams",
+          "parent": "rsocket-core-ts!RSocketWebTransportSession:interface",
+          "optional": false,
+          "abstract": false,
+          "hash": "O0DgcvH-qFBvXg1BraJ9ryzZWPJiB34NhOZA1KJMPOg"
+        },
+        "rsocket-core-ts!RSocketWebTransportSession#incomingUnidirectionalStreams:member": {
+          "kind": "PropertySignature",
+          "name": "incomingUnidirectionalStreams",
+          "parent": "rsocket-core-ts!RSocketWebTransportSession:interface",
+          "optional": false,
+          "abstract": false,
+          "hash": "4WvvOSveYRrbPDhdL6P2F30VH5NWG_CilKCCtFSf0Gc"
+        },
+        "rsocket-core-ts!RSocketWebTransportSession#maxDatagramSize:member": {
+          "kind": "PropertySignature",
+          "name": "maxDatagramSize",
+          "parent": "rsocket-core-ts!RSocketWebTransportSession:interface",
+          "optional": true,
+          "abstract": false,
+          "hash": "NuE6e5h4zgzDHHc5UOv5lNK__mdvpuFJGqPfu7RkwXs"
+        },
+        "rsocket-core-ts!RSocketWebTransportSession#ready:member": {
+          "kind": "PropertySignature",
+          "name": "ready",
+          "parent": "rsocket-core-ts!RSocketWebTransportSession:interface",
+          "optional": false,
+          "abstract": false,
+          "hash": "jkEOYDhOuMIUscbuk1-_qKbZz1YMbxwm9ogbtdZZgNw"
+        },
+        "rsocket-core-ts!RSocketWebTransportSession#reliability:member": {
+          "kind": "PropertySignature",
+          "name": "reliability",
+          "parent": "rsocket-core-ts!RSocketWebTransportSession:interface",
+          "optional": true,
+          "abstract": false,
+          "hash": "6wGuvCy2DhPCMYKuC09_UGbgD6TpSpb8PNhP7-6CoY8"
+        },
+        "rsocket-core-ts!RSocketWebTransportWritable:interface": {
+          "kind": "Interface",
+          "name": "RSocketWebTransportWritable",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "9cx4oCMWvZQkGUzmP3UJfjk4T1_QBOWXMYWphFkS9No"
+        },
+        "rsocket-core-ts!RSocketWebTransportWritable#getWriter:member(1)": {
+          "kind": "MethodSignature",
+          "name": "getWriter",
+          "parent": "rsocket-core-ts!RSocketWebTransportWritable:interface",
+          "optional": false,
+          "abstract": false,
+          "hash": "V-hHEiTtU6N3EdpB0Vnl1wu-h76VpKkWM2lIp9088eQ"
+        },
+        "rsocket-core-ts!RSocketWebTransportWriter:interface": {
+          "kind": "Interface",
+          "name": "RSocketWebTransportWriter",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "y8Ipd9u5AP2XBcnxxKvT3YVuzMr9wSOKblFnvuRYmqU"
+        },
+        "rsocket-core-ts!RSocketWebTransportWriter#abort:member(1)": {
+          "kind": "MethodSignature",
+          "name": "abort",
+          "parent": "rsocket-core-ts!RSocketWebTransportWriter:interface",
+          "optional": true,
+          "abstract": false,
+          "hash": "ycmq7YXwXbSMPaNAByCfA9l7MLWSC0deT4HiluJix1Q"
+        },
+        "rsocket-core-ts!RSocketWebTransportWriter#close:member(1)": {
+          "kind": "MethodSignature",
+          "name": "close",
+          "parent": "rsocket-core-ts!RSocketWebTransportWriter:interface",
+          "optional": true,
+          "abstract": false,
+          "hash": "ZV4Kj0-J6Vz7OfQLCLJLJq-K4MCoXt2EieYERnm3yuo"
+        },
+        "rsocket-core-ts!RSocketWebTransportWriter#releaseLock:member(1)": {
+          "kind": "MethodSignature",
+          "name": "releaseLock",
+          "parent": "rsocket-core-ts!RSocketWebTransportWriter:interface",
+          "optional": true,
+          "abstract": false,
+          "hash": "aTyh29hsJjabRDn9UhkqYD2IQYAfbtrwOVHO-sWqVCU"
+        },
+        "rsocket-core-ts!RSocketWebTransportWriter#write:member(1)": {
+          "kind": "MethodSignature",
+          "name": "write",
+          "parent": "rsocket-core-ts!RSocketWebTransportWriter:interface",
+          "optional": false,
+          "abstract": false,
+          "hash": "Wx4F1CcuKMxn5xui_bltGEmnV43_47sVsoZuLnz8DHQ"
         },
         "rsocket-core-ts!SERVER_STREAM_ID:var": {
           "kind": "Variable",

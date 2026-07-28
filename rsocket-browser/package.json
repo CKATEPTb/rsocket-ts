@@ -1,6 +1,6 @@
 {
   "name": "rsocket-browser",
-  "version": "4.0.1",
+  "version": "5.0.0",
   "description": "Browser-first RSocket client over WebSocket or WebTransport with reconnect and Resume.",
   "license": "MIT",
   "author": "CKATEPTb",
@@ -58,13 +58,13 @@
   },
   "devDependencies": {
     "@types/node": "^26.1.1",
-    "rsocket-server-ts": "^1.0.0",
+    "rsocket-server-ts": "^2.0.0",
     "typescript": "^7.0.2",
     "vite": "^8.1.5",
     "vitest": "^4.1.10"
   },
   "dependencies": {
-    "rsocket-client-ts": "^1.0.0",
-    "rsocket-core-ts": "^1.0.0"
+    "rsocket-client-ts": "^2.0.0",
+    "rsocket-core-ts": "^1.1.0"
   }
 }

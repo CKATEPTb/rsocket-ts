@@ -12,6 +12,7 @@
       "exports": {
         "FireAndForgetController": "Class",
         "RSocketAcceptedWebSocket": "Interface",
+        "RSocketAcceptedWebTransport": "TypeAlias",
         "RSocketController": "TypeAlias",
         "RSocketControllerRegistration": "TypeAlias",
         "RSocketControllerRoute": "TypeAlias",
@@ -30,6 +31,7 @@
         "RSocketTcpListenOptions": "Interface",
         "RSocketTcpServerAddress": "Interface",
         "RSocketTcpServerListener": "Interface",
+        "RSocketWebTransportAcceptOptions": "Interface",
         "RequestChannelController": "Class",
         "RequestResponseController": "Class",
         "RequestStreamController": "Class"
@@ -243,6 +245,14 @@
           "abstract": false,
           "hash": "SllX_zIuNgDnmsaO5DCtWH2r-ySaBuICYWhtz6n4OMA"
         },
+        "rsocket-server-ts!RSocketAcceptedWebTransport:type": {
+          "kind": "TypeAlias",
+          "name": "RSocketAcceptedWebTransport",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "lv9dzjPSEcK29QSX1RauKX5G59v2IEzIN1yklBIgT_8"
+        },
         "rsocket-server-ts!RSocketController:type": {
           "kind": "TypeAlias",
           "name": "RSocketController",
@@ -419,6 +429,14 @@
           "abstract": false,
           "hash": "lAjPsyJ14IQj-29WQBe-sj7kLsBxckQV6QdUHW_rHjU"
         },
+        "rsocket-server-ts!RSocketServer#acceptWebTransport:member(1)": {
+          "kind": "Method",
+          "name": "acceptWebTransport",
+          "parent": "rsocket-server-ts!RSocketServer:class",
+          "optional": false,
+          "abstract": false,
+          "hash": "7EeEIkF7mnq9C51d3zjpbe2zg73fnEO04FPl06QemoA"
+        },
         "rsocket-server-ts!RSocketServer#close:member(1)": {
           "kind": "Method",
           "name": "close",
@@ -466,6 +484,14 @@
           "optional": false,
           "abstract": false,
           "hash": "QoRfSz_5rZIouwOfKj84sRPygS7RsGHJW8dBqyIInmU"
+        },
+        "rsocket-server-ts!RSocketServerConnection#media:member(1)": {
+          "kind": "MethodSignature",
+          "name": "media",
+          "parent": "rsocket-server-ts!RSocketServerConnection:interface",
+          "optional": false,
+          "abstract": false,
+          "hash": "MMDDxgFnAzD9JMh8QULhdadzQZWig0D0SGpRUFoZH1E"
         },
         "rsocket-server-ts!RSocketServerConnection#metadataPush:member(1)": {
           "kind": "MethodSignature",
@@ -578,6 +604,14 @@
           "optional": true,
           "abstract": false,
           "hash": "o9OwymwmAHeVlOszvgmrjNjUOKSsO6HxFKO1PuUSP3s"
+        },
+        "rsocket-server-ts!RSocketServerOptions#media:member": {
+          "kind": "PropertySignature",
+          "name": "media",
+          "parent": "rsocket-server-ts!RSocketServerOptions:interface",
+          "optional": true,
+          "abstract": false,
+          "hash": "gXeanZ_uuS9-2eGKvX1dzc1tZcq7yatBy32RwDTngIw"
         },
         "rsocket-server-ts!RSocketServerOptions#metadataPush:member": {
           "kind": "PropertySignature",
@@ -778,6 +812,30 @@
           "optional": false,
           "abstract": false,
           "hash": "AZucCiPviJkB2L50TuuFlpWo0KuvTXL3cJb71lwqUDI"
+        },
+        "rsocket-server-ts!RSocketWebTransportAcceptOptions:interface": {
+          "kind": "Interface",
+          "name": "RSocketWebTransportAcceptOptions",
+          "parent": "",
+          "optional": false,
+          "abstract": false,
+          "hash": "8zFeptnRk_d3yvGqsTmhMnf37Yf_eiaUAQZ7fn1I1yo"
+        },
+        "rsocket-server-ts!RSocketWebTransportAcceptOptions#maxReorderBufferBytes:member": {
+          "kind": "PropertySignature",
+          "name": "maxReorderBufferBytes",
+          "parent": "rsocket-server-ts!RSocketWebTransportAcceptOptions:interface",
+          "optional": true,
+          "abstract": false,
+          "hash": "_UDusRyQHkRZqHdhjn8StwEfoymPAdG_viaxXMK8cBg"
+        },
+        "rsocket-server-ts!RSocketWebTransportAcceptOptions#unreliableFireAndForget:member": {
+          "kind": "PropertySignature",
+          "name": "unreliableFireAndForget",
+          "parent": "rsocket-server-ts!RSocketWebTransportAcceptOptions:interface",
+          "optional": true,
+          "abstract": false,
+          "hash": "HzwO67ZW6InKTSuiYlFMQsNzfkbK76KtawgFwZDh0ao"
         }
       }
     }
